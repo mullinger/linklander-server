@@ -12,6 +12,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
 import de.lander.link.rest.RestHello;
+import de.lander.link.servlet.HelloWorldServlet;
 
 public class Starter {
 
@@ -40,6 +41,10 @@ public class Starter {
 		servlet.addMapping("/rest/*");
 
 		rootCtx.addServletMapping("/rest/*", "Jersey REST Service");
+		
+		// Hello World HTTP Servlet
+		Tomcat.addServlet(rootCtx, "helloServlet", new HelloWorldServlet());
+		rootCtx.addServletMapping("/hello", "helloServlet");
 
 		tomcat.start();
 		tomcat.getServer().await();
