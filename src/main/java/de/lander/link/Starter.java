@@ -30,7 +30,7 @@ public class Starter {
 		tomcat.setPort(8080);
 
 		File base = new File(System.getProperty("java.io.tmpdir"));
-		Context rootCtx = tomcat.addWebapp("/app", base.getAbsolutePath());
+		Context rootCtx = tomcat.addContext("/app", base.getAbsolutePath());
 
 		Wrapper servlet = Tomcat.addServlet(rootCtx, "Jersey REST Service",
 				new ServletContainer(new ResourceConfig(RestHello.class)));

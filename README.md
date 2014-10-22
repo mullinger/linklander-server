@@ -9,3 +9,15 @@ Jersey(JAXRS)
 Persistence (NoSQL: Neo4j, ...?)
 
 Implementiert API
+
+Gui
+--------
+- Vaadin
+- Installs
+-- ...
+
+Backend
+--------
+- Neo4j
+- Install
+--- ...
