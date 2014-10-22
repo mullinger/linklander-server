@@ -56,23 +56,6 @@
 
 	<build>
 		<plugins>
-			<!-- ============= Visualizes the Java EE dependencies ================ -->
-			<plugin>
-				<groupId>de.struller-baumann</groupId>
-				<artifactId>visualee</artifactId>
-				<version>0.25</version>
-				<configuration>
-					<outputdirectory>visualee</outputdirectory>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>visualize</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 			<!-- ================== java version ================== -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
