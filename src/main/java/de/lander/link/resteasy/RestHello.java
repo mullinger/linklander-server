@@ -3,21 +3,18 @@ package de.lander.link.resteasy;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 @Path("/hello")
 public class RestHello {
 
   @GET
   @Produces("text/plain")
-  public String sayPlainTextHello() {
-    return "Hello Jersey";
+  public String sayHello(@QueryParam("target") String target) {
+	  String out = "Hallo ";
+	  out += (target != null) ? target : "Welt";
+	  out += "!";
+	  return out;
   }
   
-  @GET
-  @Path("/max")
-  @Produces("text/plain")
-  public String sayMaxHello() {
-    return "Hello Max";
-  }
-
 } 
