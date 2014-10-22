@@ -3,15 +3,14 @@ package de.lander.link;
 import java.io.File;
 
 import javax.servlet.ServletException;
+import javax.tools.Tool;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.startup.Tomcat;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.servlet.ServletContainer;
+import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 
-import de.lander.link.rest.RestHello;
 import de.lander.link.servlet.HelloWorldServlet;
 
 public class Starter {
@@ -31,19 +30,20 @@ public class Starter {
 		tomcat.setPort(8080);
 
 		File base = new File(System.getProperty("java.io.tmpdir"));
-		Context rootCtx = tomcat.addContext("/app", base.getAbsolutePath());
+		Context rootCtx = tomcat.addWebapp("/app", base.getAbsolutePath());
 
-		// Rest Servlets
-		// http://localhost:8080/app/rest/de.lander.link.rest/hello
-		Wrapper servlet = Tomcat.addServlet(rootCtx, "Jersey REST Service",
-				new ServletContainer(new ResourceConfig(RestHello.class)));
+		// RestEasy Servlet
+		rootCtx.addParameter("resteasy.servlet.mapping.prefix", "/rest");
 
-		servlet.addInitParameter("jersey.config.server.provider.packages",
-				"de.lander.link.rest");
+		Wrapper servlet = Tomcat
+				.addServlet(rootCtx, "resteasy",
+						"org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher");
+
 		servlet.addMapping("/rest/*");
+		rootCtx.addServletMapping("/rest/*", "resteasy");
+		servlet.addInitParameter("javax.ws.rs.Application",
+				"de.lander.link.resteasy.RestApplication");
 
-		rootCtx.addServletMapping("/rest/*", "Jersey REST Service");
-		
 		// Hello World HTTP Servlet
 		// http://localhost:8080/app/hello
 		Tomcat.addServlet(rootCtx, "helloServlet", new HelloWorldServlet());
