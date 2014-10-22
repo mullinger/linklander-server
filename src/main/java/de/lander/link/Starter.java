@@ -33,6 +33,8 @@ public class Starter {
 		File base = new File(System.getProperty("java.io.tmpdir"));
 		Context rootCtx = tomcat.addContext("/app", base.getAbsolutePath());
 
+		// Rest Servlets
+		// http://localhost:8080/app/rest/de.lander.link.rest/hello
 		Wrapper servlet = Tomcat.addServlet(rootCtx, "Jersey REST Service",
 				new ServletContainer(new ResourceConfig(RestHello.class)));
 
@@ -43,6 +45,7 @@ public class Starter {
 		rootCtx.addServletMapping("/rest/*", "Jersey REST Service");
 		
 		// Hello World HTTP Servlet
+		// http://localhost:8080/app/hello
 		Tomcat.addServlet(rootCtx, "helloServlet", new HelloWorldServlet());
 		rootCtx.addServletMapping("/hello", "helloServlet");
 
