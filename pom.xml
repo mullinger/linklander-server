@@ -37,10 +37,40 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- For file and in-memory support, add these two as well -->
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-jdbc</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-kernel</artifactId>
+			<version>2.1.4</version>
+			<type>test-jar</type>
+		</dependency>
 	</dependencies>
+
+	<!-- For Neo4j repos -->
+	<repositories>
+		<repository>
+			<id>neo4j-public</id>
+			<url>http://m2.neo4j.org/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
