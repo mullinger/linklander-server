@@ -10,9 +10,12 @@ import static org.junit.Assert.assertThat;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.neo4j.cypher.ExecutionEngine;
+import org.neo4j.cypher.ExecutionResult;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Transaction;
+import org.neo4j.kernel.impl.util.StringLogger;
 import org.neo4j.test.TestGraphDatabaseFactory;
 
 
@@ -48,7 +51,7 @@ public class BasicNeo4jUnitTest {
      * @author mvogel
      */
     @Test
-    public void shouldReturnBecause() throws Exception {
+    public void shouldCreateAndRequestOneNode() throws Exception {
         Node n = null;
         try (Transaction tx = graphDb.beginTx()) {
             n = graphDb.createNode();
@@ -65,6 +68,30 @@ public class BasicNeo4jUnitTest {
             Node foundNode = graphDb.getNodeById(n.getId());
             assertThat(foundNode.getId(), is(n.getId()));
             assertThat((String) foundNode.getProperty("name"), is("Nancy"));
+        }
+    }
+
+    /**
+     * Demonstrates the use of the {@link ExecutionEngine} with a cypher statement
+     *
+     * @author mvogel
+     */
+    @Test
+    public void shouldCreateAndRequestNodeViaExecutionEngine() throws Exception {
+        // == prepare ==
+        StringLogger logger = StringLogger.SYSTEM;
+        ExecutionEngine cypher = new ExecutionEngine(graphDb, logger);
+
+        String insertSql =
+                "CREATE (Hugo:Person {name:'Hugo Weaving', born:1960}) "
+                        + "CREATE (AndyW:Person {name:'Andy Wachowski', born:1967}) "
+                        + "CREATE (LanaW:Person {name:'Lana Wachowski', born:1965})";
+        // == go ==
+        try (Transaction tx = graphDb.beginTx()) {
+            ExecutionResult result = cypher.execute(insertSql);
+            // == verify ==
+            assertThat(result.queryStatistics().nodesCreated(), is(3));
+            tx.success();
         }
     }
 }
