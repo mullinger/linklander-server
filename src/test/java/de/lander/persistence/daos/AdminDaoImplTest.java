@@ -8,6 +8,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.test.TestGraphDatabaseFactory;
 
 /**
  * Tests for {@link AdminDao} with Neo4J Properties
@@ -21,25 +23,24 @@ public class AdminDaoImplTest {
 
     @Before
     public void setUp() {
-        classUnderTest = new AdminDaoImpl();
+		classUnderTest = new AdminDaoImpl(new TestGraphDatabaseFactory().newImpermanentDatabase());
     }
 
     /**
      * @author mvogel
      */
     @Test
-    @Ignore("mvogel: runs red when started more than once because the data is persisted on hard disc already. Think about cleaning nodes after having run this test...")
     public void shouldPersistAndReadLinkToEmbeddedDb() throws Exception {
         // == prepare ==
-        String name = "myLink";
+        String name = "Neo4j-Tutorial";
         String url = "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html";
 
         // == go ==
         classUnderTest.addLink(name, url);
-        String readLink = classUnderTest.readLink(url);
+        String readUrlFromDb = classUnderTest.readLink(name);
 
         // == verify ==
-        assertEquals(url, readLink);
+        assertEquals(url, readUrlFromDb);
     }
 
     // TODO tests for relations
