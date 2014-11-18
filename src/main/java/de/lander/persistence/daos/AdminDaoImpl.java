@@ -3,17 +3,20 @@
  */
 package de.lander.persistence.daos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.neo4j.graphdb.DynamicLabel;
+import org.neo4j.graphdb.DynamicRelationshipType;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Label;
 import org.neo4j.graphdb.Node;
+import org.neo4j.graphdb.RelationshipType;
 import org.neo4j.graphdb.ResourceIterable;
 import org.neo4j.graphdb.ResourceIterator;
 import org.neo4j.graphdb.Transaction;
-import org.neo4j.graphdb.factory.GraphDatabaseFactory;
-import org.neo4j.graphdb.factory.GraphDatabaseSettings;
 
 /**
  * Draft modus...
@@ -38,16 +41,17 @@ public class AdminDaoImpl {// implements AdminDao {
 	// "300").newGraphDatabase();
 
 	private Label linkLabel = DynamicLabel.label("Link");
+	private Label TagLabel = DynamicLabel.label("Tag");
 	private final String nameKey = "name";
 	private final String urlKey = "url";
 
 	/**
 	 * Creates a new AdminDao
-	 * 
+	 *
 	 * @param graphDb
 	 *            the {@link GraphDatabaseService} to use
 	 */
-	public AdminDaoImpl(GraphDatabaseService graphDb) {
+	public AdminDaoImpl(final GraphDatabaseService graphDb) {
 		this.graphDb = graphDb;
 	}
 
@@ -71,8 +75,23 @@ public class AdminDaoImpl {// implements AdminDao {
 	}
 
 	/**
+     * Adds a tag
+     *
+     * @param tag the tag to add
+     */
+    public void addTag(final String tag) {
+        Node tagNode;
+        try (Transaction tx = graphDb.beginTx()) {
+            tagNode = graphDb.createNode();
+            tagNode.setProperty("name", tag);
+            tagNode.addLabel(TagLabel);
+            tx.success();
+        }
+    }
+
+	/**
 	 * Reads the given link from the database
-	 * 
+	 *
 	 * @param name
 	 *            the name of the link
 	 * @return the url of the link
@@ -104,6 +123,117 @@ public class AdminDaoImpl {// implements AdminDao {
 		return sb.toString();
 	}
 
+    /**
+     * Retrieves a given Node for a Link from the database<br>
+     *
+     * @param url the url or part of the url to search for
+     * @return the {@link Node}
+     */
+    public Node findLinkNode(final String url) {
+        String key = "url";
+        Object value = url;
+
+        ResourceIterable<Node> foundLinks;
+        StringBuilder sb = new StringBuilder();
+        try (Transaction tx = graphDb.beginTx()) {
+            foundLinks = graphDb.findNodesByLabelAndProperty(linkLabel, key, value);
+
+            if (foundLinks != null) {
+                // TODO use Stringjoining collector and java8 features
+                ResourceIterator<Node> it = foundLinks.iterator();
+                Node node;
+                while (it.hasNext()) {
+                    return  it.next();
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Retrieves a given tag from the database<br>
+     * Returns an empty String if the tag was not found
+     *
+     * @param tagName the name of the tag
+     * @return the name of the tag
+     */
+    public String findTag(final String tagName) {
+        String key = "name";
+        Object value = tagName;
+
+        StringBuilder sb = new StringBuilder();
+        try (Transaction tx = graphDb.beginTx()) {
+            graphDb.findNodesByLabelAndProperty(TagLabel, key, value).forEach(s -> sb.append(s.getProperty(key)));
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Retrieves a given tag {@link Node} from the database<br>
+     *
+     * @param tagName the name of the tag
+     * @return the {@link Node}
+     */
+    public Node findTagNode(final String tagName) {
+        String key = "name";
+        Object value = tagName;
+
+        List<Node> nodes = new ArrayList<>();
+        try (Transaction tx = graphDb.beginTx()) {
+            graphDb.findNodesByLabelAndProperty(TagLabel, key, value).forEach(s -> nodes.add(s));
+        }
+        return nodes.get(0);
+    }
+
+    /**
+     * Tags the given url with the tag
+     *
+     * @param tag the tag
+     * @param url the url to tag
+     * @throws IllegalArgumentException if the url was not found
+     */
+    public void tagLink(final String tag, final String url) {
+        Node foundLink = findLinkNode(url);
+        if (foundLink == null) {
+            throw new IllegalArgumentException("url={" + url + "} was not found");
+        }
+
+        Node foundTag = findTagNode(tag);
+        if (foundTag == null) {
+            throw new IllegalArgumentException("tag={" + tag + "} was not found");
+        }
+
+        try (Transaction tx = graphDb.beginTx()) {
+            RelationshipType type = DynamicRelationshipType.withName("TAGGED");
+            foundLink.createRelationshipTo(foundLink, type);
+        }
+    }
+
+    /**
+     * TODO
+     *
+     * @param url
+     * @return
+     */
+    public List<String> findLinksByTag(final String tagName) {
+        String key = "name";
+        Object value = tagName;
+
+        ResourceIterable<Node> foundTags;
+        StringBuilder sb = new StringBuilder();
+        try (Transaction tx = graphDb.beginTx()) {
+            foundTags = graphDb.findNodesByLabelAndProperty(linkLabel, key, value);
+            RelationshipType type = DynamicRelationshipType.withName("TAGGED");
+            foundTags.forEach(t -> t.getRelationships(type)); // TODO map?
+        }
+        return null;
+    }
+
+    /**
+     * Shutdown hook for the graphDb
+     *
+     * @param graphDb the db to securely shutdown
+     */
 	private static void registerShutdownHook(final GraphDatabaseService graphDb) {
 		// Registers a shutdown hook for the Neo4j instance so that it
 		// shuts down nicely when the VM exits (even if you "Ctrl-C" the
