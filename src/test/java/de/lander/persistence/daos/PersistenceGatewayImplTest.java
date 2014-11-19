@@ -124,6 +124,35 @@ public class PersistenceGatewayImplTest {
         resultLinks.forEach(System.out::println);
     }
 
+    /**
+     * @author mvogel
+     */
+    @Test
+    public void shouldUpdateTheNameOfTheLink() throws Exception {
+        // == prepare ==
+        String oldName = "Neo4j-Tutorial";
+        String url = "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html";
+        String title = "Neo4j-Tutorial-Title";
+        classUnderTest.addLink(oldName, url, title);
+
+        String newName = "Neo4j-New-Tutorial-111";
+
+        // == go ==
+        classUnderTest.updateLink(LinkProperty.NAME, oldName, newName);
+
+        // == verify ==
+        List<Link> noResultLinks = classUnderTest.getLink(LinkProperty.NAME, oldName);
+        assertThat(noResultLinks.size(), is(0));
+        List<Link> resultLinks = classUnderTest.getLink(LinkProperty.NAME, newName);
+        assertThat(resultLinks.size(), is(1));
+        Link resultLink = resultLinks.get(0);
+        assertThat(resultLink.getName(), is(newName));
+        assertThat(resultLink.getUrl(), is(url));
+        assertThat(resultLink.getTitle(), is(title));
+        assertThat(resultLink.getClicks(), is(0));
+        assertThat(resultLink.getScore(), is(0.0));
+    }
+
     // /**
     // * @author mvogel
     // */

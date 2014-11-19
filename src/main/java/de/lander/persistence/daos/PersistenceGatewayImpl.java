@@ -10,10 +10,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.neo4j.cypher.ExecutionEngine;
 import org.neo4j.cypher.ExecutionResult;
-import org.neo4j.graphdb.DynamicLabel;
 import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.Label;
 import org.neo4j.graphdb.Node;
+import org.neo4j.graphdb.ResourceIterable;
+import org.neo4j.graphdb.ResourceIterator;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.kernel.impl.util.StringLogger;
 
@@ -36,13 +36,12 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
     private String storeDir = "/home/mvogel/tmp/neo4jtestdb";
     private GraphDatabaseService graphDb;
     private ExecutionEngine cypher;
+
     // = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(storeDir)
     // .setConfig(GraphDatabaseSettings.nodestore_mapped_memory_size, "10M")
     // .setConfig(GraphDatabaseSettings.string_block_size, "60")
     // .setConfig(GraphDatabaseSettings.array_block_size,
     // "300").newGraphDatabase();
-
-    private Label TagLabel = DynamicLabel.label("Tag");
 
 
     /**
@@ -75,12 +74,63 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
     }
 
     /**
-     * @see de.lander.persistence.daos.PersistenceGateway#updateLink(de.lander.persistence.daos.PersistenceGateway.LinkProperty, java.lang.String)
+     * @see de.lander.persistence.daos.PersistenceGateway#updateLink(de.lander.persistence.daos.PersistenceGateway.LinkProperty, java.lang.String, java.lang.String)
      */
     @Override
-    public void updateLink(final LinkProperty property, final String propertyToUpdate) {
-        // TODO Auto-generated method stub
+    public void updateLink(final LinkProperty property, final String oldValue, final String newValue) {
 
+        Node linkToUpdate;
+        try (Transaction tx = graphDb.beginTx()) {
+            linkToUpdate = retrieveLinkByExactProperty(property, oldValue);
+            if (linkToUpdate != null) {
+                switch (property) {
+                    case NAME:
+                        linkToUpdate.setProperty(Link.NAME, newValue);
+                        break;
+                    case URL:
+                        linkToUpdate.setProperty(Link.URL, newValue);
+                        break;
+                    default:
+                        throw new IllegalArgumentException("property={" + property + "} is not supported");
+                }
+
+                tx.success();
+            } else {
+                throw new IllegalArgumentException("no node was found for property={" + property + "} and value={"
+                        + oldValue + "}");
+            }
+        }
+    }
+
+    /**
+     * Retrieves a link by matching the property exactly
+     *
+     * @param property the property
+     * @param value the value of the property
+     * @return the {@link Node} or <code>null</code> if no node was found
+     */
+    private Node retrieveLinkByExactProperty(final LinkProperty property, final String value) {
+
+        ResourceIterable<Node> links = null;
+        switch (property) {
+            case NAME:
+                links = graphDb.findNodesByLabelAndProperty(Link.LABEL, Link.NAME, value);
+                break;
+            case URL:
+                links = graphDb.findNodesByLabelAndProperty(Link.LABEL, Link.URL, value);
+                break;
+            default:
+                throw new IllegalArgumentException("property={" + property + "} is not supported");
+        }
+
+        ResourceIterator<Node> iterator = links.iterator();
+        if (iterator.hasNext()) {
+            // TODO mvogel: only first node will returned
+            // there should only be one node with this searchable property!
+            return iterator.next();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -91,9 +141,8 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
         List<Link> retrievedLinks = new ArrayList<>();
 
         String sql =
-                new StringBuilder().append("MATCH (link:").append(Link.LABEL)
-                        .append(") WHERE link.{property}  =~ '.*").append(propertyString).append(".*'")
-                        .append(" RETURN link").toString();
+                new StringBuilder().append("MATCH (link:").append(Link.LABEL).append(") WHERE link.{property}  =~ '.*")
+                        .append(propertyString).append(".*'").append(" RETURN link").toString();
 
         ExecutionResult execute = null;
         try (Transaction tx = graphDb.beginTx()) {

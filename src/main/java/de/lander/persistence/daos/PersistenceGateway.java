@@ -27,7 +27,7 @@ public interface PersistenceGateway {
     // CRUD LINK
     void addLink(String name, String url, String title);
 
-    void updateLink(LinkProperty property, String propertyToUpdate);
+    void updateLink(LinkProperty property, String oldValue, String newValue);
 
     List<Link> getLink(LinkProperty property, String propertyString);
 
