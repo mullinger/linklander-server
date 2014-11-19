@@ -24,13 +24,13 @@ import org.neo4j.graphdb.Transaction;
  * @author mvogel
  *
  */
-public class AdminDaoImpl {// implements AdminDao {
+public class PersistenceGatewayImpl {// implements AdminDao {
 
 	/**
 	 * Log4j2 Logger
 	 */
 	public static final transient Logger LOGGER = LogManager
-			.getLogger(AdminDaoImpl.class);
+			.getLogger(PersistenceGatewayImpl.class);
 
 	private String storeDir = "/home/mvogel/tmp/neo4jtestdb";
 	private GraphDatabaseService graphDb;
@@ -51,7 +51,7 @@ public class AdminDaoImpl {// implements AdminDao {
 	 * @param graphDb
 	 *            the {@link GraphDatabaseService} to use
 	 */
-	public AdminDaoImpl(final GraphDatabaseService graphDb) {
+	public PersistenceGatewayImpl(final GraphDatabaseService graphDb) {
 		this.graphDb = graphDb;
 	}
 

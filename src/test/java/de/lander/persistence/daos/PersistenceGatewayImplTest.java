@@ -14,18 +14,18 @@ import org.junit.Test;
 import org.neo4j.test.TestGraphDatabaseFactory;
 
 /**
- * Tests for {@link AdminDao} with Neo4J Properties
+ * Tests for {@link PersistenceGateway} with Neo4J Properties
  *
  * @author mvogel
  *
  */
-public class AdminDaoImplTest {
+public class PersistenceGatewayImplTest {
 
-    private AdminDaoImpl classUnderTest;
+    private PersistenceGatewayImpl classUnderTest;
 
     @Before
     public void setUp() {
-		classUnderTest = new AdminDaoImpl(new TestGraphDatabaseFactory().newImpermanentDatabase());
+		classUnderTest = new PersistenceGatewayImpl(new TestGraphDatabaseFactory().newImpermanentDatabase());
     }
 
     /**

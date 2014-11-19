@@ -11,7 +11,7 @@ import java.util.Map;
  * @author mvogel
  *
  */
-public interface AdminDao {
+public interface PersistenceGateway {
 
     void addLink(String url);
 

@@ -14,7 +14,7 @@ import de.lander.persistence.commons.PersistenceUtils;
  * @author mvogel
  *
  */
-public class AdminDaoImplJdbc {
+public class PersistenceGatewayImplJdbc {
     static {
         try {
             Class.forName("org.neo4j.jdbc.Driver");
