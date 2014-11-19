@@ -3,6 +3,10 @@
  */
 package de.lander.persistence.daos;
 
+import java.util.List;
+
+import de.lander.persistence.entities.Link;
+
 
 /**
  * TODO
@@ -25,7 +29,7 @@ public interface PersistenceGateway {
 
     void updateLink(LinkProperty property, String propertyToUpdate);
 
-    void getLink(LinkProperty property, String propertyString);
+    List<Link> getLink(LinkProperty property, String propertyString);
 
     void deleteLink(LinkProperty property, String propertyString);
 
