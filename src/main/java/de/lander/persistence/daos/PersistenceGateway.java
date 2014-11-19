@@ -3,23 +3,44 @@
  */
 package de.lander.persistence.daos;
 
-import java.util.Map;
 
 /**
- * Represents use-cases for an administrator
+ * TODO
  *
  * @author mvogel
  *
  */
 public interface PersistenceGateway {
 
-    void addLink(String url);
+    enum LinkProperty{
+        NAME, URL
+    }
 
-    void addTag(String tag);
+    enum TagProperty{
+        NAME
+    }
 
-    void updateTag(String tag, Map<String, String> attributes);
+    // CRUD LINK
+    void addLink(String name, String url, String title);
 
-    void createCategory(String category);
+    void updateLink(LinkProperty property, String propertyToUpdate);
 
-    void updateCategory(String category, Map<String, String> attributes);
+    void getLink(LinkProperty property, String propertyString);
+
+    void deleteLink(LinkProperty property, String propertyString);
+
+    // CRUD TAG
+    void addTag(String name, String description);
+
+    void updateTag(TagProperty property, String propertyString);
+
+    void getTag(TagProperty property, String propertyString);
+
+    void deleteTag(TagProperty property, String propertyString);
+
+    // Combined
+    void addTagToLink(String linkName, String tagName);
+
+    // Search
+    void search(String searchString);
 }
