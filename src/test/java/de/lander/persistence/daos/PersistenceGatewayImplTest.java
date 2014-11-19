@@ -34,7 +34,7 @@ public class PersistenceGatewayImplTest {
      * @author mvogel
      */
     @Test
-    public void shouldPersistAndReadLinkByName() throws Exception {
+    public void shouldPersistAndReadLinkByFullName() throws Exception {
         // == prepare ==
         String name = "Neo4j-Tutorial";
         String url = "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html";
@@ -57,7 +57,30 @@ public class PersistenceGatewayImplTest {
      * @author mvogel
      */
     @Test
-    public void shouldPersistAndReadLinkByUrl() throws Exception {
+    public void shouldPersistAndReadLinkBySubstringName() throws Exception {
+        // == prepare ==
+        String name = "Neo4j-Tuto";
+        String url = "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html";
+        String title = "Neo4j-Tutorial-Title";
+
+        // == go ==
+        classUnderTest.addLink(name, url, title);
+        List<Link> resultLinks = classUnderTest.getLink(LinkProperty.NAME, name);
+
+        // == verify ==
+        assertThat(resultLinks.size(), is(1));
+        Link resultLink = resultLinks.get(0);
+        assertThat(resultLink.getUrl(), is(url));
+        assertThat(resultLink.getTitle(), is(title));
+        assertThat(resultLink.getClicks(), is(0));
+        assertThat(resultLink.getScore(), is(0.0));
+    }
+
+    /**
+     * @author mvogel
+     */
+    @Test
+    public void shouldPersistAndReadLinkByFullUrl() throws Exception {
         // == prepare ==
         String name = "Neo4j-Tutorial";
         String url = "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html";
@@ -74,6 +97,31 @@ public class PersistenceGatewayImplTest {
         assertThat(resultLink.getTitle(), is(title));
         assertThat(resultLink.getClicks(), is(0));
         assertThat(resultLink.getScore(), is(0.0));
+    }
+
+    /**
+     * @author mvogel
+     */
+    @Test
+    public void shouldPersistAndReadLinkBySubstringUrl() throws Exception {
+        // == prepare ==
+        String name = "Neo4j-Tutorial1";
+        String url = "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html";
+        String title = "Neo4j-Tutorial-Embedded";
+
+        classUnderTest.addLink(name, url, title);
+        classUnderTest.addLink("Neo4j-Tutorial2", "http://neo4j.com/docs/stable/complete.html", "Neo4j");
+        classUnderTest.addLink("Neo4j-Tutorial3", "http://neo4j.com/docs/stable/half.html", "Neo4j");
+        classUnderTest.addLink("Linux", "http://linux.com", "Linux-Stuff");
+        classUnderTest.addLink("Apple-Repair", "http://applerepair.com", "Apple-Repair");
+        classUnderTest.addLink("Apple-Talk", "http://appletalk.com", "Apple-Talk");
+
+        // == go ==
+        List<Link> resultLinks = classUnderTest.getLink(LinkProperty.URL, "neo4j.co");
+
+        // == verify ==
+        assertThat(resultLinks.size(), is(3));
+        resultLinks.forEach(System.out::println);
     }
 
     // /**

@@ -9,15 +9,15 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.neo4j.cypher.ExecutionEngine;
+import org.neo4j.cypher.ExecutionResult;
 import org.neo4j.graphdb.DynamicLabel;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Label;
 import org.neo4j.graphdb.Node;
-import org.neo4j.graphdb.ResourceIterable;
-import org.neo4j.graphdb.ResourceIterator;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.kernel.impl.util.StringLogger;
 
+import scala.collection.Iterator;
 import de.lander.persistence.entities.Link;
 
 /**
@@ -90,34 +90,37 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
     public List<Link> getLink(final LinkProperty property, final String propertyString) {
         List<Link> retrievedLinks = new ArrayList<>();
 
-        ResourceIterable<Node> foundLinks = null;
+        String sql =
+                new StringBuilder().append("MATCH (link:").append(Link.LABEL)
+                        .append(") WHERE link.{property}  =~ '.*").append(propertyString).append(".*'")
+                        .append(" RETURN link").toString();
+
+        ExecutionResult execute = null;
         try (Transaction tx = graphDb.beginTx()) {
             switch (property) {
                 case NAME:
-                    foundLinks = graphDb.findNodesByLabelAndProperty(Link.LABEL, Link.NAME, propertyString);
+                    execute = cypher.execute(sql.replace("{property}", Link.NAME));
                     break;
                 case URL:
-                    foundLinks = graphDb.findNodesByLabelAndProperty(Link.LABEL, Link.URL, propertyString);
+                    execute = cypher.execute(sql.replace("{property}", Link.URL));
                     break;
                 default:
-                    break;
-
+                    throw new IllegalArgumentException("property '" + property.name() + "' is not supported");
             }
 
-            if (foundLinks != null) {
-                ResourceIterator<Node> it = foundLinks.iterator();
-                Node node;
-                while (it.hasNext()) {
-                    node = it.next();
-                    retrievedLinks.add(new Link(
-                            String.valueOf(node.getProperty(Link.NAME)), //
-                            String.valueOf(node.getProperty(Link.TITLE)), //
-                            String.valueOf(node.getProperty(Link.URL)), //
-                            Integer.valueOf(node.getProperty(Link.CLICK_COUNT).toString()), //
-                            Double.valueOf(node.getProperty(Link.SCORE).toString())));
-                }
+            Iterator<Node> links = execute.columnAs("link"); // from return
+            while (links.hasNext()) {
+                Node link = links.next();
+                String name = String.valueOf(link.getProperty(Link.NAME));
+                String title = String.valueOf(link.getProperty(Link.TITLE));
+                String url = String.valueOf(link.getProperty(Link.URL));
+                int clicks = Integer.valueOf(String.valueOf(link.getProperty(Link.CLICK_COUNT)));
+                double score = Double.valueOf(String.valueOf(link.getProperty(Link.SCORE)));
+
+                retrievedLinks.add(new Link(name, title, url, clicks, score));
             }
         }
+
         return retrievedLinks;
     }
 
