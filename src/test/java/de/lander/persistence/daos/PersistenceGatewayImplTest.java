@@ -5,6 +5,8 @@ package de.lander.persistence.daos;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -151,6 +153,30 @@ public class PersistenceGatewayImplTest {
         assertThat(resultLink.getTitle(), is(title));
         assertThat(resultLink.getClicks(), is(0));
         assertThat(resultLink.getScore(), is(0.0));
+    }
+
+    /**
+     * @author mvogel
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldFailToUpdateTheNameOfTheLinkBecauseItDoesNotExist() throws Exception {
+        // == prepare ==
+        String oldName = "Neo4j-Tutorial";
+        String url = "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html";
+        String title = "Neo4j-Tutorial-Title";
+        classUnderTest.addLink(oldName, url, title);
+
+        String newName = "Neo4j-New-Tutorial-111";
+
+        // == go ==
+        try {
+            classUnderTest.updateLink(LinkProperty.NAME, "i do not exist", newName);
+            fail();
+        } catch (Exception e) {
+            // == verify ==
+            assertTrue(e.getMessage().contains("no node was found for"));
+            throw e;
+        }
     }
 
     // /**
