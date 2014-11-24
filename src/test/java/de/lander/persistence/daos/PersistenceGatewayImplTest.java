@@ -4,13 +4,12 @@
 package de.lander.persistence.daos;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.neo4j.test.TestGraphDatabaseFactory;
 
@@ -189,5 +188,22 @@ public class PersistenceGatewayImplTest {
 			assertTrue(e.getMessage().contains("no node was found for"));
 			throw e;
 		}
+	}
+
+	@Test
+	@Ignore("mvogel: fixme")
+	public void shouldDeleteMultipleLinksFromTheDatabase() throws Exception {
+		// == prepare ==
+		classUnderTest.addLink("Neo4j-Tutorial-Web", "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html", "Neo4j-Tutorial-Title");
+		classUnderTest.addLink("Neo4j-Tutorial", "http://neo4j.com/docs/stable/tutorials-web.html", "Neo4j-Tutorial-Web-Title");
+		classUnderTest.addLink("Linux-Magazin", "http://linux-magazin.com", "my linux magazin");
+		assertEquals(2, classUnderTest.getLink(LinkProperty.NAME, "Tutorial").size());
+		
+		// == go ==
+		classUnderTest.deleteLink(LinkProperty.NAME, "Tutorial");
+
+		// == verify ==
+		assertEquals(0, classUnderTest.getLink(LinkProperty.NAME, "Tutorial").size());
+		assertEquals(1, classUnderTest.getLink(LinkProperty.NAME, "Magazin").size());
 	}
 }

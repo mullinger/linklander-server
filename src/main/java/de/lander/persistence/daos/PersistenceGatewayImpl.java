@@ -6,6 +6,7 @@ package de.lander.persistence.daos;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.neo4j.cypher.ExecutionEngine;
@@ -60,6 +61,10 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
      */
     @Override
     public void addLink(final String name, final String url, final String title) {
+    	Validate.notBlank(name, "the name of the link is blank");
+    	Validate.notBlank(url, "the url of the link is blank");
+    	Validate.notNull(title, "the title of the link is null");
+    	
         Node node;
         try (Transaction tx = graphDb.beginTx()) {
             node = graphDb.createNode();
@@ -77,18 +82,21 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
      * @see de.lander.persistence.daos.PersistenceGateway#updateLink(de.lander.persistence.daos.PersistenceGateway.LinkProperty, java.lang.String, java.lang.String)
      */
     @Override
-    public void updateLink(final LinkProperty property, final String oldValue, final String newValue) {
+    public void updateLink(final LinkProperty property, final String propertyValue, final String newPropertyValue) {
+    	Validate.notNull(property);
+    	Validate.notBlank(propertyValue);
+    	Validate.notBlank(newPropertyValue);
 
         Node linkToUpdate;
         try (Transaction tx = graphDb.beginTx()) {
-            linkToUpdate = retrieveLinkByExactProperty(property, oldValue);
+            linkToUpdate = retrieveLinkByExactProperty(property, propertyValue);
             if (linkToUpdate != null) {
                 switch (property) {
                     case NAME:
-                        linkToUpdate.setProperty(Link.NAME, newValue);
+                        linkToUpdate.setProperty(Link.NAME, newPropertyValue);
                         break;
                     case URL:
-                        linkToUpdate.setProperty(Link.URL, newValue);
+                        linkToUpdate.setProperty(Link.URL, newPropertyValue);
                         break;
                     default:
                         throw new IllegalArgumentException("property={" + property + "} is not supported");
@@ -97,7 +105,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
                 tx.success();
             } else {
                 throw new IllegalArgumentException("no node was found for property={" + property + "} and value={"
-                        + oldValue + "}");
+                        + propertyValue + "}");
             }
         }
     }
@@ -106,18 +114,18 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
      * Retrieves a link by matching the property exactly
      *
      * @param property the property
-     * @param value the value of the property
+     * @param propertyValue the value of the property
      * @return the {@link Node} or <code>null</code> if no node was found
      */
-    private Node retrieveLinkByExactProperty(final LinkProperty property, final String value) {
+    private Node retrieveLinkByExactProperty(final LinkProperty property, final String propertyValue) {
 
         ResourceIterable<Node> links = null;
         switch (property) {
             case NAME:
-                links = graphDb.findNodesByLabelAndProperty(Link.LABEL, Link.NAME, value);
+                links = graphDb.findNodesByLabelAndProperty(Link.LABEL, Link.NAME, propertyValue);
                 break;
             case URL:
-                links = graphDb.findNodesByLabelAndProperty(Link.LABEL, Link.URL, value);
+                links = graphDb.findNodesByLabelAndProperty(Link.LABEL, Link.URL, propertyValue);
                 break;
             default:
                 throw new IllegalArgumentException("property={" + property + "} is not supported");
@@ -137,12 +145,15 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
      * @see de.lander.persistence.daos.PersistenceGateway#getLink(de.lander.persistence.daos.PersistenceGateway.LinkProperty, java.lang.String)
      */
     @Override
-    public List<Link> getLink(final LinkProperty property, final String propertyString) {
+    public List<Link> getLink(final LinkProperty property, final String propertyValue) {
+    	Validate.notNull(property);
+    	Validate.notBlank(propertyValue);
+    	
         List<Link> retrievedLinks = new ArrayList<>();
 
         String sql =
                 new StringBuilder().append("MATCH (link:").append(Link.LABEL).append(") WHERE link.{property}  =~ '.*")
-                        .append(propertyString).append(".*'").append(" RETURN link").toString();
+                        .append(propertyValue).append(".*'").append(" RETURN link").toString();
 
         ExecutionResult execute = null;
         try (Transaction tx = graphDb.beginTx()) {
@@ -157,7 +168,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
                     throw new IllegalArgumentException("property '" + property.name() + "' is not supported");
             }
 
-            Iterator<Node> links = execute.columnAs("link"); // from return
+            Iterator<Node> links = execute.columnAs("link"); // from return statement
             while (links.hasNext()) {
                 Node link = links.next();
                 String name = String.valueOf(link.getProperty(Link.NAME));
@@ -177,9 +188,34 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
      * @see de.lander.persistence.daos.PersistenceGateway#deleteLink(de.lander.persistence.daos.PersistenceGateway.LinkProperty, java.lang.String)
      */
     @Override
-    public void deleteLink(final LinkProperty property, final String propertyString) {
-        // TODO Auto-generated method stub
+    public void deleteLink(final LinkProperty property, final String propertyValue) {
+    	Validate.notNull(property);
+    	Validate.notBlank(propertyValue);
+    	
+    	String sql =
+                new StringBuilder().append("MATCH (link:").append(Link.LABEL).append(") WHERE link.{property}  =~ '.*")
+                        .append(propertyValue).append(".*'").append(" DELETE link").toString();
+    	
 
+    	ExecutionResult execute = null;
+        try (Transaction tx = graphDb.beginTx()) {
+            switch (property) {
+                case NAME:
+                	execute = cypher.execute(sql.replace("{property}", Link.NAME));
+                    break;
+                case URL:
+                	execute = cypher.execute(sql.replace("{property}", Link.URL));
+                    break;
+                default:
+                    throw new IllegalArgumentException("property '" + property.name() + "' is not supported");
+            }
+            
+            scala.collection.immutable.List<String> columns = execute.columns();
+            Iterator<String> it = columns.iterator();
+            while(it.hasNext()) {
+            	System.out.println(it.next());
+            }
+    	}
     }
 
     /**
@@ -195,7 +231,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
      * @see de.lander.persistence.daos.PersistenceGateway#updateTag(de.lander.persistence.daos.PersistenceGateway.TagProperty, java.lang.String)
      */
     @Override
-    public void updateTag(final TagProperty property, final String propertyString) {
+    public void updateTag(final TagProperty property, final String propertyValue) {
         // TODO Auto-generated method stub
 
     }
@@ -204,7 +240,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
      * @see de.lander.persistence.daos.PersistenceGateway#getTag(de.lander.persistence.daos.PersistenceGateway.TagProperty, java.lang.String)
      */
     @Override
-    public void getTag(final TagProperty property, final String propertyString) {
+    public void getTag(final TagProperty property, final String propertyValue) {
         // TODO Auto-generated method stub
 
     }
@@ -213,7 +249,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
      * @see de.lander.persistence.daos.PersistenceGateway#deleteTag(de.lander.persistence.daos.PersistenceGateway.TagProperty, java.lang.String)
      */
     @Override
-    public void deleteTag(final TagProperty property, final String propertyString) {
+    public void deleteTag(final TagProperty property, final String propertyValue) {
         // TODO Auto-generated method stub
 
     }
