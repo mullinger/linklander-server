@@ -20,6 +20,7 @@ import org.neo4j.kernel.impl.util.StringLogger;
 
 import scala.collection.Iterator;
 import de.lander.persistence.entities.Link;
+import de.lander.persistence.entities.Tag;
 
 /**
  * Draft modus...
@@ -145,7 +146,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
      * @see de.lander.persistence.daos.PersistenceGateway#getLink(de.lander.persistence.daos.PersistenceGateway.LinkProperty, java.lang.String)
      */
     @Override
-    public List<Link> getLink(final LinkProperty property, final String propertyValue) {
+    public List<Link> getLinks(final LinkProperty property, final String propertyValue) {
     	Validate.notNull(property);
     	Validate.notBlank(propertyValue);
     	
@@ -193,15 +194,17 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
     	Validate.notBlank(propertyValue);
     	
     	String sql =
-                new StringBuilder().append("MATCH (link:").append(Link.LABEL).append(") WHERE link.{property}  =~ '.*")
-                        .append(propertyValue).append(".*'").append(" DELETE link").toString();
+                new StringBuilder().append("MATCH (link:").append(Link.LABEL).append(")" )
+                		.append("WHERE link.{property}  =~ '.*")
+                        .append(propertyValue).append(".*'")
+                        .append(" DELETE link").toString();
     	
 
     	ExecutionResult execute = null;
         try (Transaction tx = graphDb.beginTx()) {
             switch (property) {
                 case NAME:
-                	execute = cypher.execute(sql.replace("{property}", Link.NAME));
+				execute = cypher.execute(sql.replace("{property}", Link.NAME));
                     break;
                 case URL:
                 	execute = cypher.execute(sql.replace("{property}", Link.URL));
@@ -210,11 +213,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
                     throw new IllegalArgumentException("property '" + property.name() + "' is not supported");
             }
             
-            scala.collection.immutable.List<String> columns = execute.columns();
-            Iterator<String> it = columns.iterator();
-            while(it.hasNext()) {
-            	System.out.println(it.next());
-            }
+            tx.success();
     	}
     }
 
@@ -223,26 +222,114 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
      */
     @Override
     public void addTag(final String name, final String description) {
-        // TODO Auto-generated method stub
-
+    	Validate.notBlank(name, "the name of the tag is blank");
+    	Validate.notBlank(description, "the description of the tag is blank");
+    	Validate.isTrue(description.length() <= 255, "the description is longer than 255 chars");
+    	
+        Node node;
+        try (Transaction tx = graphDb.beginTx()) {
+            node = graphDb.createNode();
+            node.addLabel(Tag.LABEL);
+            node.setProperty(Tag.NAME, name);
+            node.setProperty(Tag.DESCRIPTION, description);
+            node.setProperty(Tag.CLICK_COUNT, 0);
+            tx.success();
+        }
     }
 
     /**
      * @see de.lander.persistence.daos.PersistenceGateway#updateTag(de.lander.persistence.daos.PersistenceGateway.TagProperty, java.lang.String)
      */
     @Override
-    public void updateTag(final TagProperty property, final String propertyValue) {
-        // TODO Auto-generated method stub
+    public void updateTag(final TagProperty property, final String propertyValue, final String newPropertyValue) {
+    	Validate.notNull(property);
+    	Validate.notBlank(propertyValue);
+    	Validate.notBlank(newPropertyValue);
 
+        Node tagToUpdate;
+        try (Transaction tx = graphDb.beginTx()) {
+            tagToUpdate = retrieveTagByExactProperty(property, propertyValue);
+            if (tagToUpdate != null) {
+                switch (property) {
+                    case NAME:
+                        tagToUpdate.setProperty(Tag.NAME, newPropertyValue);
+                        break;
+                    default:
+                        throw new IllegalArgumentException("property={" + property + "} is not supported");
+                }
+
+                tx.success();
+            } else {
+                throw new IllegalArgumentException("no node was found for property={" + property + "} and value={"
+                        + propertyValue + "}");
+            }
+        }
+    }
+    
+    /**
+     * Retrieves a tag by matching the property exactly
+     *
+     * @param property the property
+     * @param propertyValue the value of the property
+     * @return the {@link Node} or <code>null</code> if no node was found
+     */
+    private Node retrieveTagByExactProperty(final TagProperty property, final String propertyValue) {
+
+        ResourceIterable<Node> links = null;
+        switch (property) {
+            case NAME:
+                links = graphDb.findNodesByLabelAndProperty(Tag.LABEL, Tag.NAME, propertyValue);
+                break;
+            default:
+                throw new IllegalArgumentException("property={" + property + "} is not supported");
+        }
+
+        ResourceIterator<Node> iterator = links.iterator();
+        if (iterator.hasNext()) {
+            // TODO mvogel: only first node will returned
+            // there should only be one node with this searchable property!
+            return iterator.next();
+        } else {
+            return null;
+        }
     }
 
     /**
      * @see de.lander.persistence.daos.PersistenceGateway#getTag(de.lander.persistence.daos.PersistenceGateway.TagProperty, java.lang.String)
      */
     @Override
-    public void getTag(final TagProperty property, final String propertyValue) {
-        // TODO Auto-generated method stub
+    public List<Tag> getTags(final TagProperty property, final String propertyValue) {
+    	Validate.notNull(property);
+    	Validate.notBlank(propertyValue);
+    	
+        List<Tag> retrievedTags = new ArrayList<>();
 
+        String sql =
+                new StringBuilder().append("MATCH (tag:").append(Tag.LABEL).append(") WHERE tag.{property}  =~ '.*")
+                        .append(propertyValue).append(".*'").append(" RETURN tag").toString();
+
+        ExecutionResult execute = null;
+        try (Transaction tx = graphDb.beginTx()) {
+            switch (property) {
+                case NAME:
+                    execute = cypher.execute(sql.replace("{property}", Tag.NAME));
+                    break;
+                default:
+                    throw new IllegalArgumentException("property '" + property.name() + "' is not supported");
+            }
+
+            Iterator<Node> links = execute.columnAs("tag"); // from return statement
+            while (links.hasNext()) {
+                Node link = links.next();
+                String name = String.valueOf(link.getProperty(Tag.NAME));
+                String description = String.valueOf(link.getProperty(Tag.DESCRIPTION));
+                int clicks = Integer.valueOf(String.valueOf(link.getProperty(Link.CLICK_COUNT)));
+
+                retrievedTags.add(new Tag(name, description, clicks));
+            }
+        }
+
+        return retrievedTags;
     }
 
     /**
@@ -250,7 +337,25 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
      */
     @Override
     public void deleteTag(final TagProperty property, final String propertyValue) {
-        // TODO Auto-generated method stub
+    	Validate.notNull(property);
+    	Validate.notBlank(propertyValue);
+    	
+        String sql =
+                new StringBuilder().append("MATCH (tag:").append(Tag.LABEL).append(") WHERE tag.{property}  =~ '.*")
+                        .append(propertyValue).append(".*'").append(" DELETE tag").toString();
+
+        ExecutionResult execute = null;
+        try (Transaction tx = graphDb.beginTx()) {
+            switch (property) {
+                case NAME:
+                    execute = cypher.execute(sql.replace("{property}", Tag.NAME));
+                    break;
+                default:
+                    throw new IllegalArgumentException("property '" + property.name() + "' is not supported");
+            }
+            
+            tx.success();
+        }
 
     }
 
