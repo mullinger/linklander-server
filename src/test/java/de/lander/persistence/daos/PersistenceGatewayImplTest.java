@@ -301,4 +301,22 @@ public class PersistenceGatewayImplTest {
 		assertEquals(0, classUnderTest.getTags(TagProperty.NAME, "Tag").size());
 		assertEquals(1, classUnderTest.getTags(TagProperty.NAME, "My").size());
 	}
+	
+	/**
+	 * @author mvogel
+	 */
+	@Test
+	public void shouldTagALink() throws Exception {
+		// == prepare ==
+		classUnderTest.addTag("Tag1", "description1");
+		classUnderTest.addLink("MyLink", "http://link.com", "MyLink-Title");
+		
+		// == go ==
+		classUnderTest.addTagToLink("MyLink", "Tag1");
+		List<Tag> tagsForLink = classUnderTest.getTagsForLink("MyLink");
+		
+		// == verify ==
+		assertEquals(1, tagsForLink.size());
+		assertEquals("Tag1", tagsForLink.get(0).getName());
+	}
 }
