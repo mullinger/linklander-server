@@ -133,7 +133,9 @@ public interface PersistenceGateway {
 	// RELATIONS
 	// /////////////
 	/**
-	 * Tags a link with the given linkName with a tag
+	 * Tags a link with the given linkName with a tag<br>
+	 * NOTE: the parameters do not have to match exactly. They
+	 * can also be substrings of existing names of tag or links
 	 * 
 	 * @param linkName
 	 *            the name of the link to tag (MANDATORY)

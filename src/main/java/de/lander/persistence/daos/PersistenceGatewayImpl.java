@@ -68,7 +68,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 				+ ") ASSERT link." + Link.NAME + " IS UNIQUE");
 		cypher.execute("CREATE CONSTRAINT ON (link:" + Tag.LABEL
 				+ ") ASSERT link." + Tag.NAME + " IS UNIQUE");
-		// TODO not null for rest
+		cypher.execute("CREATE INDEX ON :"+ Link.LABEL +"(" + LinkProperty.URL +")");
 	}
 
 	@Override
