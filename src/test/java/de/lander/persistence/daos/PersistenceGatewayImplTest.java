@@ -49,8 +49,8 @@ public class PersistenceGatewayImplTest {
 
 		// == go ==
 		classUnderTest.addLink(name, url, title);
-		List<Link> resultLinks = classUnderTest
-				.searchLinks(LinkProperty.NAME, name);
+		List<Link> resultLinks = classUnderTest.searchLinks(LinkProperty.NAME,
+				name);
 
 		// == verify ==
 		assertThat(resultLinks.size(), is(1));
@@ -73,8 +73,8 @@ public class PersistenceGatewayImplTest {
 
 		// == go ==
 		classUnderTest.addLink(name, url, title);
-		List<Link> resultLinks = classUnderTest
-				.searchLinks(LinkProperty.NAME, name);
+		List<Link> resultLinks = classUnderTest.searchLinks(LinkProperty.NAME,
+				name);
 
 		// == verify ==
 		assertThat(resultLinks.size(), is(1));
@@ -97,7 +97,8 @@ public class PersistenceGatewayImplTest {
 
 		// == go ==
 		classUnderTest.addLink(name, url, title);
-		List<Link> resultLinks = classUnderTest.searchLinks(LinkProperty.URL, url);
+		List<Link> resultLinks = classUnderTest.searchLinks(LinkProperty.URL,
+				url);
 
 		// == verify ==
 		assertThat(resultLinks.size(), is(1));
@@ -147,8 +148,8 @@ public class PersistenceGatewayImplTest {
 		String url = "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html";
 		String title = "Neo4j-Tutorial-Title";
 		classUnderTest.addLink(oldName, url, title);
-		assertThat(classUnderTest.searchLinks(LinkProperty.NAME,
-				oldName).size(), is(1));
+		assertThat(classUnderTest.searchLinks(LinkProperty.NAME, oldName)
+				.size(), is(1));
 
 		String newName = "Neo4j-New-Tutorial-111";
 
@@ -156,8 +157,8 @@ public class PersistenceGatewayImplTest {
 		classUnderTest.updateLink(LinkProperty.NAME, oldName, newName);
 
 		// == verify ==
-		assertThat(classUnderTest.searchLinks(LinkProperty.NAME,
-				oldName).size(), is(0));
+		assertThat(classUnderTest.searchLinks(LinkProperty.NAME, oldName)
+				.size(), is(0));
 		List<Link> resultLinks = classUnderTest.searchLinks(LinkProperty.NAME,
 				newName);
 		assertThat(resultLinks.size(), is(1));
@@ -190,28 +191,41 @@ public class PersistenceGatewayImplTest {
 			fail();
 		} catch (Exception e) {
 			// == verify ==
-			assertTrue(e.getMessage().contains("no node was found for"));
+			assertTrue(e.getMessage().contains("no link node was found for"));
 			throw e;
 		}
 	}
-	
+
 	/**
 	 * @author mvogel
 	 */
 	@Test
 	public void shouldOnlyOneLinkByExactName() throws Exception {
 		// == prepare ==
-		classUnderTest.addLink("Neo4j-Tutorial-Web", "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html", "Neo4j-Tutorial-Title");
-		classUnderTest.addLink("Neo4j-Tutorial", "http://neo4j.com/docs/stable/tutorials-web.html", "Neo4j-Tutorial-Web-Title");
-		classUnderTest.addLink("Linux-Magazin", "http://linux-magazin.com", "my linux magazin");
-		assertEquals(2, classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial").size());
-		
+		classUnderTest
+				.addLink(
+						"Neo4j-Tutorial-Web",
+						"http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html",
+						"Neo4j-Tutorial-Title");
+		classUnderTest.addLink("Neo4j-Tutorial",
+				"http://neo4j.com/docs/stable/tutorials-web.html",
+				"Neo4j-Tutorial-Web-Title");
+		classUnderTest.addLink("Linux-Magazin", "http://linux-magazin.com",
+				"my linux magazin");
+		assertEquals(2,
+				classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial")
+						.size());
+
 		// == go ==
-		classUnderTest.deleteLink(LinkProperty.NAME, "Neo4j-Tutorial", DeletionMode.EXACT);
+		classUnderTest.deleteLink(LinkProperty.NAME, "Neo4j-Tutorial",
+				DeletionMode.EXACT);
 
 		// == verify ==
-		assertEquals(1, classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial").size());
-		assertEquals(1, classUnderTest.searchLinks(LinkProperty.NAME, "Magazin").size());
+		assertEquals(1,
+				classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial")
+						.size());
+		assertEquals(1, classUnderTest
+				.searchLinks(LinkProperty.NAME, "Magazin").size());
 	}
 
 	/**
@@ -220,76 +234,131 @@ public class PersistenceGatewayImplTest {
 	@Test
 	public void shouldDeleteMultipleLinksByName() throws Exception {
 		// == prepare ==
-		classUnderTest.addLink("Neo4j-Tutorial-Web", "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html", "Neo4j-Tutorial-Title");
-		classUnderTest.addLink("Neo4j-Tutorial", "http://neo4j.com/docs/stable/tutorials-web.html", "Neo4j-Tutorial-Web-Title");
-		classUnderTest.addLink("Linux-Magazin", "http://linux-magazin.com", "my linux magazin");
-		assertEquals(2, classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial").size());
-		
+		classUnderTest
+				.addLink(
+						"Neo4j-Tutorial-Web",
+						"http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html",
+						"Neo4j-Tutorial-Title");
+		classUnderTest.addLink("Neo4j-Tutorial",
+				"http://neo4j.com/docs/stable/tutorials-web.html",
+				"Neo4j-Tutorial-Web-Title");
+		classUnderTest.addLink("Linux-Magazin", "http://linux-magazin.com",
+				"my linux magazin");
+		assertEquals(2,
+				classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial")
+						.size());
+
 		// == go ==
-		classUnderTest.deleteLink(LinkProperty.NAME, "Tutorial", DeletionMode.SOFT);
+		classUnderTest.deleteLink(LinkProperty.NAME, "Tutorial",
+				DeletionMode.SOFT);
 
 		// == verify ==
-		assertEquals(0, classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial").size());
-		assertEquals(1, classUnderTest.searchLinks(LinkProperty.NAME, "Magazin").size());
+		assertEquals(0,
+				classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial")
+						.size());
+		assertEquals(1, classUnderTest
+				.searchLinks(LinkProperty.NAME, "Magazin").size());
 	}
-	
+
 	/**
 	 * @author mvogel
 	 */
 	@Test
 	public void shouldDeleteMultipleLinksByUrl() throws Exception {
 		// == prepare ==
-		classUnderTest.addLink("Neo4j-Tutorial-Web", "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html", "Neo4j-Tutorial-Title");
-		classUnderTest.addLink("Neo4j-Tutorial", "http://neo4j.com/docs/stable/tutorials-web.html", "Neo4j-Tutorial-Web-Title");
-		classUnderTest.addLink("Linux-Magazin", "http://linux-magazin.com", "my linux magazin");
-		assertEquals(2, classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial").size());
-		
+		classUnderTest
+				.addLink(
+						"Neo4j-Tutorial-Web",
+						"http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html",
+						"Neo4j-Tutorial-Title");
+		classUnderTest.addLink("Neo4j-Tutorial",
+				"http://neo4j.com/docs/stable/tutorials-web.html",
+				"Neo4j-Tutorial-Web-Title");
+		classUnderTest.addLink("Linux-Magazin", "http://linux-magazin.com",
+				"my linux magazin");
+		assertEquals(2,
+				classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial")
+						.size());
+
 		// == go ==
 		classUnderTest.deleteLink(LinkProperty.URL, "neo4j", DeletionMode.SOFT);
 
 		// == verify ==
-		assertEquals(0, classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial").size());
-		assertEquals(1, classUnderTest.searchLinks(LinkProperty.NAME, "Magazin").size());
+		assertEquals(0,
+				classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial")
+						.size());
+		assertEquals(1, classUnderTest
+				.searchLinks(LinkProperty.NAME, "Magazin").size());
 	}
-	
+
 	/**
 	 * @author mvogel
 	 */
 	@Test
 	public void shouldOnlyOneLinkByExactUrl() throws Exception {
 		// == prepare ==
-		classUnderTest.addLink("Neo4j-Tutorial-Web", "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html", "Neo4j-Tutorial-Title");
-		classUnderTest.addLink("Neo4j-Tutorial", "http://neo4j.com/docs/stable/tutorials-web.html", "Neo4j-Tutorial-Web-Title");
-		classUnderTest.addLink("Linux-Magazin", "http://linux-magazin.com", "my linux magazin");
-		assertEquals(2, classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial").size());
-		
+		classUnderTest
+				.addLink(
+						"Neo4j-Tutorial-Web",
+						"http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html",
+						"Neo4j-Tutorial-Title");
+		classUnderTest.addLink("Neo4j-Tutorial",
+				"http://neo4j.com/docs/stable/tutorials-web.html",
+				"Neo4j-Tutorial-Web-Title");
+		classUnderTest.addLink("Linux-Magazin", "http://linux-magazin.com",
+				"my linux magazin");
+		assertEquals(2,
+				classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial")
+						.size());
+
 		// == go ==
-		classUnderTest.deleteLink(LinkProperty.URL, "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html", DeletionMode.EXACT);
+		classUnderTest
+				.deleteLink(
+						LinkProperty.URL,
+						"http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html",
+						DeletionMode.EXACT);
 
 		// == verify ==
-		assertEquals(1, classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial").size());
-		assertEquals(1, classUnderTest.searchLinks(LinkProperty.NAME, "Magazin").size());
+		assertEquals(1,
+				classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial")
+						.size());
+		assertEquals(1, classUnderTest
+				.searchLinks(LinkProperty.NAME, "Magazin").size());
 	}
-	
+
 	/**
 	 * @author mvogel
 	 */
 	@Test
-	public void shouldNotDeleteLinkBecausePropertyvalueWasNotFound() throws Exception {
+	public void shouldNotDeleteLinkBecausePropertyvalueWasNotFound()
+			throws Exception {
 		// == prepare ==
-		classUnderTest.addLink("Neo4j-Tutorial-Web", "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html", "Neo4j-Tutorial-Title");
-		classUnderTest.addLink("Neo4j-Tutorial", "http://neo4j.com/docs/stable/tutorials-web.html", "Neo4j-Tutorial-Web-Title");
-		classUnderTest.addLink("Linux-Magazin", "http://linux-magazin.com", "my linux magazin");
-		assertEquals(2, classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial").size());
-		
+		classUnderTest
+				.addLink(
+						"Neo4j-Tutorial-Web",
+						"http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html",
+						"Neo4j-Tutorial-Title");
+		classUnderTest.addLink("Neo4j-Tutorial",
+				"http://neo4j.com/docs/stable/tutorials-web.html",
+				"Neo4j-Tutorial-Web-Title");
+		classUnderTest.addLink("Linux-Magazin", "http://linux-magazin.com",
+				"my linux magazin");
+		assertEquals(2,
+				classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial")
+						.size());
+
 		// == go ==
-		classUnderTest.deleteLink(LinkProperty.URL, "i do not exist url", DeletionMode.EXACT);
+		classUnderTest.deleteLink(LinkProperty.URL, "i do not exist url",
+				DeletionMode.EXACT);
 
 		// == verify ==
-		assertEquals(2, classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial").size());
-		assertEquals(1, classUnderTest.searchLinks(LinkProperty.NAME, "Magazin").size());
+		assertEquals(2,
+				classUnderTest.searchLinks(LinkProperty.NAME, "Tutorial")
+						.size());
+		assertEquals(1, classUnderTest
+				.searchLinks(LinkProperty.NAME, "Magazin").size());
 	}
-	
+
 	/**
 	 * @author mvogel
 	 */
@@ -301,8 +370,8 @@ public class PersistenceGatewayImplTest {
 
 		// == go ==
 		classUnderTest.addTag(name, description);
-		List<Tag> resultTags = classUnderTest
-				.searchTags(TagProperty.NAME, "Prod");
+		List<Tag> resultTags = classUnderTest.searchTags(TagProperty.NAME,
+				"Prod");
 
 		// == verify ==
 		assertThat(resultTags.size(), is(1));
@@ -310,7 +379,7 @@ public class PersistenceGatewayImplTest {
 		assertThat(resultTag.getDescription(), is(description));
 		assertThat(resultTag.getClicks(), is(0));
 	}
-	
+
 	/**
 	 * @author mvogel
 	 */
@@ -320,8 +389,8 @@ public class PersistenceGatewayImplTest {
 		String oldName = "Production";
 		String description = "Production-Stage-Description";
 		classUnderTest.addTag(oldName, description);
-		assertThat(classUnderTest.searchTags(TagProperty.NAME,
-				oldName).size(), is(1));
+		assertThat(classUnderTest.searchTags(TagProperty.NAME, oldName).size(),
+				is(1));
 
 		String newName = "Development";
 
@@ -329,8 +398,8 @@ public class PersistenceGatewayImplTest {
 		classUnderTest.updateTag(TagProperty.NAME, oldName, newName);
 
 		// == verify ==
-		assertThat(classUnderTest.searchTags(TagProperty.NAME,
-				oldName).size(), is(0));
+		assertThat(classUnderTest.searchTags(TagProperty.NAME, oldName).size(),
+				is(0));
 		List<Tag> resultTags = classUnderTest.searchTags(TagProperty.NAME,
 				newName);
 		assertThat(resultTags.size(), is(1));
@@ -339,7 +408,7 @@ public class PersistenceGatewayImplTest {
 		assertThat(resultTag.getDescription(), is(description));
 		assertThat(resultTag.getClicks(), is(0));
 	}
-	
+
 	/**
 	 * @author mvogel
 	 */
@@ -349,16 +418,19 @@ public class PersistenceGatewayImplTest {
 		classUnderTest.addTag("Tag1", "description1");
 		classUnderTest.addTag("Tag2", "description2");
 		classUnderTest.addTag("Myblabla", "description3");
-		assertEquals(2, classUnderTest.searchTags(TagProperty.NAME, "Tag").size());
-		
+		assertEquals(2, classUnderTest.searchTags(TagProperty.NAME, "Tag")
+				.size());
+
 		// == go ==
 		classUnderTest.deleteTag(TagProperty.NAME, "Tag", DeletionMode.SOFT);
-		
+
 		// == verify ==
-		assertEquals(0, classUnderTest.searchTags(TagProperty.NAME, "Tag").size());
-		assertEquals(1, classUnderTest.searchTags(TagProperty.NAME, "My").size());
+		assertEquals(0, classUnderTest.searchTags(TagProperty.NAME, "Tag")
+				.size());
+		assertEquals(1, classUnderTest.searchTags(TagProperty.NAME, "My")
+				.size());
 	}
-	
+
 	/**
 	 * @author mvogel
 	 */
@@ -368,16 +440,19 @@ public class PersistenceGatewayImplTest {
 		classUnderTest.addTag("Tag1", "description1");
 		classUnderTest.addTag("Tag2", "description2");
 		classUnderTest.addTag("Myblabla", "description3");
-		assertEquals(2, classUnderTest.searchTags(TagProperty.NAME, "Tag").size());
-		
+		assertEquals(2, classUnderTest.searchTags(TagProperty.NAME, "Tag")
+				.size());
+
 		// == go ==
 		classUnderTest.deleteTag(TagProperty.NAME, "Tag1", DeletionMode.EXACT);
-		
+
 		// == verify ==
-		assertEquals(1, classUnderTest.searchTags(TagProperty.NAME, "Tag").size());
-		assertEquals(1, classUnderTest.searchTags(TagProperty.NAME, "My").size());
+		assertEquals(1, classUnderTest.searchTags(TagProperty.NAME, "Tag")
+				.size());
+		assertEquals(1, classUnderTest.searchTags(TagProperty.NAME, "My")
+				.size());
 	}
-	
+
 	/**
 	 * @author mvogel
 	 */
@@ -386,16 +461,16 @@ public class PersistenceGatewayImplTest {
 		// == prepare ==
 		classUnderTest.addTag("Tag1", "description1");
 		classUnderTest.addLink("MyLink", "http://link.com", "MyLink-Title");
-		
+
 		// == go ==
 		classUnderTest.addTagToLink("MyLink", "Tag1");
 		List<Tag> tagsForLink = classUnderTest.getTagsForLink("MyLink");
-		
+
 		// == verify ==
 		assertEquals(1, tagsForLink.size());
 		assertEquals("Tag1", tagsForLink.get(0).getName());
 	}
-	
+
 	/**
 	 * @author mvogel
 	 */
@@ -403,7 +478,7 @@ public class PersistenceGatewayImplTest {
 	public void shouldFailToAddLinkBecauseItAlreadyExists() throws Exception {
 		// == prepare ==
 		classUnderTest.addLink("MyLink", "http://link.com", "MyLink-Title");
-		
+
 		// == go ==
 		try {
 			classUnderTest.addLink("MyLink", "http://link.com", "MyLink-Title");
@@ -414,7 +489,7 @@ public class PersistenceGatewayImplTest {
 			throw e;
 		}
 	}
-	
+
 	/**
 	 * @author mvogel
 	 */
@@ -422,7 +497,7 @@ public class PersistenceGatewayImplTest {
 	public void shouldFailToAddTagBecauseItAlreadyExists() throws Exception {
 		// == prepare ==
 		classUnderTest.addTag("Tag1", "description1");
-		
+
 		// == go ==
 		try {
 			classUnderTest.addTag("Tag1", "description1");
@@ -432,5 +507,75 @@ public class PersistenceGatewayImplTest {
 			assertTrue(e.getMessage().contains("Error on creating tag"));
 			throw e;
 		}
+	}
+
+	@Test
+	public void shouldIncrementTheClickCountOfALink() throws Exception {
+		// == prepare ==
+		String name = "Neo4j-Tutorial";
+		String url = "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html";
+		String title = "Neo4j-Tutorial-Title";
+		classUnderTest.addLink(name, url, title);
+		assertThat(classUnderTest.searchLinks(LinkProperty.NAME, name).get(0)
+				.getClicks(), is(0));
+
+		// == go ==
+		classUnderTest.updateLink(LinkProperty.CLICK_COUNT, name, name);
+
+		// == verify ==
+		List<Link> resultLinks = classUnderTest.searchLinks(LinkProperty.NAME,
+				name);
+		assertThat(resultLinks.size(), is(1));
+		Link resultLink = resultLinks.get(0);
+		assertThat(resultLink.getName(), is(name));
+		assertThat(resultLink.getUrl(), is(url));
+		assertThat(resultLink.getTitle(), is(title));
+		assertThat(resultLink.getClicks(), is(1));
+		assertThat(resultLink.getScore(), is(0.0));
+	}
+
+	@Test
+	public void shouldIncrementTheClickCountOfATag() throws Exception {
+		// == prepare ==
+		String name = "Tag1";
+		String description = "description112sdsdds q2slkdsld";
+		classUnderTest.addTag(name, description);
+		assertThat(classUnderTest.searchTags(TagProperty.NAME, name).get(0)
+				.getClicks(), is(0));
+
+		// == go ==
+		classUnderTest.incrementTagClick(name);
+
+		// == verify ==
+		List<Tag> resultLinks = classUnderTest.searchTags(TagProperty.NAME,
+				name);
+		assertThat(resultLinks.size(), is(1));
+		Tag resultLink = resultLinks.get(0);
+		assertThat(resultLink.getName(), is(name));
+		assertThat(resultLink.getDescription(), is(description));
+		assertThat(resultLink.getClicks(), is(1));
+	}
+	
+	@Test
+	public void shouldSetNewScoreForLink() {
+		// == prepare ==
+		String linkName = "Neo4j-Tutorial";
+		String url = "http://neo4j.com/docs/stable/tutorials-java-embedded-hello-world.html";
+		String title = "Neo4j-Tutorial-Title";
+		classUnderTest.addLink(linkName, url, title);
+
+		// == go ==
+		double newScore = 9.8;
+		classUnderTest.updateLinkScore(linkName, newScore);
+		
+		// == verify ==
+		List<Link> resultLinks = classUnderTest.searchLinks(LinkProperty.NAME,
+				linkName);
+		assertThat(resultLinks.size(), is(1));
+		Link resultLink = resultLinks.get(0);
+		assertThat(resultLink.getUrl(), is(url));
+		assertThat(resultLink.getTitle(), is(title));
+		assertThat(resultLink.getClicks(), is(0));
+		assertThat(resultLink.getScore(), is(9.8));
 	}
 }

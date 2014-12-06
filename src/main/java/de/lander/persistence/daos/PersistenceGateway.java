@@ -20,14 +20,14 @@ public interface PersistenceGateway {
 	 * Supported Link Types for CRUD operations
 	 */
 	enum LinkProperty {
-		NAME, URL
+		NAME, URL,CLICK_COUNT,SCORE;
 	}
 
 	/**
 	 * Supported Tag Types CRUD operations
 	 */
 	enum TagProperty {
-		NAME
+		NAME,CLICK_COUNT;
 	}
 	
 	/**
@@ -179,6 +179,35 @@ public interface PersistenceGateway {
 	 * @return the tags or an empty list of tags if no such link was found
 	 */
 	List<Tag> getTagsForLink(final String linkName);
+	
+
+	// /////////////
+	// CLICKS
+	// /////////////
+	/**
+	 * Increments the link click count
+	 * 
+	 * @param linkName the name of the link
+	 * @throws {@link IllegalArgumentException} if there is no link with the given name
+	 */
+	void incrementLinkClick(final String linkName);
+	
+	/**
+	 * Updates the score of the link
+	 * 
+	 * @param linkName the name of the link
+	 * @param newScore the score to update
+	 * @throws {@link IllegalArgumentException} if there is no link with the given name
+	 */
+	void updateLinkScore(final String linkName, final double newScore);
+	
+	/**
+	 * Increments the tag click count
+	 * 
+	 * @param tagName the name of the tag
+	 * @throws {@link IllegalArgumentException} if there is no tag with the given name
+	 */
+	void incrementTagClick(final String tagName);
 
 	// /////////////
 	// STATISTICS
