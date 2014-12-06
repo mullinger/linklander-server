@@ -39,8 +39,8 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 
 	private final GraphDatabaseService graphDb;
 	private final ExecutionEngine cypher;
-
-	// private String storeDir = "/home/mvogel/tmp/neo4jtestdb";
+	
+	// TODO
 	// = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(storeDir)
 	// .setConfig(GraphDatabaseSettings.nodestore_mapped_memory_size, "10M")
 	// .setConfig(GraphDatabaseSettings.string_block_size, "60")

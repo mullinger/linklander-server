@@ -11,10 +11,9 @@ public final class PersistenceUtils {
 
 
     public static final String IN_MEMORY_DB = "jdbc:neo4j:mem:landerDb";
-
-
+    
     /**
-     * pervent instantiation
+     * prevent instantiation
      */
     private PersistenceUtils() {
         throw new AssertionError();
