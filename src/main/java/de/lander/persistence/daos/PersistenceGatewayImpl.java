@@ -20,6 +20,7 @@ import org.neo4j.kernel.impl.util.StringLogger;
 
 import scala.collection.Iterator;
 import de.lander.persistence.entities.Link;
+import de.lander.persistence.entities.Relationships;
 import de.lander.persistence.entities.Tag;
 
 /**
@@ -28,7 +29,8 @@ import de.lander.persistence.entities.Tag;
  * @author mvogel
  *
  */
-public class PersistenceGatewayImpl implements PersistenceGateway {
+public class PersistenceGatewayImpl implements PersistenceGateway,
+		Relationships {
 
 	/**
 	 * Log4j2 Logger
@@ -36,7 +38,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
 	public static final transient Logger LOGGER = LogManager
 			.getLogger(PersistenceGatewayImpl.class);
 
-	private String storeDir = "/home/mvogel/tmp/neo4jtestdb";
+	// private String storeDir = "/home/mvogel/tmp/neo4jtestdb";
 	private GraphDatabaseService graphDb;
 	private ExecutionEngine cypher;
 
@@ -218,14 +220,13 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
 				.append("WHERE link.{property}  =~ '.*").append(propertyValue)
 				.append(".*'").append(" DELETE link").toString();
 
-		ExecutionResult execute = null;
 		try (Transaction tx = graphDb.beginTx()) {
 			switch (property) {
 			case NAME:
-				execute = cypher.execute(sql.replace("{property}", Link.NAME));
+				cypher.execute(sql.replace("{property}", Link.NAME));
 				break;
 			case URL:
-				execute = cypher.execute(sql.replace("{property}", Link.URL));
+				cypher.execute(sql.replace("{property}", Link.URL));
 				break;
 			default:
 				throw new IllegalArgumentException("property '"
@@ -383,11 +384,10 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
 				.append(propertyValue).append(".*'").append(" DELETE tag")
 				.toString();
 
-		ExecutionResult execute = null;
 		try (Transaction tx = graphDb.beginTx()) {
 			switch (property) {
 			case NAME:
-				execute = cypher.execute(sql.replace("{property}", Tag.NAME));
+				cypher.execute(sql.replace("{property}", Tag.NAME));
 				break;
 			default:
 				throw new IllegalArgumentException("property '"
@@ -405,34 +405,81 @@ public class PersistenceGatewayImpl implements PersistenceGateway {
 	 */
 	@Override
 	public void addTagToLink(final String linkName, final String tagName) {
+		Validate.notBlank(linkName);
+		Validate.notBlank(tagName);
+
 		// step 1: get existing tags
 		List<Tag> existingTags = getTags(TagProperty.NAME, tagName);
 		List<Link> existingLinks = getLinks(LinkProperty.NAME, linkName);
 
-		StringBuilder sb = new StringBuilder();
 		try (Transaction tx = graphDb.beginTx()) {
 			for (Tag existingTag : existingTags) {
 				for (Link existingLink : existingLinks) {
+					cypher.execute(buildTaggingQuery(existingLink.getName(),
+							existingTag.getName()));
 				}
 			}
-			String query = "MATCH (link:Link) WHERE {link.name:'MyLink'} "
-					+ "MATCH (tag:Tag) WHERE {tag.name:'Tag1'} "
-					+ "CREATE (link)-[:TAGGED]-(tag)";
-			cypher.execute(query);
-			
+
 			tx.success();
 		}
 	}
 
+	/**
+	 * Builds a cypher tagging query for a link
+	 * 
+	 * @param linkName
+	 *            the name of the link
+	 * @param tagName
+	 *            the name of the tag
+	 * @return the query to create the tagging relationship
+	 */
+	private String buildTaggingQuery(final String linkName, final String tagName) {
+		String query = "MATCH "
+				// link
+				+ "(link:" + Link.LABEL + " {"+ Link.NAME + ": '" + linkName +"'}), "
+				// tag
+				+ "(tag:" + Tag.LABEL + " {"+ Tag.NAME + ": '" + tagName +"'}) "
+				// relationship
+				+ "CREATE (tag)-[:" + TAGGED + "]->(link)";
+
+		LOGGER.debug("Build query={} for link='{}' and tag='{}'", new Object[] {
+				query, linkName, tagName });
+		return query;
+	}
+
+	/**
+	 * Retrieves all tags for a link
+	 * 
+	 * @param linkName
+	 *            the name of the link
+	 * @return the {@link Tag}s
+	 */
 	public List<Tag> getTagsForLink(final String linkName) {
+		Validate.notBlank(linkName);
+
+		List<Tag> foundTags = new ArrayList<Tag>();
+		ExecutionResult execute = null;
 		try (Transaction tx = graphDb.beginTx()) {
-			
-			
-			
+			execute = cypher.execute("MATCH (:Link {name: '" + linkName
+					+ "'})<-[:TAGGED]-(tag:Tag) RETURN tag");
 			tx.success();
+
+			Iterator<Node> tags = execute.columnAs("tag"); // from return
+															// statement
+			while (tags.hasNext()) {
+				Node tag = tags.next();
+				LOGGER.debug(tag);
+				String name = String.valueOf(tag.getProperty(Tag.NAME));
+				String description = String.valueOf(tag
+						.getProperty(Tag.DESCRIPTION));
+				int clicks = Integer.valueOf(String.valueOf(tag
+						.getProperty(Link.CLICK_COUNT)));
+
+				foundTags.add(new Tag(name, description, clicks));
+			}
 		}
-		
-		return null;
+
+		return foundTags;
 	}
 
 	/**
