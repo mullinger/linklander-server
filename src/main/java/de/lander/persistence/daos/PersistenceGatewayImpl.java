@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.neo4j.cypher.ExecutionEngine;
 import org.neo4j.cypher.ExecutionResult;
+import org.neo4j.graphdb.ConstraintViolationException;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.ResourceIterable;
@@ -32,16 +33,17 @@ import de.lander.persistence.entities.Tag;
 public class PersistenceGatewayImpl implements PersistenceGateway,
 		Relationships {
 
-	/**
-	 * Log4j2 Logger
-	 */
+	enum EntityToDelete {
+		LINK, TAG;
+	}
+
 	public static final transient Logger LOGGER = LogManager
 			.getLogger(PersistenceGatewayImpl.class);
 
-	// private String storeDir = "/home/mvogel/tmp/neo4jtestdb";
-	private GraphDatabaseService graphDb;
-	private ExecutionEngine cypher;
+	private final GraphDatabaseService graphDb;
+	private final ExecutionEngine cypher;
 
+	// private String storeDir = "/home/mvogel/tmp/neo4jtestdb";
 	// = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(storeDir)
 	// .setConfig(GraphDatabaseSettings.nodestore_mapped_memory_size, "10M")
 	// .setConfig(GraphDatabaseSettings.string_block_size, "60")
@@ -57,12 +59,20 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 	public PersistenceGatewayImpl(final GraphDatabaseService graphDb) {
 		this.graphDb = graphDb;
 		cypher = new ExecutionEngine(graphDb, StringLogger.DEV_NULL);
+		createIndexesAndConstraints();
 	}
 
 	/**
-	 * @see de.lander.persistence.daos.PersistenceGateway#addLink(java.lang.String,
-	 *      java.lang.String, java.lang.String)
+	 * Creates the desired indexes and contraints
 	 */
+	private void createIndexesAndConstraints() {
+		// NOTE: contraints add also an index
+		cypher.execute("CREATE CONSTRAINT ON (link:" + Link.LABEL
+				+ ") ASSERT link." + Link.NAME + " IS UNIQUE");
+		cypher.execute("CREATE CONSTRAINT ON (link:" + Tag.LABEL
+				+ ") ASSERT link." + Tag.NAME + " IS UNIQUE");
+	}
+
 	@Override
 	public void addLink(final String name, final String url, final String title) {
 		Validate.notBlank(name, "the name of the link is blank");
@@ -79,13 +89,16 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 			node.setProperty(Link.CLICK_COUNT, 0);
 			node.setProperty(Link.SCORE, 0);
 			tx.success();
+		} catch (ConstraintViolationException cve) {
+			LOGGER.error(cve.getMessage(), cve);
+			throw new IllegalArgumentException(
+					String.format(
+							"Error on creating link with name=%s, url=%s, title=%s, because=%s",
+							name, url, title, cve.getMessage()));
 		}
+
 	}
 
-	/**
-	 * @see de.lander.persistence.daos.PersistenceGateway#updateLink(de.lander.persistence.daos.PersistenceGateway.LinkProperty,
-	 *      java.lang.String, java.lang.String)
-	 */
 	@Override
 	public void updateLink(final LinkProperty property,
 			final String propertyValue, final String newPropertyValue) {
@@ -147,7 +160,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 
 		ResourceIterator<Node> iterator = links.iterator();
 		if (iterator.hasNext()) {
-			// TODO mvogel: only first node will returned
+			// NOTE: only first node will returned
 			// there should only be one node with this searchable property!
 			return iterator.next();
 		} else {
@@ -155,19 +168,15 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		}
 	}
 
-	/**
-	 * @see de.lander.persistence.daos.PersistenceGateway#getLink(de.lander.persistence.daos.PersistenceGateway.LinkProperty,
-	 *      java.lang.String)
-	 */
 	@Override
-	public List<Link> getLinks(final LinkProperty property,
+	public List<Link> searchLinks(final LinkProperty property,
 			final String propertyValue) {
 		Validate.notNull(property);
 		Validate.notBlank(propertyValue);
 
 		List<Link> retrievedLinks = new ArrayList<>();
 
-		String sql = new StringBuilder().append("MATCH (link:")
+		String sql = new StringBuilder(128).append("MATCH (link:")
 				.append(Link.LABEL).append(") WHERE link.{property}  =~ '.*")
 				.append(propertyValue).append(".*'").append(" RETURN link")
 				.toString();
@@ -205,42 +214,56 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		return retrievedLinks;
 	}
 
-	/**
-	 * @see de.lander.persistence.daos.PersistenceGateway#deleteLink(de.lander.persistence.daos.PersistenceGateway.LinkProperty,
-	 *      java.lang.String)
-	 */
 	@Override
 	public void deleteLink(final LinkProperty property,
-			final String propertyValue) {
+			final String propertyValue, final DeletionMode mode) {
 		Validate.notNull(property);
 		Validate.notBlank(propertyValue);
+		Validate.notNull(mode);
 
-		String sql = new StringBuilder().append("MATCH (link:")
-				.append(Link.LABEL).append(")")
-				.append("WHERE link.{property}  =~ '.*").append(propertyValue)
-				.append(".*'").append(" DELETE link").toString();
+		String query = null;
 
+		// step 1: build query
+		switch (mode) {
+		case EXACT:
+			query = "MATCH (link:" + Link.LABEL + " {<property>: '"
+					+ propertyValue + "'}) DELETE link";
+			break;
+		case SOFT:
+			query = new StringBuilder(128).append("MATCH (link:")
+					.append(Link.LABEL).append(")")
+					.append("WHERE link.<property>  =~ '.*")
+					.append(propertyValue).append(".*'").append(" DELETE link")
+					.toString();
+			break;
+		default:
+			throw new IllegalArgumentException("Deletion mode={" + mode.name()
+					+ "} is not supported");
+		}
+
+		// step 2: replace variables and execute query
 		try (Transaction tx = graphDb.beginTx()) {
 			switch (property) {
 			case NAME:
-				cypher.execute(sql.replace("{property}", Link.NAME));
+				query = query.replace("<property>", Link.NAME);
 				break;
 			case URL:
-				cypher.execute(sql.replace("{property}", Link.URL));
+				query = query.replace("<property>", Link.URL);
 				break;
 			default:
 				throw new IllegalArgumentException("property '"
 						+ property.name() + "' is not supported");
 			}
 
+			LOGGER.debug(
+					"Delete Link query=\"{}\" for linkProperty={}, value={} and mode={}",
+					new Object[] { query, property, propertyValue, mode });
+
+			cypher.execute(query);
 			tx.success();
 		}
 	}
 
-	/**
-	 * @see de.lander.persistence.daos.PersistenceGateway#addTag(java.lang.String,
-	 *      java.lang.String)
-	 */
 	@Override
 	public void addTag(final String name, final String description) {
 		Validate.notBlank(name, "the name of the tag is blank");
@@ -256,13 +279,15 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 			node.setProperty(Tag.DESCRIPTION, description);
 			node.setProperty(Tag.CLICK_COUNT, 0);
 			tx.success();
+		}catch (ConstraintViolationException cve) {
+			LOGGER.error(cve.getMessage(), cve);
+			throw new IllegalArgumentException(
+					String.format(
+							"Error on creating tag with name=%s, description=%s, because=%s",
+							name, description, cve.getMessage()));
 		}
 	}
 
-	/**
-	 * @see de.lander.persistence.daos.PersistenceGateway#updateTag(de.lander.persistence.daos.PersistenceGateway.TagProperty,
-	 *      java.lang.String)
-	 */
 	@Override
 	public void updateTag(final TagProperty property,
 			final String propertyValue, final String newPropertyValue) {
@@ -282,6 +307,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 					throw new IllegalArgumentException("property={" + property
 							+ "} is not supported");
 				}
+				// TODO
 
 				tx.success();
 			} else {
@@ -317,7 +343,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 
 		ResourceIterator<Node> iterator = links.iterator();
 		if (iterator.hasNext()) {
-			// TODO mvogel: only first node will returned
+			// NOTE: only first node will returned
 			// there should only be one node with this searchable property!
 			return iterator.next();
 		} else {
@@ -325,19 +351,15 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		}
 	}
 
-	/**
-	 * @see de.lander.persistence.daos.PersistenceGateway#getTag(de.lander.persistence.daos.PersistenceGateway.TagProperty,
-	 *      java.lang.String)
-	 */
 	@Override
-	public List<Tag> getTags(final TagProperty property,
+	public List<Tag> searchTags(final TagProperty property,
 			final String propertyValue) {
 		Validate.notNull(property);
 		Validate.notBlank(propertyValue);
 
 		List<Tag> retrievedTags = new ArrayList<>();
 
-		String sql = new StringBuilder().append("MATCH (tag:")
+		String sql = new StringBuilder(128).append("MATCH (tag:")
 				.append(Tag.LABEL).append(") WHERE tag.{property}  =~ '.*")
 				.append(propertyValue).append(".*'").append(" RETURN tag")
 				.toString();
@@ -370,47 +392,61 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		return retrievedTags;
 	}
 
-	/**
-	 * @see de.lander.persistence.daos.PersistenceGateway#deleteTag(de.lander.persistence.daos.PersistenceGateway.TagProperty,
-	 *      java.lang.String)
-	 */
 	@Override
-	public void deleteTag(final TagProperty property, final String propertyValue) {
+	public void deleteTag(final TagProperty property,
+			final String propertyValue, final DeletionMode mode) {
 		Validate.notNull(property);
 		Validate.notBlank(propertyValue);
+		Validate.notNull(mode);
 
-		String sql = new StringBuilder().append("MATCH (tag:")
-				.append(Tag.LABEL).append(") WHERE tag.{property}  =~ '.*")
-				.append(propertyValue).append(".*'").append(" DELETE tag")
-				.toString();
+		String query = null;
 
+		// step 1: build query
+		switch (mode) {
+		case EXACT:
+			query = "MATCH (tag:" + Tag.LABEL + " {<property>: '"
+					+ propertyValue + "'}) DELETE tag";
+			break;
+		case SOFT:
+			query = new StringBuilder(128).append("MATCH (tag:")
+					.append(Tag.LABEL).append(")")
+					.append("WHERE tag.<property>  =~ '.*")
+					.append(propertyValue).append(".*'").append(" DELETE tag")
+					.toString();
+			break;
+		default:
+			throw new IllegalArgumentException("Deletion mode={" + mode.name()
+					+ "} is not supported");
+		}
+
+		// step 2: replace variables and execute query
 		try (Transaction tx = graphDb.beginTx()) {
 			switch (property) {
 			case NAME:
-				cypher.execute(sql.replace("{property}", Tag.NAME));
+				query = query.replace("<property>", Tag.NAME);
 				break;
 			default:
 				throw new IllegalArgumentException("property '"
 						+ property.name() + "' is not supported");
 			}
 
+			LOGGER.debug(
+					"Delete Tag query=\"{}\" for tagProperty={}, value={} and mode={}",
+					new Object[] { query, property, propertyValue, mode });
+
+			cypher.execute(query);
 			tx.success();
 		}
-
 	}
 
-	/**
-	 * @see de.lander.persistence.daos.PersistenceGateway#addTagToLink(java.lang.String,
-	 *      java.lang.String)
-	 */
 	@Override
 	public void addTagToLink(final String linkName, final String tagName) {
 		Validate.notBlank(linkName);
 		Validate.notBlank(tagName);
 
 		// step 1: get existing tags
-		List<Tag> existingTags = getTags(TagProperty.NAME, tagName);
-		List<Link> existingLinks = getLinks(LinkProperty.NAME, linkName);
+		List<Tag> existingTags = searchTags(TagProperty.NAME, tagName);
+		List<Link> existingLinks = searchLinks(LinkProperty.NAME, linkName);
 
 		try (Transaction tx = graphDb.beginTx()) {
 			for (Tag existingTag : existingTags) {
@@ -436,14 +472,16 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 	private String buildTaggingQuery(final String linkName, final String tagName) {
 		String query = "MATCH "
 				// link
-				+ "(link:" + Link.LABEL + " {"+ Link.NAME + ": '" + linkName +"'}), "
+				+ "(link:" + Link.LABEL + " {" + Link.NAME + ": '" + linkName
+				+ "'}), "
 				// tag
-				+ "(tag:" + Tag.LABEL + " {"+ Tag.NAME + ": '" + tagName +"'}) "
+				+ "(tag:" + Tag.LABEL + " {" + Tag.NAME + ": '" + tagName
+				+ "'}) "
 				// relationship
 				+ "CREATE (tag)-[:" + TAGGED + "]->(link)";
 
-		LOGGER.debug("Build query={} for link='{}' and tag='{}'", new Object[] {
-				query, linkName, tagName });
+		LOGGER.debug("Build Tagging query=\"{}\" for link='{}' and tag='{}'",
+				new Object[] { query, linkName, tagName });
 		return query;
 	}
 
@@ -468,7 +506,6 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 															// statement
 			while (tags.hasNext()) {
 				Node tag = tags.next();
-				LOGGER.debug(tag);
 				String name = String.valueOf(tag.getProperty(Tag.NAME));
 				String description = String.valueOf(tag
 						.getProperty(Tag.DESCRIPTION));
@@ -483,31 +520,21 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 	}
 
 	/**
-	 * @see de.lander.persistence.daos.PersistenceGateway#search(java.lang.String)
+	 * Shutdown hook for the graphDb
+	 *
+	 * @param graphDb
+	 *            the db to securely shutdown
 	 */
-	@Override
-	public void search(final String searchString) {
-		// TODO Auto-generated method stub
-
+	private static void registerShutdownHook(final GraphDatabaseService graphDb) {
+		// Registers a shutdown hook for the Neo4j instance so that it
+		// shuts down nicely when the VM exits (even if you "Ctrl-C" the
+		// running application).
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
+			public void run() {
+				graphDb.shutdown();
+			}
+		});
 	}
-
-	//
-	// /**
-	// * Shutdown hook for the graphDb
-	// *
-	// * @param graphDb the db to securely shutdown
-	// */
-	// private static void registerShutdownHook(final GraphDatabaseService
-	// graphDb) {
-	// // Registers a shutdown hook for the Neo4j instance so that it
-	// // shuts down nicely when the VM exits (even if you "Ctrl-C" the
-	// // running application).
-	// Runtime.getRuntime().addShutdownHook(new Thread() {
-	// @Override
-	// public void run() {
-	// graphDb.shutdown();
-	// }
-	// });
-	// }
 
 }
