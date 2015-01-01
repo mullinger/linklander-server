@@ -542,7 +542,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		ExecutionResult execute = null;
 		try (Transaction tx = graphDb.beginTx()) {
 			execute = cypher.execute("MATCH (:Link {name: '" + linkName
-					+ "'})<-[:TAGGED]-(tag:Tag) RETURN tag");
+					+ "'})<-[:"+TAGGED + "]-(tag:Tag) RETURN tag"); 
 			tx.success();
 
 			Iterator<Node> tags = execute.columnAs("tag"); // from return
