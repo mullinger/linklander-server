@@ -31,6 +31,8 @@ import de.lander.persistence.entities.Tag;
  * @author mvogel
  *
  */
+// TODO mvogel: do we need a bean here?
+//@Named
 public class PersistenceGatewayImpl implements PersistenceGateway,
 		Relationships {
 
@@ -39,13 +41,18 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 
 	private final GraphDatabaseService graphDb;
 	private final ExecutionEngine cypher;
-	
-	// TODO
+
+	// Note only
 	// = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(storeDir)
 	// .setConfig(GraphDatabaseSettings.nodestore_mapped_memory_size, "10M")
 	// .setConfig(GraphDatabaseSettings.string_block_size, "60")
 	// .setConfig(GraphDatabaseSettings.array_block_size,
 	// "300").newGraphDatabase();
+	
+	// TODO mvogel: for testing only -> understand injection points...
+	// public PersistenceGatewayImpl() {
+	// this(new TestGraphDatabaseFactory().newImpermanentDatabase());
+	// }
 
 	/**
 	 * Creates a new AdminDao
@@ -60,7 +67,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 	}
 
 	/**
-	 * Creates the desired indexes and contraints
+	 * Creates the desired indexes and constraints
 	 */
 	private void createIndexesAndConstraints() {
 		// NOTE: contraints add also an index
@@ -68,7 +75,8 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 				+ ") ASSERT link." + Link.NAME + " IS UNIQUE");
 		cypher.execute("CREATE CONSTRAINT ON (link:" + Tag.LABEL
 				+ ") ASSERT link." + Tag.NAME + " IS UNIQUE");
-		cypher.execute("CREATE INDEX ON :"+ Link.LABEL +"(" + LinkProperty.URL +")");
+		cypher.execute("CREATE INDEX ON :" + Link.LABEL + "("
+				+ LinkProperty.URL + ")");
 	}
 
 	@Override
@@ -337,8 +345,8 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 				tagToUpdate.setProperty(Tag.NAME, newPropertyValue);
 				break;
 			case CLICK_COUNT:
-				int oldClickCount = Integer.parseInt(String
-						.valueOf(tagToUpdate.getProperty(Tag.CLICK_COUNT)));
+				int oldClickCount = Integer.parseInt(String.valueOf(tagToUpdate
+						.getProperty(Tag.CLICK_COUNT)));
 				int newClickCount = ++oldClickCount;
 				internalNewPropertyValue = String.valueOf(newClickCount);
 				tagToUpdate.setProperty(Tag.CLICK_COUNT, newClickCount);
@@ -542,7 +550,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		ExecutionResult execute = null;
 		try (Transaction tx = graphDb.beginTx()) {
 			execute = cypher.execute("MATCH (:Link {name: '" + linkName
-					+ "'})<-[:"+TAGGED + "]-(tag:Tag) RETURN tag"); 
+					+ "'})<-[:" + TAGGED + "]-(tag:Tag) RETURN tag");
 			tx.success();
 
 			Iterator<Node> tags = execute.columnAs("tag"); // from return

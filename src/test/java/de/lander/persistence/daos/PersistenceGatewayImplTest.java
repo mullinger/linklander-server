@@ -11,14 +11,21 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.neo4j.test.TestGraphDatabaseFactory;
 
 import de.lander.persistence.daos.PersistenceGateway.DeletionMode;
 import de.lander.persistence.daos.PersistenceGateway.LinkProperty;
 import de.lander.persistence.daos.PersistenceGateway.TagProperty;
 import de.lander.persistence.entities.Link;
+import de.lander.persistence.entities.Relationships;
 import de.lander.persistence.entities.Tag;
 
 /**
@@ -27,9 +34,21 @@ import de.lander.persistence.entities.Tag;
  * @author mvogel
  *
  */
+@RunWith(Arquillian.class)
 public class PersistenceGatewayImplTest {
 
+	// TODO mvogel: default constructor is need for this annotation
+	// @Inject
 	private PersistenceGatewayImpl classUnderTest;
+
+	@Deployment
+	public static JavaArchive createDeployment() {
+		return ShrinkWrap.create(JavaArchive.class)
+				.addClass(Relationships.class)
+				.addClass(PersistenceGateway.class)
+				.addClass(PersistenceGatewayImpl.class)
+				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+	}
 
 	@Before
 	public void setUp() {
@@ -555,7 +574,7 @@ public class PersistenceGatewayImplTest {
 		assertThat(resultLink.getDescription(), is(description));
 		assertThat(resultLink.getClicks(), is(1));
 	}
-	
+
 	@Test
 	public void shouldSetNewScoreForLink() {
 		// == prepare ==
@@ -567,7 +586,7 @@ public class PersistenceGatewayImplTest {
 		// == go ==
 		double newScore = 9.8;
 		classUnderTest.updateLinkScore(linkName, newScore);
-		
+
 		// == verify ==
 		List<Link> resultLinks = classUnderTest.searchLinks(LinkProperty.NAME,
 				linkName);
