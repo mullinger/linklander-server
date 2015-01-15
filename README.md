@@ -35,7 +35,8 @@ Installation
 - Eclipse EE im System entpacken, starten, workspace anlegen
 - Tomee Plus 1.7.1 irgendwo im System entpacken
 - Tomee als Server integrieren
-- Git Code auschecken in neuen Ordner
-
+- 3x Git Code auschecken in neuen Ordner
+- Alle Projekte als Maven Projekt in Eclipse importieren
+- ...
 
 
