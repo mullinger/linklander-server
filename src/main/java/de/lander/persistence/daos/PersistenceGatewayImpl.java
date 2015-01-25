@@ -6,6 +6,9 @@ package de.lander.persistence.daos;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,8 +34,8 @@ import de.lander.persistence.entities.Tag;
  * @author mvogel
  *
  */
-// TODO mvogel: do we need a bean here?
-//@Named
+@Named
+// makes: 'persistenceGatewayImpl' for bean name
 public class PersistenceGatewayImpl implements PersistenceGateway,
 		Relationships {
 
@@ -42,27 +45,16 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 	private final GraphDatabaseService graphDb;
 	private final ExecutionEngine cypher;
 
-	// Note only
-	// = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(storeDir)
-	// .setConfig(GraphDatabaseSettings.nodestore_mapped_memory_size, "10M")
-	// .setConfig(GraphDatabaseSettings.string_block_size, "60")
-	// .setConfig(GraphDatabaseSettings.array_block_size,
-	// "300").newGraphDatabase();
-	
-	// TODO mvogel: for testing only -> understand injection points...
-	// public PersistenceGatewayImpl() {
-	// this(new TestGraphDatabaseFactory().newImpermanentDatabase());
-	// }
-
 	/**
 	 * Creates a new AdminDao
 	 *
 	 * @param graphDb
 	 *            the {@link GraphDatabaseService} to use
 	 */
+	@Inject
 	public PersistenceGatewayImpl(final GraphDatabaseService graphDb) {
 		this.graphDb = graphDb;
-		cypher = new ExecutionEngine(graphDb, StringLogger.DEV_NULL);
+		this.cypher = new ExecutionEngine(graphDb, StringLogger.DEV_NULL);
 		createIndexesAndConstraints();
 	}
 
@@ -71,11 +63,11 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 	 */
 	private void createIndexesAndConstraints() {
 		// NOTE: contraints add also an index
-		cypher.execute("CREATE CONSTRAINT ON (link:" + Link.LABEL
+		this.cypher.execute("CREATE CONSTRAINT ON (link:" + Link.LABEL
 				+ ") ASSERT link." + Link.NAME + " IS UNIQUE");
-		cypher.execute("CREATE CONSTRAINT ON (link:" + Tag.LABEL
+		this.cypher.execute("CREATE CONSTRAINT ON (link:" + Tag.LABEL
 				+ ") ASSERT link." + Tag.NAME + " IS UNIQUE");
-		cypher.execute("CREATE INDEX ON :" + Link.LABEL + "("
+		this.cypher.execute("CREATE INDEX ON :" + Link.LABEL + "("
 				+ LinkProperty.URL + ")");
 	}
 
@@ -86,8 +78,8 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		Validate.notNull(title, "the title of the link is null");
 
 		Node node;
-		try (Transaction tx = graphDb.beginTx()) {
-			node = graphDb.createNode();
+		try (Transaction tx = this.graphDb.beginTx()) {
+			node = this.graphDb.createNode();
 			node.addLabel(Link.LABEL);
 			node.setProperty(Link.NAME, name);
 			node.setProperty(Link.URL, url);
@@ -116,7 +108,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		String internalNewPropertyValue = newPropertyValue; // for logging
 
 		Node linkToUpdate;
-		try (Transaction tx = graphDb.beginTx()) {
+		try (Transaction tx = this.graphDb.beginTx()) {
 			linkToUpdate = retrieveLinkByExactProperty(property, propertyValue);
 			switch (property) {
 			case NAME:
@@ -150,12 +142,12 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 
 	/**
 	 * Determines if a string value can be parsed into a double
-	 * 
+	 *
 	 * @param stringValue
 	 *            the string value
 	 * @return <code>true</code> if i can be parsed, <code>false</code> othewise
 	 */
-	private boolean isDouble(String stringValue) {
+	private boolean isDouble(final String stringValue) {
 		try {
 			Double.parseDouble(stringValue);
 			return true;
@@ -181,12 +173,12 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		case NAME:
 		case CLICK_COUNT:
 		case SCORE:
-			links = graphDb.findNodesByLabelAndProperty(Link.LABEL, Link.NAME,
-					propertyValue);
+			links = this.graphDb.findNodesByLabelAndProperty(Link.LABEL,
+					Link.NAME, propertyValue);
 			break;
 		case URL:
-			links = graphDb.findNodesByLabelAndProperty(Link.LABEL, Link.URL,
-					propertyValue);
+			links = this.graphDb.findNodesByLabelAndProperty(Link.LABEL,
+					Link.URL, propertyValue);
 			break;
 		default:
 			throw new IllegalArgumentException("property={" + property
@@ -219,13 +211,15 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 				.toString();
 
 		ExecutionResult execute = null;
-		try (Transaction tx = graphDb.beginTx()) {
+		try (Transaction tx = this.graphDb.beginTx()) {
 			switch (property) {
 			case NAME:
-				execute = cypher.execute(sql.replace("{property}", Link.NAME));
+				execute = this.cypher.execute(sql.replace("{property}",
+						Link.NAME));
 				break;
 			case URL:
-				execute = cypher.execute(sql.replace("{property}", Link.URL));
+				execute = this.cypher.execute(sql.replace("{property}",
+						Link.URL));
 				break;
 			default:
 				throw new IllegalArgumentException("property '"
@@ -281,7 +275,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		}
 
 		// step 2: replace variables and execute query
-		try (Transaction tx = graphDb.beginTx()) {
+		try (Transaction tx = this.graphDb.beginTx()) {
 			switch (property) {
 			case NAME:
 				query = query.replace("<property>", Link.NAME);
@@ -298,7 +292,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 					"Delete Link query=\"{}\" for linkProperty={}, value={} and mode={}",
 					new Object[] { query, property, propertyValue, mode });
 
-			cypher.execute(query);
+			this.cypher.execute(query);
 			tx.success();
 		}
 	}
@@ -311,8 +305,8 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 				"the description is longer than 255 chars");
 
 		Node node;
-		try (Transaction tx = graphDb.beginTx()) {
-			node = graphDb.createNode();
+		try (Transaction tx = this.graphDb.beginTx()) {
+			node = this.graphDb.createNode();
 			node.addLabel(Tag.LABEL);
 			node.setProperty(Tag.NAME, name);
 			node.setProperty(Tag.DESCRIPTION, description);
@@ -338,7 +332,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		String internalNewPropertyValue = newPropertyValue; // for logging
 
 		Node tagToUpdate;
-		try (Transaction tx = graphDb.beginTx()) {
+		try (Transaction tx = this.graphDb.beginTx()) {
 			tagToUpdate = retrieveTagByExactProperty(property, propertyValue);
 			switch (property) {
 			case NAME:
@@ -378,8 +372,8 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		switch (property) {
 		case NAME:
 		case CLICK_COUNT:
-			links = graphDb.findNodesByLabelAndProperty(Tag.LABEL, Tag.NAME,
-					propertyValue);
+			links = this.graphDb.findNodesByLabelAndProperty(Tag.LABEL,
+					Tag.NAME, propertyValue);
 			break;
 		default:
 			throw new IllegalArgumentException("property={" + property
@@ -412,10 +406,11 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 				.toString();
 
 		ExecutionResult execute = null;
-		try (Transaction tx = graphDb.beginTx()) {
+		try (Transaction tx = this.graphDb.beginTx()) {
 			switch (property) {
 			case NAME:
-				execute = cypher.execute(sql.replace("{property}", Tag.NAME));
+				execute = this.cypher.execute(sql.replace("{property}",
+						Tag.NAME));
 				break;
 			default:
 				throw new IllegalArgumentException("property '"
@@ -469,7 +464,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		}
 
 		// step 2: replace variables and execute query
-		try (Transaction tx = graphDb.beginTx()) {
+		try (Transaction tx = this.graphDb.beginTx()) {
 			switch (property) {
 			case NAME:
 				query = query.replace("<property>", Tag.NAME);
@@ -483,7 +478,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 					"Delete Tag query=\"{}\" for tagProperty={}, value={} and mode={}",
 					new Object[] { query, property, propertyValue, mode });
 
-			cypher.execute(query);
+			this.cypher.execute(query);
 			tx.success();
 		}
 	}
@@ -497,11 +492,11 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		List<Tag> existingTags = searchTags(TagProperty.NAME, tagName);
 		List<Link> existingLinks = searchLinks(LinkProperty.NAME, linkName);
 
-		try (Transaction tx = graphDb.beginTx()) {
+		try (Transaction tx = this.graphDb.beginTx()) {
 			for (Tag existingTag : existingTags) {
 				for (Link existingLink : existingLinks) {
-					cypher.execute(buildTaggingQuery(existingLink.getName(),
-							existingTag.getName()));
+					this.cypher.execute(buildTaggingQuery(
+							existingLink.getName(), existingTag.getName()));
 				}
 			}
 
@@ -513,7 +508,7 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 
 	/**
 	 * Builds a cypher tagging query for a link
-	 * 
+	 *
 	 * @param linkName
 	 *            the name of the link
 	 * @param tagName
@@ -538,18 +533,19 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 
 	/**
 	 * Retrieves all tags for a link
-	 * 
+	 *
 	 * @param linkName
 	 *            the name of the link
 	 * @return the {@link Tag}s
 	 */
+	@Override
 	public List<Tag> getTagsForLink(final String linkName) {
 		Validate.notBlank(linkName);
 
 		List<Tag> foundTags = new ArrayList<Tag>();
 		ExecutionResult execute = null;
-		try (Transaction tx = graphDb.beginTx()) {
-			execute = cypher.execute("MATCH (:Link {name: '" + linkName
+		try (Transaction tx = this.graphDb.beginTx()) {
+			execute = this.cypher.execute("MATCH (:Link {name: '" + linkName
 					+ "'})<-[:" + TAGGED + "]-(tag:Tag) RETURN tag");
 			tx.success();
 
@@ -589,17 +585,17 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 	}
 
 	@Override
-	public void incrementLinkClick(String linkName) {
+	public void incrementLinkClick(final String linkName) {
 		updateLink(LinkProperty.CLICK_COUNT, linkName, linkName);
 	}
 
 	@Override
-	public void updateLinkScore(String linkName, double newScore) {
+	public void updateLinkScore(final String linkName, final double newScore) {
 		updateLink(LinkProperty.SCORE, linkName, String.valueOf(newScore));
 	}
 
 	@Override
-	public void incrementTagClick(String tagName) {
+	public void incrementTagClick(final String tagName) {
 		updateTag(TagProperty.CLICK_COUNT, tagName, tagName);
 	}
 
