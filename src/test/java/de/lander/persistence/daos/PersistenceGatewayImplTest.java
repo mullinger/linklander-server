@@ -21,7 +21,8 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import de.lander.link.util.DatabaseFactory;
+import de.lander.link.util.DatabaseFactoryForTests;
+import de.lander.link.util.LoggerFactory;
 import de.lander.persistence.daos.PersistenceGateway.DeletionMode;
 import de.lander.persistence.daos.PersistenceGateway.LinkProperty;
 import de.lander.persistence.daos.PersistenceGateway.TagProperty;
@@ -39,7 +40,6 @@ import de.lander.persistence.entities.Tag;
 public class PersistenceGatewayImplTest {
 
 	@Inject
-	// @TestDatabase TODO!
 	private PersistenceGatewayImpl classUnderTest;
 
 	@Deployment
@@ -48,7 +48,8 @@ public class PersistenceGatewayImplTest {
 				.addClass(Relationships.class)
 				.addClass(PersistenceGateway.class)
 				.addClass(PersistenceGatewayImpl.class)
-				.addClass(DatabaseFactory.class)
+				.addClass(LoggerFactory.class)
+				.addClass(DatabaseFactoryForTests.class)
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
 

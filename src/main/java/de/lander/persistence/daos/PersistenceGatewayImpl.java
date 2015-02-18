@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.Validate;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.neo4j.cypher.ExecutionEngine;
 import org.neo4j.cypher.ExecutionResult;
@@ -39,8 +38,8 @@ import de.lander.persistence.entities.Tag;
 public class PersistenceGatewayImpl implements PersistenceGateway,
 		Relationships {
 
-	public static final transient Logger LOGGER = LogManager
-			.getLogger(PersistenceGatewayImpl.class);
+	@Inject
+	public static transient Logger LOGGER;
 
 	private final GraphDatabaseService graphDb;
 	private final ExecutionEngine cypher;
@@ -566,24 +565,6 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		return foundTags;
 	}
 
-	/**
-	 * Shutdown hook for the graphDb
-	 *
-	 * @param graphDb
-	 *            the db to securely shutdown
-	 */
-	private static void registerShutdownHook(final GraphDatabaseService graphDb) {
-		// Registers a shutdown hook for the Neo4j instance so that it
-		// shuts down nicely when the VM exits (even if you "Ctrl-C" the
-		// running application).
-		Runtime.getRuntime().addShutdownHook(new Thread() {
-			@Override
-			public void run() {
-				graphDb.shutdown();
-			}
-		});
-	}
-
 	@Override
 	public void incrementLinkClick(final String linkName) {
 		updateLink(LinkProperty.CLICK_COUNT, linkName, linkName);
@@ -599,4 +580,22 @@ public class PersistenceGatewayImpl implements PersistenceGateway,
 		updateTag(TagProperty.CLICK_COUNT, tagName, tagName);
 	}
 
+	// /**
+	// * Shutdown hook for the graphDb
+	// *
+	// * @param graphDb
+	// * the db to securely shutdown
+	// */
+	// private static void registerShutdownHook(final GraphDatabaseService
+	// graphDb) {
+	// // Registers a shutdown hook for the Neo4j instance so that it
+	// // shuts down nicely when the VM exits (even if you "Ctrl-C" the
+	// // running application).
+	// Runtime.getRuntime().addShutdownHook(new Thread() {
+	// @Override
+	// public void run() {
+	// graphDb.shutdown();
+	// }
+	// });
+	// }
 }
