@@ -27,3 +27,16 @@ Backend
 -- Use Tutorial: http://tiqview.tumblr.com/post/25427068878/querying-neo4j-graph-data-with-cypher-in-squirrel-via
 -- Run Query: MATCH (nineties:Movie) WHERE nineties.released > 1990 AND nineties.released < 2000 RETURN nineties.title, nineties.released;
 - Maybe test for visualizing the Graph-DB: http://www.dbvis.com/
+
+
+Installation
+--------------
+
+- Eclipse EE im System entpacken, starten, workspace anlegen
+- Tomee Plus 1.7.1 irgendwo im System entpacken
+- Tomee als Server integrieren
+- 3x Git Code auschecken in neuen Ordner
+- Alle Projekte als Maven Projekt in Eclipse importieren
+- ...
+
+
