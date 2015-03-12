@@ -1,3 +1,8 @@
+<!-----------------------------------!>
+<!---Project is deprecated for now---!>
+<!---use linklander-ui for now-------!>
+
+
 linklander-server
 =================
 
