@@ -1,0 +1,4 @@
+#!/bin/bash
+JAVA_OPTS=-Dlinklander.base.directory=\"/home/max/.linklander/\"
+echo $JAVA_OPTS
+./tomee/bin/catalina.sh
