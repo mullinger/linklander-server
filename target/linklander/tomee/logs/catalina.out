@@ -2638,3 +2638,421 @@ Caused by: java.lang.ClassNotFoundException: org.neo4j.kernel.lifecycle.Lifecycl
 	at org.apache.tomee.catalina.LazyStopWebappClassLoader.loadClass(LazyStopWebappClassLoader.java:171)
 	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1571)
 	... 7 more
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server version:        Apache Tomcat (TomEE)/7.0.62 (1.7.2)
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server built:          May 7 2015 17:14:55 UTC
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server number:         7.0.62.0
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Name:               Linux
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Version:            3.19.0-28-generic
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Architecture:          amd64
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Java Home:             /opt/java/jdk1.8.0_51/jre
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Version:           1.8.0_51-b16
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Vendor:            Oracle Corporation
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_BASE:         /home/max/projects/code/linklander-server/target/linklander/tomee
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_HOME:         /home/max/projects/code/linklander-server/target/linklander/tomee
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.config.file=/home/max/projects/code/linklander-server/target/linklander/tomee/conf/logging.properties
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -javaagent:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-javaagent.jar
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.endorsed.dirs=/home/max/projects/code/linklander-server/target/linklander/tomee/endorsed
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.base=/home/max/projects/code/linklander-server/target/linklander/tomee
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.home=/home/max/projects/code/linklander-server/target/linklander/tomee
+Oct 18, 2015 2:11:50 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.io.tmpdir=/home/max/projects/code/linklander-server/target/linklander/tomee/temp
+Oct 18, 2015 2:11:50 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+Oct 18, 2015 2:11:50 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+Oct 18, 2015 2:11:50 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+Oct 18, 2015 2:11:51 PM org.apache.openejb.util.OptionsLog info
+INFO: Using 'openejb.jdbc.datasource-creator=org.apache.tomee.jdbc.TomEEDataSourceCreator'
+Oct 18, 2015 2:11:51 PM org.apache.openejb.OpenEJB$Instance <init>
+INFO: ********************************************************************************
+Oct 18, 2015 2:11:51 PM org.apache.openejb.OpenEJB$Instance <init>
+INFO: OpenEJB http://tomee.apache.org/
+Oct 18, 2015 2:11:51 PM org.apache.openejb.OpenEJB$Instance <init>
+INFO: Startup: Sun Oct 18 14:11:51 CEST 2015
+Oct 18, 2015 2:11:51 PM org.apache.openejb.OpenEJB$Instance <init>
+INFO: Copyright 1999-2013 (C) Apache OpenEJB Project, All Rights Reserved.
+Oct 18, 2015 2:11:51 PM org.apache.openejb.OpenEJB$Instance <init>
+INFO: Version: 4.7.2
+Oct 18, 2015 2:11:51 PM org.apache.openejb.OpenEJB$Instance <init>
+INFO: Build date: 20150517
+Oct 18, 2015 2:11:51 PM org.apache.openejb.OpenEJB$Instance <init>
+INFO: Build time: 10:10
+Oct 18, 2015 2:11:51 PM org.apache.openejb.OpenEJB$Instance <init>
+INFO: ********************************************************************************
+Oct 18, 2015 2:11:51 PM org.apache.openejb.OpenEJB$Instance <init>
+INFO: openejb.home = /home/max/projects/code/linklander-server/target/linklander/tomee
+Oct 18, 2015 2:11:51 PM org.apache.openejb.OpenEJB$Instance <init>
+INFO: openejb.base = /home/max/projects/code/linklander-server/target/linklander/tomee
+Oct 18, 2015 2:11:51 PM org.apache.openejb.cdi.CdiBuilder initializeOWB
+INFO: Created new singletonService org.apache.openejb.cdi.ThreadSingletonServiceImpl@6166e06f
+Oct 18, 2015 2:11:51 PM org.apache.openejb.cdi.CdiBuilder initializeOWB
+INFO: Succeeded in installing singleton service
+Oct 18, 2015 2:11:51 PM org.apache.openejb.config.ConfigurationFactory init
+INFO: openejb configuration file is '/home/max/projects/code/linklander-server/target/linklander/tomee/conf/tomee.xml'
+Oct 18, 2015 2:11:51 PM org.apache.openejb.config.ConfigurationFactory configureService
+INFO: Configuring Service(id=Tomcat Security Service, type=SecurityService, provider-id=Tomcat Security Service)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.config.ConfigurationFactory configureService
+INFO: Configuring Service(id=Default Transaction Manager, type=TransactionManager, provider-id=Default Transaction Manager)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.util.OptionsLog info
+INFO: Using 'openejb.system.apps=true'
+Oct 18, 2015 2:11:51 PM org.apache.openejb.config.ConfigurationFactory configureApplication
+INFO: Configuring enterprise application: openejb
+Oct 18, 2015 2:11:51 PM org.apache.openejb.config.InitEjbDeployments deploy
+INFO: Using openejb.deploymentId.format '{ejbName}'
+Oct 18, 2015 2:11:51 PM org.apache.openejb.config.InitEjbDeployments deploy
+INFO: Auto-deploying ejb openejb/Deployer: EjbDeployment(deployment-id=openejb/Deployer)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.config.InitEjbDeployments deploy
+INFO: Auto-deploying ejb openejb/ConfigurationInfo: EjbDeployment(deployment-id=openejb/ConfigurationInfo)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.config.InitEjbDeployments deploy
+INFO: Auto-deploying ejb MEJB: EjbDeployment(deployment-id=MEJB)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.config.ConfigurationFactory configureService
+INFO: Configuring Service(id=Default Stateless Container, type=Container, provider-id=Default Stateless Container)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.config.AutoConfig createContainer
+INFO: Auto-creating a container for bean openejb/Deployer: Container(type=STATELESS, id=Default Stateless Container)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.config.AppInfoBuilder build
+INFO: Enterprise application "openejb" loaded.
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler createRecipe
+INFO: Creating TransactionManager(id=Default Transaction Manager)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler createRecipe
+INFO: Creating SecurityService(id=Tomcat Security Service)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler createRecipe
+INFO: Creating Container(id=Default Stateless Container)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler createAppClassLoader
+INFO: Not creating another application classloader for openejb
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler createApplication
+INFO: Assembling app: openejb
+Oct 18, 2015 2:11:51 PM org.apache.openejb.util.OptionsLog info
+INFO: Using 'openejb.jndiname.format={deploymentId}{interfaceType.openejbLegacyName}'
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.JndiBuilder bind
+INFO: Jndi(name=openejb/DeployerBusinessRemote) --> Ejb(deployment-id=openejb/Deployer)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.JndiBuilder bind
+INFO: Jndi(name=global/openejb/openejb/Deployer!org.apache.openejb.assembler.Deployer) --> Ejb(deployment-id=openejb/Deployer)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.JndiBuilder bind
+INFO: Jndi(name=global/openejb/openejb/Deployer) --> Ejb(deployment-id=openejb/Deployer)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.JndiBuilder bind
+INFO: Jndi(name=openejb/ConfigurationInfoBusinessRemote) --> Ejb(deployment-id=openejb/ConfigurationInfo)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.JndiBuilder bind
+INFO: Jndi(name=global/openejb/openejb/ConfigurationInfo!org.apache.openejb.assembler.classic.cmd.ConfigurationInfo) --> Ejb(deployment-id=openejb/ConfigurationInfo)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.JndiBuilder bind
+INFO: Jndi(name=global/openejb/openejb/ConfigurationInfo) --> Ejb(deployment-id=openejb/ConfigurationInfo)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.JndiBuilder bind
+INFO: Jndi(name=MEJB) --> Ejb(deployment-id=MEJB)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.JndiBuilder bind
+INFO: Jndi(name=global/openejb/MEJB!javax.management.j2ee.ManagementHome) --> Ejb(deployment-id=MEJB)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.JndiBuilder bind
+INFO: Jndi(name=global/openejb/MEJB) --> Ejb(deployment-id=MEJB)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler startEjbs
+INFO: Created Ejb(deployment-id=MEJB, ejb-name=MEJB, container=Default Stateless Container)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler startEjbs
+INFO: Created Ejb(deployment-id=openejb/ConfigurationInfo, ejb-name=openejb/ConfigurationInfo, container=Default Stateless Container)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler startEjbs
+INFO: Created Ejb(deployment-id=openejb/Deployer, ejb-name=openejb/Deployer, container=Default Stateless Container)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler startEjbs
+INFO: Started Ejb(deployment-id=MEJB, ejb-name=MEJB, container=Default Stateless Container)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler startEjbs
+INFO: Started Ejb(deployment-id=openejb/ConfigurationInfo, ejb-name=openejb/ConfigurationInfo, container=Default Stateless Container)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler startEjbs
+INFO: Started Ejb(deployment-id=openejb/Deployer, ejb-name=openejb/Deployer, container=Default Stateless Container)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler deployMBean
+INFO: Deployed MBean(openejb.user.mbeans:application=openejb,group=org.apache.openejb.assembler.monitoring,name=JMXDeployer)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler createApplication
+INFO: Deployed Application(path=openejb)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.server.ServiceManager initServer
+INFO: Creating ServerService(id=cxf)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.server.ServiceManager initServer
+INFO: Creating ServerService(id=cxf-rs)
+Oct 18, 2015 2:11:51 PM org.apache.openejb.server.SimpleServiceManager start
+INFO:   ** Bound Services **
+Oct 18, 2015 2:11:51 PM org.apache.openejb.server.SimpleServiceManager printRow
+INFO:   NAME                 IP              PORT  
+Oct 18, 2015 2:11:51 PM org.apache.openejb.server.SimpleServiceManager start
+INFO: -------
+Oct 18, 2015 2:11:51 PM org.apache.openejb.server.SimpleServiceManager start
+INFO: Ready!
+Oct 18, 2015 2:11:51 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1758 ms
+Oct 18, 2015 2:11:51 PM org.apache.tomee.catalina.OpenEJBNamingContextListener bindResource
+INFO: Importing a Tomcat Resource with id 'UserDatabase' of type 'org.apache.catalina.UserDatabase'.
+Oct 18, 2015 2:11:51 PM org.apache.openejb.assembler.classic.Assembler createRecipe
+INFO: Creating Resource(id=UserDatabase)
+Oct 18, 2015 2:11:51 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Oct 18, 2015 2:11:51 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat (TomEE)/7.0.62 (1.7.2)
+Oct 18, 2015 2:11:51 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui.war
+Oct 18, 2015 2:11:51 PM org.apache.tomee.catalina.TomcatWebAppBuilder init
+INFO: ------------------------- localhost -> /linklander-ui
+Oct 18, 2015 2:11:52 PM org.apache.openejb.config.ConfigurationFactory configureApplication
+INFO: Configuring enterprise application: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui
+Oct 18, 2015 2:11:52 PM org.apache.tomee.catalina.TomcatWebAppBuilder startInternal
+SEVERE: Unable to deploy collapsed ear in war StandardEngine[Catalina].StandardHost[localhost].StandardContext[/linklander-ui]
+org.apache.openejb.OpenEJBException: Unable to load servlet class: com.vaadin.cdi.server.VaadinCDIServlet: com.vaadin.cdi.server.VaadinCDIServlet
+	at org.apache.openejb.config.AnnotationDeployer$ProcessAnnotatedBeans.deploy(AnnotationDeployer.java:2113)
+	at org.apache.openejb.config.AnnotationDeployer$ProcessAnnotatedBeans.deploy(AnnotationDeployer.java:1843)
+	at org.apache.openejb.config.AnnotationDeployer.deploy(AnnotationDeployer.java:360)
+	at org.apache.openejb.config.ConfigurationFactory$Chain.deploy(ConfigurationFactory.java:403)
+	at org.apache.openejb.config.ConfigurationFactory.configureApplication(ConfigurationFactory.java:971)
+	at org.apache.tomee.catalina.TomcatWebAppBuilder.startInternal(TomcatWebAppBuilder.java:1227)
+	at org.apache.tomee.catalina.TomcatWebAppBuilder.configureStart(TomcatWebAppBuilder.java:1100)
+	at org.apache.tomee.catalina.GlobalListenerSupport.lifecycleEvent(GlobalListenerSupport.java:130)
+	at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5416)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:652)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1095)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1930)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.ClassNotFoundException: com.vaadin.cdi.server.VaadinCDIServlet
+	at org.apache.openejb.core.TempClassLoader.loadClass(TempClassLoader.java:176)
+	at org.apache.openejb.core.TempClassLoader.loadClass(TempClassLoader.java:80)
+	at org.apache.openejb.config.AnnotationDeployer$ProcessAnnotatedBeans.deploy(AnnotationDeployer.java:2106)
+	... 21 more
+
+Oct 18, 2015 2:11:52 PM org.apache.catalina.core.ContainerBase removeChild
+SEVERE: ContainerBase.removeChild: destroy: 
+org.apache.catalina.LifecycleException: An invalid Lifecycle transition was attempted ([before_destroy]) for component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/linklander-ui]] in state [STARTING_PREP]
+	at org.apache.catalina.util.LifecycleBase.invalidTransition(LifecycleBase.java:409)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:299)
+	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:1041)
+	at org.apache.tomee.catalina.TomcatWebAppBuilder.undeploy(TomcatWebAppBuilder.java:1537)
+	at org.apache.tomee.catalina.TomcatWebAppBuilder.undeploy(TomcatWebAppBuilder.java:1518)
+	at org.apache.tomee.catalina.TomcatWebAppBuilder.startInternal(TomcatWebAppBuilder.java:1267)
+	at org.apache.tomee.catalina.TomcatWebAppBuilder.configureStart(TomcatWebAppBuilder.java:1100)
+	at org.apache.tomee.catalina.GlobalListenerSupport.lifecycleEvent(GlobalListenerSupport.java:130)
+	at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5416)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:652)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1095)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1930)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+Oct 18, 2015 2:11:52 PM org.apache.catalina.core.ContainerBase addChildInternal
+SEVERE: ContainerBase.addChild: start: 
+org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/linklander-ui]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:154)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:652)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1095)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1930)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.apache.tomee.catalina.TomEERuntimeException: org.apache.openejb.OpenEJBException: Unable to load servlet class: com.vaadin.cdi.server.VaadinCDIServlet: com.vaadin.cdi.server.VaadinCDIServlet
+	at org.apache.tomee.catalina.TomcatWebAppBuilder.startInternal(TomcatWebAppBuilder.java:1270)
+	at org.apache.tomee.catalina.TomcatWebAppBuilder.configureStart(TomcatWebAppBuilder.java:1100)
+	at org.apache.tomee.catalina.GlobalListenerSupport.lifecycleEvent(GlobalListenerSupport.java:130)
+	at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5416)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	... 10 more
+Caused by: org.apache.openejb.OpenEJBException: Unable to load servlet class: com.vaadin.cdi.server.VaadinCDIServlet: com.vaadin.cdi.server.VaadinCDIServlet
+	at org.apache.openejb.config.AnnotationDeployer$ProcessAnnotatedBeans.deploy(AnnotationDeployer.java:2113)
+	at org.apache.openejb.config.AnnotationDeployer$ProcessAnnotatedBeans.deploy(AnnotationDeployer.java:1843)
+	at org.apache.openejb.config.AnnotationDeployer.deploy(AnnotationDeployer.java:360)
+	at org.apache.openejb.config.ConfigurationFactory$Chain.deploy(ConfigurationFactory.java:403)
+	at org.apache.openejb.config.ConfigurationFactory.configureApplication(ConfigurationFactory.java:971)
+	at org.apache.tomee.catalina.TomcatWebAppBuilder.startInternal(TomcatWebAppBuilder.java:1227)
+	... 16 more
+Caused by: java.lang.ClassNotFoundException: com.vaadin.cdi.server.VaadinCDIServlet
+	at org.apache.openejb.core.TempClassLoader.loadClass(TempClassLoader.java:176)
+	at org.apache.openejb.core.TempClassLoader.loadClass(TempClassLoader.java:80)
+	at org.apache.openejb.config.AnnotationDeployer$ProcessAnnotatedBeans.deploy(AnnotationDeployer.java:2106)
+	... 21 more
+
+Oct 18, 2015 2:11:52 PM org.apache.catalina.startup.HostConfig deployWAR
+SEVERE: Error deploying web application archive /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui.war
+java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/linklander-ui]]
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:904)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:652)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1095)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1930)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+Oct 18, 2015 2:11:52 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui.war has finished in 149 ms
+Oct 18, 2015 2:11:52 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/ROOT
+Oct 18, 2015 2:11:52 PM org.apache.tomee.catalina.TomcatWebAppBuilder init
+INFO: ------------------------- localhost -> /
+Oct 18, 2015 2:11:52 PM org.apache.openejb.config.ConfigurationFactory configureApplication
+INFO: Configuring enterprise application: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/ROOT
+Oct 18, 2015 2:11:52 PM org.apache.openejb.config.AppInfoBuilder build
+INFO: Enterprise application "/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/ROOT" loaded.
+Oct 18, 2015 2:11:52 PM org.apache.openejb.assembler.classic.Assembler createApplication
+INFO: Assembling app: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/ROOT
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.CdiBuilder initSingleton
+INFO: Existing thread singleton service in SystemInstance(): org.apache.openejb.cdi.ThreadSingletonServiceImpl@6166e06f
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.OpenEJBLifecycle startApplication
+INFO: OpenWebBeans Container is starting...
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.plugins.PluginLoader startUp
+INFO: Adding OpenWebBeansPlugin : [CdiPlugin]
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.plugins.PluginLoader startUp
+INFO: Adding OpenWebBeansPlugin : [OpenWebBeansJsfPlugin]
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.config.BeansDeployer validateInjectionPoints
+INFO: All injection points were validated successfully.
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.OpenEJBLifecycle startApplication
+INFO: OpenWebBeans Container has started, it took 81 ms.
+Oct 18, 2015 2:11:52 PM org.apache.openejb.assembler.classic.Assembler createApplication
+INFO: Deployed Application(path=/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/ROOT)
+Oct 18, 2015 2:11:52 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/ROOT has finished in 374 ms
+Oct 18, 2015 2:11:52 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/docs
+Oct 18, 2015 2:11:52 PM org.apache.tomee.catalina.TomcatWebAppBuilder init
+INFO: ------------------------- localhost -> /docs
+Oct 18, 2015 2:11:52 PM org.apache.openejb.config.ConfigurationFactory configureApplication
+INFO: Configuring enterprise application: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/docs
+Oct 18, 2015 2:11:52 PM org.apache.openejb.config.AppInfoBuilder build
+INFO: Enterprise application "/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/docs" loaded.
+Oct 18, 2015 2:11:52 PM org.apache.openejb.assembler.classic.Assembler createApplication
+INFO: Assembling app: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/docs
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.CdiBuilder initSingleton
+INFO: Existing thread singleton service in SystemInstance(): org.apache.openejb.cdi.ThreadSingletonServiceImpl@6166e06f
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.OpenEJBLifecycle startApplication
+INFO: OpenWebBeans Container is starting...
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.plugins.PluginLoader startUp
+INFO: Adding OpenWebBeansPlugin : [CdiPlugin]
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.plugins.PluginLoader startUp
+INFO: Adding OpenWebBeansPlugin : [OpenWebBeansJsfPlugin]
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.config.BeansDeployer validateInjectionPoints
+INFO: All injection points were validated successfully.
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.OpenEJBLifecycle startApplication
+INFO: OpenWebBeans Container has started, it took 6 ms.
+Oct 18, 2015 2:11:52 PM org.apache.openejb.assembler.classic.Assembler createApplication
+INFO: Deployed Application(path=/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/docs)
+Oct 18, 2015 2:11:52 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/docs has finished in 89 ms
+Oct 18, 2015 2:11:52 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/manager
+Oct 18, 2015 2:11:52 PM org.apache.tomee.catalina.TomcatWebAppBuilder init
+INFO: ------------------------- localhost -> /manager
+Oct 18, 2015 2:11:52 PM org.apache.openejb.config.ConfigurationFactory configureApplication
+INFO: Configuring enterprise application: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/manager
+Oct 18, 2015 2:11:52 PM org.apache.openejb.config.AppInfoBuilder build
+INFO: Enterprise application "/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/manager" loaded.
+Oct 18, 2015 2:11:52 PM org.apache.openejb.assembler.classic.Assembler createApplication
+INFO: Assembling app: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/manager
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.CdiBuilder initSingleton
+INFO: Existing thread singleton service in SystemInstance(): org.apache.openejb.cdi.ThreadSingletonServiceImpl@6166e06f
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.OpenEJBLifecycle startApplication
+INFO: OpenWebBeans Container is starting...
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.plugins.PluginLoader startUp
+INFO: Adding OpenWebBeansPlugin : [CdiPlugin]
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.plugins.PluginLoader startUp
+INFO: Adding OpenWebBeansPlugin : [OpenWebBeansJsfPlugin]
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.config.BeansDeployer validateInjectionPoints
+INFO: All injection points were validated successfully.
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.OpenEJBLifecycle startApplication
+INFO: OpenWebBeans Container has started, it took 6 ms.
+Oct 18, 2015 2:11:52 PM org.apache.tomee.catalina.TomcatWebAppBuilder deployWebApps
+INFO: using context file /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/manager/META-INF/context.xml
+Oct 18, 2015 2:11:52 PM org.apache.openejb.assembler.classic.Assembler createApplication
+INFO: Deployed Application(path=/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/manager)
+Oct 18, 2015 2:11:52 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/manager has finished in 123 ms
+Oct 18, 2015 2:11:52 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/host-manager
+Oct 18, 2015 2:11:52 PM org.apache.tomee.catalina.TomcatWebAppBuilder init
+INFO: ------------------------- localhost -> /host-manager
+Oct 18, 2015 2:11:52 PM org.apache.openejb.config.ConfigurationFactory configureApplication
+INFO: Configuring enterprise application: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/host-manager
+Oct 18, 2015 2:11:52 PM org.apache.openejb.config.AppInfoBuilder build
+INFO: Enterprise application "/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/host-manager" loaded.
+Oct 18, 2015 2:11:52 PM org.apache.openejb.assembler.classic.Assembler createApplication
+INFO: Assembling app: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/host-manager
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.CdiBuilder initSingleton
+INFO: Existing thread singleton service in SystemInstance(): org.apache.openejb.cdi.ThreadSingletonServiceImpl@6166e06f
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.OpenEJBLifecycle startApplication
+INFO: OpenWebBeans Container is starting...
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.plugins.PluginLoader startUp
+INFO: Adding OpenWebBeansPlugin : [CdiPlugin]
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.plugins.PluginLoader startUp
+INFO: Adding OpenWebBeansPlugin : [OpenWebBeansJsfPlugin]
+Oct 18, 2015 2:11:52 PM org.apache.webbeans.config.BeansDeployer validateInjectionPoints
+INFO: All injection points were validated successfully.
+Oct 18, 2015 2:11:52 PM org.apache.openejb.cdi.OpenEJBLifecycle startApplication
+INFO: OpenWebBeans Container has started, it took 5 ms.
+Oct 18, 2015 2:11:52 PM org.apache.tomee.catalina.TomcatWebAppBuilder deployWebApps
+INFO: using context file /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/host-manager/META-INF/context.xml
+Oct 18, 2015 2:11:52 PM org.apache.openejb.assembler.classic.Assembler createApplication
+INFO: Deployed Application(path=/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/host-manager)
+Oct 18, 2015 2:11:52 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/host-manager has finished in 81 ms
+Oct 18, 2015 2:11:52 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+Oct 18, 2015 2:11:52 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+Oct 18, 2015 2:11:52 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 875 ms
+Oct 18, 2015 2:12:47 PM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+Oct 18, 2015 2:12:47 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+Oct 18, 2015 2:12:47 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+Oct 18, 2015 2:12:47 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Oct 18, 2015 2:12:47 PM org.apache.openejb.assembler.classic.Assembler destroyApplication
+INFO: Undeploying app: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/ROOT
+Oct 18, 2015 2:12:48 PM org.apache.openejb.assembler.classic.Assembler destroyApplication
+INFO: Undeploying app: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/docs
+Oct 18, 2015 2:12:48 PM org.apache.openejb.assembler.classic.Assembler destroyApplication
+INFO: Undeploying app: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/manager
+Oct 18, 2015 2:12:48 PM org.apache.openejb.assembler.classic.Assembler destroyApplication
+INFO: Undeploying app: /home/max/projects/code/linklander-server/target/linklander/tomee/webapps/host-manager
+Oct 18, 2015 2:12:48 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+Oct 18, 2015 2:12:48 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+Oct 18, 2015 2:12:48 PM org.apache.openejb.server.SimpleServiceManager stop
+INFO: Stopping server services
+Oct 18, 2015 2:12:48 PM org.apache.openejb.assembler.classic.Assembler destroyApplication
+INFO: Undeploying app: openejb
+Oct 18, 2015 2:12:48 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+Oct 18, 2015 2:12:48 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
