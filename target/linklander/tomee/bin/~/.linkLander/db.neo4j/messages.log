@@ -1,0 +1,1065 @@
+2015-10-17 12:40:26.168+0000 INFO  [org.neo4j]: You are using an unsupported version of the Java runtime. Please use Oracle(R) Java(TM) Runtime Environment 7 or OpenJDK(TM) 7.
+2015-10-17 12:40:26.190+0000 INFO  [org.neo4j]: No locking implementation specified, defaulting to 'community'
+2015-10-17 12:40:26.273+0000 INFO  [org.neo4j]: --- INITIALIZED diagnostics START ---
+2015-10-17 12:40:26.274+0000 INFO  [org.neo4j]: Neo4j Kernel properties:
+    neostore.propertystore.db.strings.mapped_memory=549M
+    string_block_size=60
+    ephemeral=false
+    neostore.nodestore.db.mapped_memory=10M
+    store_dir=~/.linkLander//db.neo4j/
+    neostore.propertystore.db.arrays.mapped_memory=622M
+    neostore.propertystore.db.mapped_memory=646M
+    neostore.relationshipstore.db.mapped_memory=791M
+    array_block_size=300
+2015-10-17 12:40:26.280+0000 INFO  [org.neo4j]: Diagnostics providers:
+    org.neo4j.kernel.configuration.Config
+    org.neo4j.kernel.info.DiagnosticsManager
+    SYSTEM_MEMORY
+    JAVA_MEMORY
+    OPERATING_SYSTEM
+    JAVA_VIRTUAL_MACHINE
+    CLASSPATH
+    LIBRARY_PATH
+    SYSTEM_PROPERTIES
+    LINUX_SCHEDULERS
+    NETWORK
+2015-10-17 12:40:26.281+0000 INFO  [org.neo4j]: System memory information:
+    Total Physical memory: 7.80 GB
+    Free Physical memory: 1.66 GB
+    Committed virtual memory: 5.36 GB
+    Total swap space: 8.00 GB
+    Free swap space: 8.00 GB
+2015-10-17 12:40:26.284+0000 INFO  [org.neo4j]: JVM memory information:
+    Free  memory: 547.78 MB
+    Total memory: 605.00 MB
+    Max   memory: 1.73 GB
+    Garbage Collector: PS Scavenge: [PS Eden Space, PS Survivor Space]
+    Garbage Collector: PS MarkSweep: [PS Eden Space, PS Survivor Space, PS Old Gen]
+    Memory Pool: Code Cache (Non-heap memory): committed=12.75 MB, used=11.72 MB, max=240.00 MB, threshold=0.00 B
+    Memory Pool: Metaspace (Non-heap memory): committed=41.25 MB, used=40.25 MB, max=-1.00 B, threshold=0.00 B
+    Memory Pool: Compressed Class Space (Non-heap memory): committed=5.25 MB, used=4.97 MB, max=1.00 GB, threshold=0.00 B
+    Memory Pool: PS Eden Space (Heap memory): committed=350.50 MB, used=15.45 MB, max=516.50 MB, threshold=?
+    Memory Pool: PS Survivor Space (Heap memory): committed=71.00 MB, used=0.00 B, max=71.00 MB, threshold=?
+    Memory Pool: PS Old Gen (Heap memory): committed=183.50 MB, used=41.78 MB, max=1.30 GB, threshold=0.00 B
+2015-10-17 12:40:26.285+0000 INFO  [org.neo4j]: Operating system information:
+    Operating System: Linux; version: 3.19.0-28-generic; arch: amd64; cpus: 4
+    Max number of file descriptors: 65536
+    Number of open file descriptors: 236
+    Process id: 22122@max-VirtualBox
+    Byte order: LITTLE_ENDIAN
+    Local timezone: Europe/Berlin
+2015-10-17 12:40:26.286+0000 INFO  [org.neo4j]: JVM information:
+    VM Name: Java HotSpot(TM) 64-Bit Server VM
+    VM Vendor: Oracle Corporation
+    VM Version: 25.51-b03
+    JIT compiler: HotSpot 64-Bit Tiered Compilers
+    VM Arguments: [-Djava.util.logging.config.file=/home/max/projects/code/linklander-server/target/linklander/tomee/conf/logging.properties, -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager, -javaagent:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-javaagent.jar, -Djava.endorsed.dirs=/home/max/projects/code/linklander-server/target/linklander/tomee/endorsed, -Dcatalina.base=/home/max/projects/code/linklander-server/target/linklander/tomee, -Dcatalina.home=/home/max/projects/code/linklander-server/target/linklander/tomee, -Djava.io.tmpdir=/home/max/projects/code/linklander-server/target/linklander/tomee/temp]
+2015-10-17 12:40:26.286+0000 INFO  [org.neo4j]: Java classpath:
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-cxf-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/opensaml-2.5.1-1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/hawtbuf-1.10.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jsoup-1.6.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-http-4.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/httpcore-4.1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-push-7.3.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-jstl-1.2.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/localedata.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jasper.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-protobuf-1.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xbean-naming-4.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jasper-el.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-bindings-soap-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/woodstox-core-asl-4.4.0.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jackson-annotations-2.5.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-compiler-2.1-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-cli-1.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/bval-jsr303-0.5.jar
+     [bootstrap] /home/max/projects/code/linklander-server/target/linklander/tomee/endorsed/jaxb-api.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/classes/
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/geronimo-javamail_1.4_mail-1.8.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jackson-databind-2.5.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/geronimo-transaction-3.1.1.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/jsse.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-client-5.10.0.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/sunjce_provider.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/commons-logging-1.1.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-jee-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openjpa-2.4.0.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/myfaces-impl-2.1.17.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-i18n-es.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-logging-1.1.1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/streamhtmlparser-jsilver-0.0.10.vaadin1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-jaxrs-1.7.2.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/nashorn.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-pool-1.5.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-primitive-collections-2.1.4.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/sac-1.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/hsqldb-2.3.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-ejbd-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/mbean-annotation-api-4.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jcip-annotations-1.0.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-lang3-3.3.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-client-compiled-7.3.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/catalina-tribes.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/lucene-core-3.6.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jaxb-core-2.2.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-compiler-2.0-2.0.3.jar
+     [classpath + loader.2] file:/home/max/projects/code/linklander-server/target/linklander/tomee/bin/bootstrap.jar
+     [bootstrap] /home/max/projects/code/linklander-server/target/linklander/tomee/endorsed/annotation-api.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/howl-1.0.1-1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-api-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-rs-extension-providers-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-kahadb-store-5.10.0.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-jee-accessors-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-lang-2.6.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/resources.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-webapp-1.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-ws-security-2.6.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/deltaspike-core-impl-1.4.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-hsql-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-client-4.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/httpclient-4.1.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/stax2-api-3.1.4.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-jdbc-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-jdbc.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/javaee-api-6.0-6.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-dbcp.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-core-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/saaj-impl-1.3.18.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/apache-mime4j-0.6.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/dnsns.jar
+     [loader.2] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-javaagent.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xmlsec-1.5.6.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-rest-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-server-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-dbcp-1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-ejb-1.2.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/el-api.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-codec-1.9.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/sunec.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/jfr.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jaxb-impl.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-cxf-rs-4.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-shared-7.3.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/deltaspike-core-api-1.4.1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-slf4j-jdk14-1.6.1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-kernel-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/bval-core-0.5.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-frontend-jaxrs-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-broker-5.10.0.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-i18n-fr.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/log4j-api-2.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-ra-5.10.0.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-commons-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xml-resolver-1.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-bindings-xml-2.6.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/atmosphere-runtime-2.1.2.vaadin6.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/catalina.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-jdbc-1.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-loader-1.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-server-7.3.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/wss4j-1.6.15.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/serp-1.14.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openws-1.4.2-1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-frontend-simple-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-rs-security-oauth2-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/mimepull-1.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-dsl-2.0.0.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/swizzle-stream-1.6.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-coyote.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-spi-1.2.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-el22-1.2.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xbean-asm5-shaded-4.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-openwire-legacy-5.10.0.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/cldrdata.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/concurrentlinkedhashmap-lru-1.3.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat7-websocket.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xbean-bundleutils-4.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-common-1.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/sxc-jaxb-core-0.8.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/istack-commons-runtime-2.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-lucene-index-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/myfaces-api-2.1.17.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/quartz-openejb-shade-2.2.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-digester-1.8.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-sass-compiler-0.9.10.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-2.1.4.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-graph-algo-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-mojarra-1.7.2.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/classes
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-ws-addr-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-databinding-jaxb-2.6.16.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/jfxrt.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-ee-common-1.2.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-udc-2.1.4.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-jmx-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-rs-security-cors-2.6.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/parboiled-core-1.1.6.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-webservices-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xmltooling-1.3.2-1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/json-0.0.20080701.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-management-2.6.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/httpmime-4.1.1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-compiler-1.9-2.0.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-web-1.2.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-cdi-1.0.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jsslutils-1.0.5.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-themes-7.3.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jackson-core-2.5.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/sxc-runtime-0.8.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/flute-1.3.0.gg2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/commons-codec-1.5.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/sunrsasign.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-catalina-1.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/opencsv-2.0.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/charsets.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/websocket-api.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-ws-policy-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jsp-api.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/org.restlet.ext.httpclient-2.1.7.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/rt.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-impl-1.2.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-jdbc-store-5.10.0.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/log4j-core-2.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xmlschema-core-2.0.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-rs-extension-search-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/geronimo-connector-3.1.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/slf4j-api-1.7.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/ecj-4.4.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-util.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/parboiled-scala_2.10-1.1.6.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/org.restlet-2.1.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/joda-time-1.6.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-loader-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-core-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-cxf-transport-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/servlet-api.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-beanutils-core-1.8.3.jar
+     [classpath + loader.2] file:/home/max/projects/code/linklander-server/target/linklander/tomee/bin/tomcat-juli.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jettison-1.3.4.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/zipfs.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/scala-library-2.10.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/wsdl4j-1.6.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jackson-core-asl-1.9.12.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-api-2.6.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/javax.interceptor-api-1.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-jpa-integration-4.7.2.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/sunpkcs11.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/commons-io-2.4.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/jce.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/org.restlet.ext.ssl-2.1.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-frontend-jaxws-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-myfaces-1.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/guava-16.0.1.vaadin1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/catalina-ant.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-ee-1.2.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-transports-http-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-i18n-ja.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/FastInfoset-1.2.12.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/neethi-3.0.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-graph-matching-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jansi-1.8.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jackson-mapper-asl-1.9.12.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/slf4j-jdk14-1.7.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-jsf-1.2.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-kernel-2.1.4-tests.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xbean-reflect-4.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-collections-3.2.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xbean-finder-shaded-4.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/commons-lang3-3.3.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-webservices-1.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/catalina-ha.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-api.jar
+2015-10-17 12:40:26.291+0000 INFO  [org.neo4j]: Library path:
+    /usr/java/packages/lib/amd64
+    /usr/lib64
+    /lib64
+    /lib
+    /usr/lib
+2015-10-17 12:40:26.291+0000 INFO  [org.neo4j]: System.properties:
+    sun.java.launcher = SUN_STANDARD
+    catalina.base = /home/max/projects/code/linklander-server/target/linklander/tomee
+    sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+    org.apache.openejb.core.security.JaccProvider = org.apache.openejb.core.security.jacc.BasicJaccProvider
+    catalina.useNaming = true
+    openejb.provider.default = org.apache.tomee
+    javax.security.jacc.PolicyConfigurationFactory.provider = org.apache.openejb.core.security.JaccProvider$Factory
+    org.apache.security.jacc.EJBMethodPermission.methodInterfaces = BusinessLocalHome,BusinessRemoteHome,BusinessRemote,BusinessLocal
+    user.name = max
+    openejb.deployments.classpath.filter.systemapps = false
+    shared.loader = 
+    openejb.loader = tomcat-system
+    tomcat.util.buf.StringCache.byte.enabled = true
+    user.language = en
+    derby.system.home = /home/max/projects/code/linklander-server/target/linklander/tomee/bin
+    sun.boot.library.path = /opt/java/jdk1.8.0_51/jre/lib/amd64
+    openjpa.Log = org.apache.openejb.openjpa.JULOpenJPALogFactory
+    openejb.deployments.classpath = false
+    user.timezone = Europe/Berlin
+    sun.arch.data.model = 64
+    sun.cpu.isalist = 
+    sun.jnu.encoding = UTF-8
+    file.encoding.pkg = sun.io
+    package.access = sun.,org.apache.catalina.,org.apache.coyote.,org.apache.jasper.,org.apache.naming.resources.,org.apache.tomcat.
+    file.separator = /
+    user.country = US
+    org.apache.catalina.STRICT_SERVLET_COMPLIANCE = false
+    org.apache.webbeans.logger.WebBeansLoggerFacade = org.apache.webbeans.logger.JULLoggerFactory
+    openejb.embedder.source = ServerListener
+    path.separator = :
+    tomcat.built = May 7 2015 17:14:55 UTC
+    sun.io.unicode.encoding = UnicodeLittle
+    tomcat.util.scan.DefaultJarScanner.jarsToSkip = openejb-rest,openwebbeans-,tomcat-spdy.jar,httpcore-,ant-launcher.jar,rmock-,ecj-,xml-apis-,charsets.jar,smackx-,shrinkwrap-,tomcat-annotations,arquillian-core-api-,akka-cluster-,lucene-analyzers-,quartz-2,openmdx-,gson-,tomcat-jasper,slf4j,tagsoup-,myfaces-api,webbeans-ejb,javax.,openejb-jpa-integration,quartz-openejb-,commons-logging-api-,taglibs-standard-spec-,plugin.jar,jackson-annotations-,jmx.jar,jsp-api,org.osgi.core-,istack-commons-runtime-,arquillian-test-spi,jboss-,openejb-shade,hibernate,tomcat-i18n-es.jar,org.eclipse.,ant-junit,log4j-1,xalan-,commons-codec,jta,idb-,openejb-cxf-transport,wss4j-,commons-io-,stax2-api-,cglib-,commons-collections-,xmlschema-,gragent.jar,xercesImpl-,hamcrest-,swizzle-,commons-cli-,XmlSchema-,opensaml-,servlet-api-,catalina-ant.jar,activation-,javaws.jar,commons-math,activemq-,xml-resolver-,commons-logging-,smack-,scala-library-,tomcat-juli,woodstox-core-asl-,tomcat-util,org.hamcrest,howl-,tomcat-jni.jar,jmx-tools.jar,xmlsec-,catalina-ws.jar,cssparser-,openejb-derby,FastInfoset,jsr299-,arquillian-common,eclipselink-,jstl.jar,jdom-,htmlunit-,jaxen-,saaj-,surefire-,guice-,jackson-databind-,serp-,openejb-cxf-bundle,twitter4j-,aether-,groovy-,wagon-,commons-daemon.jar,avalon-framework-,openejb-openwebbeans,tomcat-i18n-fr.jar,guava-,sisu-inject,tomcat-servlet,jsp-api.jar,xom-,jcommander-,openejb-jstl,hawtjni-runtime,tomcat-api.jar,tomee-,commons-fileupload,aspectj,spring-,jettison-,cobertura-,tomcat-api,h2,jasypt-,dom4j,sac-,commons-httpclient-,arquillian-test-impl-base,tomcat-dbcp.jar,arquillian-config-,arquillian-core-spi-,stax-api-,sshd-,openejb-core,tomcat-dbcp,ziplock-,catalina-jmx-remote.jar,log4j-,tomcat-jsp,openejb-ejbd,hawtbuf-,tomcat-jdbc.jar,commons-codec-,openws-,tomcat-catalina,akka-remote-,oro-,testng-,idea_rt.jar,jmdns-,arquillian-tomee-,mbean-annotation-api-,hamcrest,ant.jar,httpclient,bval-core,commons-lang3-,janino-,commons-digester-,jackson-core-,openjpa-,commons-lang,geronimo-spec-jaxrpc,sisu-guice,catalina-,commons-dbcp-all-1.3-,poi-,bval-jsr,jbossjts-,openejb-api,jbossall-,commons-pool,axis-,openejb-loader,bootstrap.jar,juli-,xercesImpl.jar,leveldb,servlet-api.jar,activeio-,bcprov-,jsr311-,logkit-,commons-pool-,tomcat-juli.jar,tomcat-i18n-en.jar,ApacheJMeter,httpclient-,myfaces-impl,scalatest,asm-,dom4j-,websocket-api.jar,commons-net-,aopalliance-,arquillian-junit-,google-,jansi-,joda-time-,hawtdispatch-,javaee-api,jline,xbean-,velocity-,jbosssx-,lucene-core-,openejb-webservices,derbynet-,icu4j-,commons-beanutils,arquillian-container-,derby-,xmlrpc-,rt.jar,tomcat-jdbc,xml-apis.jar,jbosscx-,webbeans-ee,openejb-javaagent,catalina.jar,hsqldb-,junit-,sxc-,openejb-jsf,jsse.jar,mail,org.junit.,jsoup-,el-api.jar,commons-dbcp,xmlParserAPIs-,maven-,ops4j-,plexus-,commons-io,tomcat-i18n,wsdl4j,mina-,resources.jar,jackson-module-jaxb-annotations-,cxf-,mimepull-,jersey-,commons-discovery-,commons-logging,jaxp-,webbeans-spi,derbyclient-,tools.jar,wsdl4j-,openejb-hsql,jetty-,openejb-server,snappy-java-,openejb-cxf,commons-collections,akka-actor-,tomcat-tribes,javaee-,xmlbeans-,jasper-el.jar,openejb-jee,hibernate-,arquillian-core-impl-base,scannotation-,nekohtml-,slf4j-,c3p0-,commons-digester,pax-url,openejb-cxf-rs,mysql-connector-java-,catalina-ha.jar,openejb-provisionning,jasper.jar,commons-lang-,tomcat-coyote,javassist-,arquillian-test-api,openejb-http,catalina-tribes.jar,serializer-,tomcat-juli-adapters.jar,junit.jar,axis2-,mqtt-client-,xmlParserAPIs.jar,tomcat-i18n-ja.jar,openejb-client,tomcat-util.jar,tomcat-coyote.jar,commons-httpclient,kahadb-,ws-commons-util-,antlr-,deploy.jar,neethi-,log4j.jar,jackson-mapper-asl-,webbeans-impl,annotations-api.jar,jaxb-,xmlunit-,fusemq-leveldb-,wstx-asl-,tomcat-el,geronimo-,PDFBox,xmltooling-
+    awt.toolkit = sun.awt.X11.XToolkit
+    package.definition = sun.,java.,org.apache.catalina.,org.apache.coyote.,org.apache.jasper.,org.apache.naming.,org.apache.tomcat.
+    openejb.home = /home/max/projects/code/linklander-server/target/linklander/tomee
+    user.home = /home/max
+    openejb.version = 4.7.2
+    org.apache.catalina.startup.ContextConfig.jarsToSkip = 
+    org.apache.catalina.startup.TldConfig.jarsToSkip = tomcat7-websocket.jar
+    common.loader = ${catalina.base}/lib,${catalina.base}/lib/*.jar,${catalina.home}/lib,${catalina.home}/lib/*.jar
+    sun.java.command = org.apache.catalina.startup.Bootstrap start
+    openejb.system.apps = true
+    catalina.home = /home/max/projects/code/linklander-server/target/linklander/tomee
+    sun.cpu.endian = little
+    sun.os.patch.level = unknown
+    server.loader = 
+    user.dir = /home/max/projects/code/linklander-server/target/linklander/tomee/bin
+    openejb.base = /home/max/projects/code/linklander-server/target/linklander/tomee
+    file.encoding = UTF-8
+    noBanner = true
+    tomcat.version = 7.0.62.0
+2015-10-17 12:40:26.292+0000 INFO  [org.neo4j]: Linux scheduler information:
+    noop [deadline] cfq 
+    noop [deadline] cfq 
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+2015-10-17 12:40:26.294+0000 INFO  [org.neo4j]: Network information:
+    Interface eth0:
+        address: fe80:0:0:0:a00:27ff:fe08:d8d2%eth0
+        address: 10.0.2.15
+    Interface lo:
+        address: 0:0:0:0:0:0:0:1%lo
+        address: 127.0.0.1
+2015-10-17 12:40:26.294+0000 INFO  [org.neo4j]: --- INITIALIZED diagnostics END ---
+2015-10-17 12:40:26.361+0000 INFO  [org.neo4j]: Creating new db @ ~/.linkLander/db.neo4j/neostore
+2015-10-17 12:40:26.513+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshiptypestore.db.names] brickCount=0 brickSize=0b mappedMem=0b (storeSize=38b)
+2015-10-17 12:40:26.514+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshiptypestore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=0b)
+2015-10-17 12:40:26.517+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.relationshiptypestore.db.names hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.523+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.relationshiptypestore.db hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.539+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.labeltokenstore.db.names] brickCount=0 brickSize=0b mappedMem=0b (storeSize=38b)
+2015-10-17 12:40:26.540+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.labeltokenstore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=0b)
+2015-10-17 12:40:26.542+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.labeltokenstore.db.names hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.546+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.labeltokenstore.db hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.570+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshiptypestore.db.names] brickCount=0 brickSize=0b mappedMem=0b (storeSize=38b)
+2015-10-17 12:40:26.571+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshiptypestore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=0b)
+2015-10-17 12:40:26.571+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.labeltokenstore.db.names] brickCount=0 brickSize=0b mappedMem=0b (storeSize=38b)
+2015-10-17 12:40:26.571+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.labeltokenstore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=0b)
+2015-10-17 12:40:26.571+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.strings] brickCount=0 brickSize=575620b mappedMem=575668224b (storeSize=68b)
+2015-10-17 12:40:26.571+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.index.keys] brickCount=0 brickSize=0b mappedMem=0b (storeSize=38b)
+2015-10-17 12:40:26.572+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.index] brickCount=0 brickSize=0b mappedMem=0b (storeSize=0b)
+2015-10-17 12:40:26.572+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.arrays] brickCount=0 brickSize=652036b mappedMem=652214272b (storeSize=308b)
+2015-10-17 12:40:26.575+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db] brickCount=0 brickSize=6773774b mappedMem=677380096b (storeSize=0b)
+2015-10-17 12:40:26.577+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshipstore.db] brickCount=0 brickSize=8294232b mappedMem=829423616b (storeSize=0b)
+2015-10-17 12:40:26.577+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.nodestore.db.labels] brickCount=0 brickSize=0b mappedMem=0b (storeSize=68b)
+2015-10-17 12:40:26.579+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.nodestore.db] brickCount=0 brickSize=104850b mappedMem=10485760b (storeSize=0b)
+2015-10-17 12:40:26.579+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.schemastore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=64b)
+2015-10-17 12:40:26.582+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshipgroupstore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=25b)
+2015-10-17 12:40:26.582+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore] brickCount=0 brickSize=0b mappedMem=0b (storeSize=0b)
+2015-10-17 12:40:26.592+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.relationshiptypestore.db.names hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.597+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.relationshiptypestore.db hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.603+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.labeltokenstore.db.names hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.607+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.labeltokenstore.db hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.612+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.propertystore.db.strings hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.616+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.propertystore.db.index.keys hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.621+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.propertystore.db.index hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.625+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.propertystore.db.arrays hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.629+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.propertystore.db hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.634+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.relationshipstore.db hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.639+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.nodestore.db.labels hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.643+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.nodestore.db hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.647+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.schemastore.db hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.655+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.relationshipgroupstore.db hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:40:26.660+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore hit=0 miss=10 switches=0 ooe=0
+2015-10-17 12:40:26.671+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshiptypestore.db.names] brickCount=0 brickSize=0b mappedMem=0b (storeSize=38b)
+2015-10-17 12:40:26.671+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshiptypestore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=0b)
+2015-10-17 12:40:26.671+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.labeltokenstore.db.names] brickCount=0 brickSize=0b mappedMem=0b (storeSize=38b)
+2015-10-17 12:40:26.672+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.labeltokenstore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=0b)
+2015-10-17 12:40:26.672+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.strings] brickCount=0 brickSize=575620b mappedMem=575668224b (storeSize=68b)
+2015-10-17 12:40:26.672+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.index.keys] brickCount=0 brickSize=0b mappedMem=0b (storeSize=38b)
+2015-10-17 12:40:26.672+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.index] brickCount=0 brickSize=0b mappedMem=0b (storeSize=0b)
+2015-10-17 12:40:26.672+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.arrays] brickCount=0 brickSize=652036b mappedMem=652214272b (storeSize=308b)
+2015-10-17 12:40:26.672+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db] brickCount=0 brickSize=6773774b mappedMem=677380096b (storeSize=0b)
+2015-10-17 12:40:26.672+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshipstore.db] brickCount=0 brickSize=8294232b mappedMem=829423616b (storeSize=0b)
+2015-10-17 12:40:26.673+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.nodestore.db.labels] brickCount=0 brickSize=0b mappedMem=0b (storeSize=68b)
+2015-10-17 12:40:26.673+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.nodestore.db] brickCount=0 brickSize=104850b mappedMem=10485760b (storeSize=0b)
+2015-10-17 12:40:26.673+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.schemastore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=64b)
+2015-10-17 12:40:26.673+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshipgroupstore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=25b)
+2015-10-17 12:40:26.673+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore] brickCount=0 brickSize=0b mappedMem=0b (storeSize=81b)
+2015-10-17 12:40:26.756+0000 INFO  [org.neo4j]: No lucene scan store index found, this might just be first use. Preparing to rebuild.
+2015-10-17 12:40:26.779+0000 INFO  [org.neo4j]: No lucene scan store index found, this might just be first use. Preparing to rebuild.
+2015-10-17 12:40:26.867+0000 INFO  [org.neo4j]: Opened logical log [~/.linkLander/db.neo4j/nioneo_logical.log.1] version=0, lastTxId=1 (clean)
+2015-10-17 12:40:26.874+0000 INFO  [org.neo4j]: Rebuilding lucene scan store, this may take a while
+2015-10-17 12:40:26.875+0000 INFO  [org.neo4j]: Lucene scan store rebuilt (roughly -1 nodes)
+2015-10-17 12:40:26.879+0000 INFO  [org.neo4j]: TM new log: tm_tx_log.1
+2015-10-17 12:40:26.885+0000 INFO  [org.neo4j]: Kernel health set to OK
+2015-10-17 12:40:26.894+0000 INFO  [org.neo4j]: Opened logical log [~/.linkLander/db.neo4j/index/lucene.log.1] version=0, lastTxId=1 (clean)
+2015-10-17 12:40:26.903+0000 INFO  [org.neo4j]: --- STARTED diagnostics for KernelDiagnostics:Versions START ---
+2015-10-17 12:40:26.903+0000 INFO  [org.neo4j]: Graph Database: org.neo4j.kernel.EmbeddedGraphDatabase StoreId{creationTime=1445085626366, randomId=697846509629382674, storeVersion=14406081294923270, upgradeTime=1445085626366, upgradeId=697846509629382674}
+2015-10-17 12:40:26.903+0000 INFO  [org.neo4j]: Kernel version: Neo4j - Graph Database Kernel (neo4j-kernel), version: 2.1.4
+2015-10-17 12:40:26.903+0000 INFO  [org.neo4j]: Neo4j component versions:
+2015-10-17 12:40:26.906+0000 INFO  [org.neo4j]:   Neo4j - Cypher Compiler 1.9 (neo4j-cypher-compiler-1.9), version: 2.0.3; revision: 2.0.3:2.0-maint:72/307c563c11b75fdc71cfa6df05daf9b08d6c37dc
+2015-10-17 12:40:26.906+0000 INFO  [org.neo4j]:   Neo4j Community (neo4j), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 12:40:26.906+0000 INFO  [org.neo4j]:   Neo4j - Cypher Commons (neo4j-cypher-commons), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 12:40:26.907+0000 INFO  [org.neo4j]:   neo4j-udc, version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 12:40:26.907+0000 INFO  [org.neo4j]:   Neo4j - Lucene Index (neo4j-lucene-index), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 12:40:26.907+0000 INFO  [org.neo4j]:   Neo4j - Cypher Compiler 2.0 (neo4j-cypher-compiler-2.0), version: 2.0.3; revision: 2.0.3:2.0-maint:72/307c563c11b75fdc71cfa6df05daf9b08d6c37dc
+2015-10-17 12:40:26.907+0000 INFO  [org.neo4j]:   Neo4j - Graph Matching (neo4j-graph-matching), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 12:40:26.907+0000 INFO  [org.neo4j]:   Neo4j - Graph Database Kernel (neo4j-kernel), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 12:40:26.907+0000 INFO  [org.neo4j]:   Neo4j - JMX support (neo4j-jmx), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 12:40:26.907+0000 INFO  [org.neo4j]:   Neo4j - Cypher (neo4j-cypher), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 12:40:26.907+0000 INFO  [org.neo4j]:   Neo4j - Graph Algorithms (neo4j-graph-algo), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 12:40:26.907+0000 INFO  [org.neo4j]: --- STARTED diagnostics for KernelDiagnostics:Versions END ---
+2015-10-17 12:40:26.909+0000 INFO  [org.neo4j]: --- STARTED diagnostics for NEO_STORE_VERSIONS START ---
+2015-10-17 12:40:26.910+0000 INFO  [org.neo4j]: Store versions:
+    Store versions:
+      NeoStore v0.A.3
+      SchemaStore v0.A.3
+      NodeStore v0.A.3
+      RelationshipStore v0.A.3
+      RelationshipTypeStore v0.A.3
+      LabelTokenStore v0.A.3
+      PropertyStore v0.A.3
+      PropertyIndexStore v0.A.3
+      StringPropertyStore v0.A.3
+      ArrayPropertyStore v0.A.3
+      RelationshipGroupStore v0.A.3
+2015-10-17 12:40:26.910+0000 INFO  [org.neo4j]: --- STARTED diagnostics for NEO_STORE_VERSIONS END ---
+2015-10-17 12:40:26.910+0000 INFO  [org.neo4j]: --- STARTED diagnostics for NEO_STORE_ID_USAGE START ---
+2015-10-17 12:40:26.910+0000 INFO  [org.neo4j]: Id usage:
+    Id usage:
+      SchemaStore: used=1 high=0
+      NodeStore: used=0 high=-1
+      RelationshipStore: used=0 high=-1
+      RelationshipTypeStore: used=0 high=-1
+      LabelTokenStore: used=0 high=-1
+      PropertyStore: used=0 high=-1
+      PropertyIndexStore: used=0 high=-1
+      StringPropertyStore: used=1 high=0
+      ArrayPropertyStore: used=1 high=0
+      RelationshipGroupStore: used=1 high=0
+2015-10-17 12:40:26.910+0000 INFO  [org.neo4j]: --- STARTED diagnostics for NEO_STORE_ID_USAGE END ---
+2015-10-17 12:40:26.910+0000 INFO  [org.neo4j]: --- STARTED diagnostics for PERSISTENCE_WINDOW_POOL_STATS START ---
+2015-10-17 12:40:26.910+0000 INFO  [org.neo4j]: --- STARTED diagnostics for PERSISTENCE_WINDOW_POOL_STATS END ---
+2015-10-17 12:40:26.911+0000 INFO  [org.neo4j]: --- STARTED diagnostics for KernelDiagnostics:StoreFiles START ---
+2015-10-17 12:40:26.911+0000 INFO  [org.neo4j]: Disk space on partition (Total / Free / Free %): 44255346688 / 22311211008 / 50
+Storage files: (filename : modification date - size)
+      active_tx_log: 2015-10-17T14:40:26+0200 - 11.00 B
+      index:
+        lucene-store.db: 2015-10-17T14:40:26+0200 - 40.00 B
+        lucene.log.1: 2015-10-17T14:40:26+0200 - 16.00 B
+        lucene.log.active: 2015-10-17T14:40:26+0200 - 4.00 B
+      - Total: 2015-10-17T14:40:26+0200 - 60.00 B
+      lock: 2015-10-17T14:40:26+0200 - 0.00 B
+      messages.log: 2015-10-17T14:40:26+0200 - 48.70 kB
+      neostore: 2015-10-17T14:40:26+0200 - 81.00 B
+      neostore.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.labeltokenstore.db: 2015-10-17T14:40:26+0200 - 0.00 B
+      neostore.labeltokenstore.db.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.labeltokenstore.db.names: 2015-10-17T14:40:26+0200 - 38.00 B
+      neostore.labeltokenstore.db.names.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.nodestore.db: 2015-10-17T14:40:26+0200 - 0.00 B
+      neostore.nodestore.db.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.nodestore.db.labels: 2015-10-17T14:40:26+0200 - 68.00 B
+      neostore.nodestore.db.labels.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.propertystore.db: 2015-10-17T14:40:26+0200 - 0.00 B
+      neostore.propertystore.db.arrays: 2015-10-17T14:40:26+0200 - 308.00 B
+      neostore.propertystore.db.arrays.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.propertystore.db.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.propertystore.db.index: 2015-10-17T14:40:26+0200 - 0.00 B
+      neostore.propertystore.db.index.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.propertystore.db.index.keys: 2015-10-17T14:40:26+0200 - 38.00 B
+      neostore.propertystore.db.index.keys.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.propertystore.db.strings: 2015-10-17T14:40:26+0200 - 68.00 B
+      neostore.propertystore.db.strings.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.relationshipgroupstore.db: 2015-10-17T14:40:26+0200 - 25.00 B
+      neostore.relationshipgroupstore.db.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.relationshipstore.db: 2015-10-17T14:40:26+0200 - 0.00 B
+      neostore.relationshipstore.db.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.relationshiptypestore.db: 2015-10-17T14:40:26+0200 - 0.00 B
+      neostore.relationshiptypestore.db.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.relationshiptypestore.db.names: 2015-10-17T14:40:26+0200 - 38.00 B
+      neostore.relationshiptypestore.db.names.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      neostore.schemastore.db: 2015-10-17T14:40:26+0200 - 64.00 B
+      neostore.schemastore.db.id: 2015-10-17T14:40:26+0200 - 9.00 B
+      nioneo_logical.log.1: 2015-10-17T14:40:26+0200 - 16.00 B
+      nioneo_logical.log.active: 2015-10-17T14:40:26+0200 - 4.00 B
+      schema:
+        label:
+          lucene:
+            write.lock: 2015-10-17T14:40:26+0200 - 0.00 B
+          - Total: 2015-10-17T14:40:26+0200 - 0.00 B
+        - Total: 2015-10-17T14:40:26+0200 - 0.00 B
+      - Total: 2015-10-17T14:40:26+0200 - 0.00 B
+      store_lock: 2015-10-17T14:40:26+0200 - 0.00 B
+      tm_tx_log.1: 2015-10-17T14:40:26+0200 - 0.00 B
+2015-10-17 12:40:26.913+0000 INFO  [org.neo4j]: --- STARTED diagnostics for KernelDiagnostics:StoreFiles END ---
+2015-10-17 12:40:26.968+0000 INFO  [org.neo4j]: GC Monitor started. 
+2015-10-17 12:40:26.968+0000 INFO  [org.neo4j]: Database is now ready
+2015-10-17 12:42:10.944+0000 INFO  [org.neo4j]: Shutdown started
+2015-10-17 12:42:10.946+0000 INFO  [org.neo4j]: Shutdown started
+2015-10-17 12:42:10.951+0000 INFO  [org.neo4j]: Shutdown started
+2015-10-17 12:42:10.951+0000 INFO  [org.neo4j]: Shutdown started
+2015-10-17 12:42:10.952+0000 INFO  [org.neo4j]: Shutdown started
+2015-10-17 12:42:10.956+0000 INFO  [org.neo4j]: GC Monitor stopped. 
+2015-10-17 12:42:10.956+0000 INFO  [org.neo4j]: Database is now unavailable
+2015-10-17 12:42:10.994+0000 INFO  [org.neo4j]: Closed log ~/.linkLander/db.neo4j/index/lucene.log
+2015-10-17 12:42:11.000+0000 INFO  [org.neo4j]: TM shutting down
+2015-10-17 12:42:11.071+0000 INFO  [org.neo4j]: Closed log ~/.linkLander/db.neo4j/nioneo_logical.log
+2015-10-17 12:42:11.099+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.relationshiptypestore.db.names hit=0 miss=1 switches=0 ooe=0
+2015-10-17 12:42:11.113+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.relationshiptypestore.db hit=0 miss=1 switches=0 ooe=0
+2015-10-17 12:42:11.132+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.labeltokenstore.db.names hit=0 miss=2 switches=0 ooe=0
+2015-10-17 12:42:11.141+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.labeltokenstore.db hit=0 miss=2 switches=0 ooe=0
+2015-10-17 12:42:11.147+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.propertystore.db.strings hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:42:11.154+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.propertystore.db.index.keys hit=0 miss=7 switches=0 ooe=0
+2015-10-17 12:42:11.159+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.propertystore.db.index hit=0 miss=7 switches=0 ooe=0
+2015-10-17 12:42:11.164+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.propertystore.db.arrays hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:42:11.171+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.propertystore.db hit=27 miss=0 switches=0 ooe=0
+2015-10-17 12:42:11.181+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.relationshipstore.db hit=1 miss=0 switches=0 ooe=0
+2015-10-17 12:42:11.190+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.nodestore.db.labels hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:42:11.203+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.nodestore.db hit=12 miss=0 switches=0 ooe=0
+2015-10-17 12:42:11.212+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.schemastore.db hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:42:11.220+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore.relationshipgroupstore.db hit=0 miss=0 switches=0 ooe=0
+2015-10-17 12:42:11.225+0000 INFO  [org.neo4j]: ~/.linkLander/db.neo4j/neostore hit=0 miss=37 switches=0 ooe=0
+2015-10-17 12:42:11.234+0000 INFO  [org.neo4j]: NeoStore closed
+2015-10-17 12:42:11.234+0000 INFO  [org.neo4j]: --- STOPPING diagnostics START ---
+2015-10-17 12:42:11.235+0000 INFO  [org.neo4j]: --- STOPPING diagnostics END ---
+2015-10-17 13:01:20.009+0000 INFO  [org.neo4j]: You are using an unsupported version of the Java runtime. Please use Oracle(R) Java(TM) Runtime Environment 7 or OpenJDK(TM) 7.
+2015-10-17 13:01:20.034+0000 INFO  [org.neo4j]: No locking implementation specified, defaulting to 'community'
+2015-10-17 13:01:20.127+0000 INFO  [org.neo4j]: --- INITIALIZED diagnostics START ---
+2015-10-17 13:01:20.129+0000 INFO  [org.neo4j]: Neo4j Kernel properties:
+    neostore.propertystore.db.strings.mapped_memory=549M
+    string_block_size=60
+    ephemeral=false
+    neostore.nodestore.db.mapped_memory=10M
+    store_dir=~/.linkLander//db.neo4j/
+    neostore.propertystore.db.arrays.mapped_memory=622M
+    neostore.propertystore.db.mapped_memory=646M
+    neostore.relationshipstore.db.mapped_memory=791M
+    array_block_size=300
+2015-10-17 13:01:20.135+0000 INFO  [org.neo4j]: Diagnostics providers:
+    org.neo4j.kernel.configuration.Config
+    org.neo4j.kernel.info.DiagnosticsManager
+    SYSTEM_MEMORY
+    JAVA_MEMORY
+    OPERATING_SYSTEM
+    JAVA_VIRTUAL_MACHINE
+    CLASSPATH
+    LIBRARY_PATH
+    SYSTEM_PROPERTIES
+    LINUX_SCHEDULERS
+    NETWORK
+2015-10-17 13:01:20.136+0000 INFO  [org.neo4j]: System memory information:
+    Total Physical memory: 7.80 GB
+    Free Physical memory: 1.80 GB
+    Committed virtual memory: 5.36 GB
+    Total swap space: 8.00 GB
+    Free swap space: 8.00 GB
+2015-10-17 13:01:20.140+0000 INFO  [org.neo4j]: JVM memory information:
+    Free  memory: 272.79 MB
+    Total memory: 446.00 MB
+    Max   memory: 1.73 GB
+    Garbage Collector: PS Scavenge: [PS Eden Space, PS Survivor Space]
+    Garbage Collector: PS MarkSweep: [PS Eden Space, PS Survivor Space, PS Old Gen]
+    Memory Pool: Code Cache (Non-heap memory): committed=12.19 MB, used=11.66 MB, max=240.00 MB, threshold=0.00 B
+    Memory Pool: Metaspace (Non-heap memory): committed=42.25 MB, used=41.10 MB, max=-1.00 B, threshold=0.00 B
+    Memory Pool: Compressed Class Space (Non-heap memory): committed=5.50 MB, used=5.11 MB, max=1.00 GB, threshold=0.00 B
+    Memory Pool: PS Eden Space (Heap memory): committed=222.50 MB, used=149.14 MB, max=537.00 MB, threshold=?
+    Memory Pool: PS Survivor Space (Heap memory): committed=65.50 MB, used=0.00 B, max=65.50 MB, threshold=?
+    Memory Pool: PS Old Gen (Heap memory): committed=158.00 MB, used=24.08 MB, max=1.30 GB, threshold=0.00 B
+2015-10-17 13:01:20.141+0000 INFO  [org.neo4j]: Operating system information:
+    Operating System: Linux; version: 3.19.0-28-generic; arch: amd64; cpus: 4
+    Max number of file descriptors: 65536
+    Number of open file descriptors: 236
+    Process id: 22268@max-VirtualBox
+    Byte order: LITTLE_ENDIAN
+    Local timezone: Europe/Berlin
+2015-10-17 13:01:20.142+0000 INFO  [org.neo4j]: JVM information:
+    VM Name: Java HotSpot(TM) 64-Bit Server VM
+    VM Vendor: Oracle Corporation
+    VM Version: 25.51-b03
+    JIT compiler: HotSpot 64-Bit Tiered Compilers
+    VM Arguments: [-Djava.util.logging.config.file=/home/max/projects/code/linklander-server/target/linklander/tomee/conf/logging.properties, -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager, -javaagent:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-javaagent.jar, -Djava.endorsed.dirs=/home/max/projects/code/linklander-server/target/linklander/tomee/endorsed, -Dcatalina.base=/home/max/projects/code/linklander-server/target/linklander/tomee, -Dcatalina.home=/home/max/projects/code/linklander-server/target/linklander/tomee, -Djava.io.tmpdir=/home/max/projects/code/linklander-server/target/linklander/tomee/temp]
+2015-10-17 13:01:20.142+0000 INFO  [org.neo4j]: Java classpath:
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-cxf-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/opensaml-2.5.1-1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/hawtbuf-1.10.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jsoup-1.6.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-http-4.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/httpcore-4.1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-push-7.3.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-jstl-1.2.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/localedata.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jasper.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-protobuf-1.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xbean-naming-4.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jasper-el.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-bindings-soap-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/woodstox-core-asl-4.4.0.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jackson-annotations-2.5.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-compiler-2.1-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-cli-1.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/bval-jsr303-0.5.jar
+     [bootstrap] /home/max/projects/code/linklander-server/target/linklander/tomee/endorsed/jaxb-api.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/classes/
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/geronimo-javamail_1.4_mail-1.8.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jackson-databind-2.5.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/geronimo-transaction-3.1.1.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/jsse.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-client-5.10.0.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/sunjce_provider.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/commons-logging-1.1.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-jee-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openjpa-2.4.0.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/myfaces-impl-2.1.17.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-i18n-es.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-logging-1.1.1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/streamhtmlparser-jsilver-0.0.10.vaadin1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-jaxrs-1.7.2.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/nashorn.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-pool-1.5.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-primitive-collections-2.1.4.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/sac-1.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/hsqldb-2.3.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-ejbd-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/mbean-annotation-api-4.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jcip-annotations-1.0.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-lang3-3.3.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-client-compiled-7.3.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/catalina-tribes.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/lucene-core-3.6.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jaxb-core-2.2.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-compiler-2.0-2.0.3.jar
+     [classpath + loader.2] file:/home/max/projects/code/linklander-server/target/linklander/tomee/bin/bootstrap.jar
+     [bootstrap] /home/max/projects/code/linklander-server/target/linklander/tomee/endorsed/annotation-api.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/howl-1.0.1-1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-api-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-rs-extension-providers-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-kahadb-store-5.10.0.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-jee-accessors-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-lang-2.6.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/resources.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-webapp-1.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-ws-security-2.6.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/deltaspike-core-impl-1.4.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-hsql-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-client-4.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/httpclient-4.1.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/stax2-api-3.1.4.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-jdbc-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-jdbc.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/javaee-api-6.0-6.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-dbcp.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-core-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/saaj-impl-1.3.18.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/apache-mime4j-0.6.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/dnsns.jar
+     [loader.2] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-javaagent.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xmlsec-1.5.6.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-rest-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-server-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-dbcp-1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-ejb-1.2.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/el-api.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-codec-1.9.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/sunec.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/jfr.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jaxb-impl.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-cxf-rs-4.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-shared-7.3.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/deltaspike-core-api-1.4.1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-slf4j-jdk14-1.6.1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-kernel-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/bval-core-0.5.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-frontend-jaxrs-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-broker-5.10.0.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-i18n-fr.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/log4j-api-2.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-ra-5.10.0.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-commons-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xml-resolver-1.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-bindings-xml-2.6.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/atmosphere-runtime-2.1.2.vaadin6.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/catalina.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-jdbc-1.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-loader-1.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-server-7.3.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/wss4j-1.6.15.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/serp-1.14.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openws-1.4.2-1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-frontend-simple-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-rs-security-oauth2-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/mimepull-1.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-dsl-2.0.0.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/swizzle-stream-1.6.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-coyote.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-spi-1.2.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-el22-1.2.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xbean-asm5-shaded-4.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-openwire-legacy-5.10.0.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/cldrdata.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/concurrentlinkedhashmap-lru-1.3.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat7-websocket.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xbean-bundleutils-4.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-common-1.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/sxc-jaxb-core-0.8.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/istack-commons-runtime-2.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-lucene-index-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/myfaces-api-2.1.17.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/quartz-openejb-shade-2.2.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-digester-1.8.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-sass-compiler-0.9.10.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-2.1.4.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-graph-algo-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-mojarra-1.7.2.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/classes
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-ws-addr-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-databinding-jaxb-2.6.16.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/jfxrt.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-ee-common-1.2.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-udc-2.1.4.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-jmx-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-rs-security-cors-2.6.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/parboiled-core-1.1.6.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-webservices-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xmltooling-1.3.2-1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/json-0.0.20080701.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-management-2.6.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/httpmime-4.1.1.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-cypher-compiler-1.9-2.0.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-web-1.2.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-cdi-1.0.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jsslutils-1.0.5.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/vaadin-themes-7.3.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jackson-core-2.5.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/sxc-runtime-0.8.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/flute-1.3.0.gg2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/commons-codec-1.5.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/sunrsasign.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-catalina-1.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/opencsv-2.0.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/charsets.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/websocket-api.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-ws-policy-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jsp-api.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/org.restlet.ext.httpclient-2.1.7.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/rt.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-impl-1.2.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/activemq-jdbc-store-5.10.0.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/log4j-core-2.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xmlschema-core-2.0.3.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-rs-extension-search-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/geronimo-connector-3.1.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/slf4j-api-1.7.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/ecj-4.4.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-util.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/parboiled-scala_2.10-1.1.6.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/org.restlet-2.1.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/joda-time-1.6.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-loader-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-core-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-cxf-transport-4.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/servlet-api.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-beanutils-core-1.8.3.jar
+     [classpath + loader.2] file:/home/max/projects/code/linklander-server/target/linklander/tomee/bin/tomcat-juli.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jettison-1.3.4.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/zipfs.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/scala-library-2.10.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/wsdl4j-1.6.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jackson-core-asl-1.9.12.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-api-2.6.16.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/javax.interceptor-api-1.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openejb-jpa-integration-4.7.2.jar
+     [loader.3] file:/opt/java/jdk1.8.0_51/jre/lib/ext/sunpkcs11.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/commons-io-2.4.jar
+     [bootstrap] /opt/java/jdk1.8.0_51/jre/lib/jce.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/org.restlet.ext.ssl-2.1.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-frontend-jaxws-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-myfaces-1.7.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/guava-16.0.1.vaadin1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/catalina-ant.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-ee-1.2.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/cxf-rt-transports-http-2.6.16.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-i18n-ja.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/FastInfoset-1.2.12.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/neethi-3.0.3.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-graph-matching-2.1.4.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/jansi-1.8.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/jackson-mapper-asl-1.9.12.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/slf4j-jdk14-1.7.7.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/openwebbeans-jsf-1.2.7.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/neo4j-kernel-2.1.4-tests.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xbean-reflect-4.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/commons-collections-3.2.1.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/xbean-finder-shaded-4.2.jar
+     [loader.0] file:/home/max/projects/code/linklander-server/target/linklander/tomee/webapps/linklander-ui/WEB-INF/lib/commons-lang3-3.3.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomee-webservices-1.7.2.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/catalina-ha.jar
+     [loader.1] file:/home/max/projects/code/linklander-server/target/linklander/tomee/lib/tomcat-api.jar
+2015-10-17 13:01:20.145+0000 INFO  [org.neo4j]: Library path:
+    /usr/java/packages/lib/amd64
+    /usr/lib64
+    /lib64
+    /lib
+    /usr/lib
+2015-10-17 13:01:20.146+0000 INFO  [org.neo4j]: System.properties:
+    sun.java.launcher = SUN_STANDARD
+    catalina.base = /home/max/projects/code/linklander-server/target/linklander/tomee
+    sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+    org.apache.openejb.core.security.JaccProvider = org.apache.openejb.core.security.jacc.BasicJaccProvider
+    catalina.useNaming = true
+    openejb.provider.default = org.apache.tomee
+    javax.security.jacc.PolicyConfigurationFactory.provider = org.apache.openejb.core.security.JaccProvider$Factory
+    org.apache.security.jacc.EJBMethodPermission.methodInterfaces = BusinessLocalHome,BusinessRemoteHome,BusinessRemote,BusinessLocal
+    user.name = max
+    openejb.deployments.classpath.filter.systemapps = false
+    shared.loader = 
+    openejb.loader = tomcat-system
+    tomcat.util.buf.StringCache.byte.enabled = true
+    user.language = en
+    derby.system.home = /home/max/projects/code/linklander-server/target/linklander/tomee/bin
+    sun.boot.library.path = /opt/java/jdk1.8.0_51/jre/lib/amd64
+    openjpa.Log = org.apache.openejb.openjpa.JULOpenJPALogFactory
+    openejb.deployments.classpath = false
+    user.timezone = Europe/Berlin
+    sun.arch.data.model = 64
+    sun.cpu.isalist = 
+    sun.jnu.encoding = UTF-8
+    file.encoding.pkg = sun.io
+    package.access = sun.,org.apache.catalina.,org.apache.coyote.,org.apache.jasper.,org.apache.naming.resources.,org.apache.tomcat.
+    file.separator = /
+    user.country = US
+    org.apache.catalina.STRICT_SERVLET_COMPLIANCE = false
+    org.apache.webbeans.logger.WebBeansLoggerFacade = org.apache.webbeans.logger.JULLoggerFactory
+    openejb.embedder.source = ServerListener
+    path.separator = :
+    tomcat.built = May 7 2015 17:14:55 UTC
+    sun.io.unicode.encoding = UnicodeLittle
+    tomcat.util.scan.DefaultJarScanner.jarsToSkip = openejb-rest,openwebbeans-,tomcat-spdy.jar,httpcore-,ant-launcher.jar,rmock-,ecj-,xml-apis-,charsets.jar,smackx-,shrinkwrap-,tomcat-annotations,arquillian-core-api-,akka-cluster-,lucene-analyzers-,quartz-2,openmdx-,gson-,tomcat-jasper,slf4j,tagsoup-,myfaces-api,webbeans-ejb,javax.,openejb-jpa-integration,quartz-openejb-,commons-logging-api-,taglibs-standard-spec-,plugin.jar,jackson-annotations-,jmx.jar,jsp-api,org.osgi.core-,istack-commons-runtime-,arquillian-test-spi,jboss-,openejb-shade,hibernate,tomcat-i18n-es.jar,org.eclipse.,ant-junit,log4j-1,xalan-,commons-codec,jta,idb-,openejb-cxf-transport,wss4j-,commons-io-,stax2-api-,cglib-,commons-collections-,xmlschema-,gragent.jar,xercesImpl-,hamcrest-,swizzle-,commons-cli-,XmlSchema-,opensaml-,servlet-api-,catalina-ant.jar,activation-,javaws.jar,commons-math,activemq-,xml-resolver-,commons-logging-,smack-,scala-library-,tomcat-juli,woodstox-core-asl-,tomcat-util,org.hamcrest,howl-,tomcat-jni.jar,jmx-tools.jar,xmlsec-,catalina-ws.jar,cssparser-,openejb-derby,FastInfoset,jsr299-,arquillian-common,eclipselink-,jstl.jar,jdom-,htmlunit-,jaxen-,saaj-,surefire-,guice-,jackson-databind-,serp-,openejb-cxf-bundle,twitter4j-,aether-,groovy-,wagon-,commons-daemon.jar,avalon-framework-,openejb-openwebbeans,tomcat-i18n-fr.jar,guava-,sisu-inject,tomcat-servlet,jsp-api.jar,xom-,jcommander-,openejb-jstl,hawtjni-runtime,tomcat-api.jar,tomee-,commons-fileupload,aspectj,spring-,jettison-,cobertura-,tomcat-api,h2,jasypt-,dom4j,sac-,commons-httpclient-,arquillian-test-impl-base,tomcat-dbcp.jar,arquillian-config-,arquillian-core-spi-,stax-api-,sshd-,openejb-core,tomcat-dbcp,ziplock-,catalina-jmx-remote.jar,log4j-,tomcat-jsp,openejb-ejbd,hawtbuf-,tomcat-jdbc.jar,commons-codec-,openws-,tomcat-catalina,akka-remote-,oro-,testng-,idea_rt.jar,jmdns-,arquillian-tomee-,mbean-annotation-api-,hamcrest,ant.jar,httpclient,bval-core,commons-lang3-,janino-,commons-digester-,jackson-core-,openjpa-,commons-lang,geronimo-spec-jaxrpc,sisu-guice,catalina-,commons-dbcp-all-1.3-,poi-,bval-jsr,jbossjts-,openejb-api,jbossall-,commons-pool,axis-,openejb-loader,bootstrap.jar,juli-,xercesImpl.jar,leveldb,servlet-api.jar,activeio-,bcprov-,jsr311-,logkit-,commons-pool-,tomcat-juli.jar,tomcat-i18n-en.jar,ApacheJMeter,httpclient-,myfaces-impl,scalatest,asm-,dom4j-,websocket-api.jar,commons-net-,aopalliance-,arquillian-junit-,google-,jansi-,joda-time-,hawtdispatch-,javaee-api,jline,xbean-,velocity-,jbosssx-,lucene-core-,openejb-webservices,derbynet-,icu4j-,commons-beanutils,arquillian-container-,derby-,xmlrpc-,rt.jar,tomcat-jdbc,xml-apis.jar,jbosscx-,webbeans-ee,openejb-javaagent,catalina.jar,hsqldb-,junit-,sxc-,openejb-jsf,jsse.jar,mail,org.junit.,jsoup-,el-api.jar,commons-dbcp,xmlParserAPIs-,maven-,ops4j-,plexus-,commons-io,tomcat-i18n,wsdl4j,mina-,resources.jar,jackson-module-jaxb-annotations-,cxf-,mimepull-,jersey-,commons-discovery-,commons-logging,jaxp-,webbeans-spi,derbyclient-,tools.jar,wsdl4j-,openejb-hsql,jetty-,openejb-server,snappy-java-,openejb-cxf,commons-collections,akka-actor-,tomcat-tribes,javaee-,xmlbeans-,jasper-el.jar,openejb-jee,hibernate-,arquillian-core-impl-base,scannotation-,nekohtml-,slf4j-,c3p0-,commons-digester,pax-url,openejb-cxf-rs,mysql-connector-java-,catalina-ha.jar,openejb-provisionning,jasper.jar,commons-lang-,tomcat-coyote,javassist-,arquillian-test-api,openejb-http,catalina-tribes.jar,serializer-,tomcat-juli-adapters.jar,junit.jar,axis2-,mqtt-client-,xmlParserAPIs.jar,tomcat-i18n-ja.jar,openejb-client,tomcat-util.jar,tomcat-coyote.jar,commons-httpclient,kahadb-,ws-commons-util-,antlr-,deploy.jar,neethi-,log4j.jar,jackson-mapper-asl-,webbeans-impl,annotations-api.jar,jaxb-,xmlunit-,fusemq-leveldb-,wstx-asl-,tomcat-el,geronimo-,PDFBox,xmltooling-
+    awt.toolkit = sun.awt.X11.XToolkit
+    package.definition = sun.,java.,org.apache.catalina.,org.apache.coyote.,org.apache.jasper.,org.apache.naming.,org.apache.tomcat.
+    openejb.home = /home/max/projects/code/linklander-server/target/linklander/tomee
+    user.home = /home/max
+    openejb.version = 4.7.2
+    org.apache.catalina.startup.ContextConfig.jarsToSkip = 
+    org.apache.catalina.startup.TldConfig.jarsToSkip = tomcat7-websocket.jar
+    common.loader = ${catalina.base}/lib,${catalina.base}/lib/*.jar,${catalina.home}/lib,${catalina.home}/lib/*.jar
+    sun.java.command = org.apache.catalina.startup.Bootstrap start
+    openejb.system.apps = true
+    catalina.home = /home/max/projects/code/linklander-server/target/linklander/tomee
+    sun.cpu.endian = little
+    sun.os.patch.level = unknown
+    server.loader = 
+    user.dir = /home/max/projects/code/linklander-server/target/linklander/tomee/bin
+    openejb.base = /home/max/projects/code/linklander-server/target/linklander/tomee
+    file.encoding = UTF-8
+    noBanner = true
+    tomcat.version = 7.0.62.0
+2015-10-17 13:01:20.146+0000 INFO  [org.neo4j]: Linux scheduler information:
+    noop [deadline] cfq 
+    noop [deadline] cfq 
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+    none
+2015-10-17 13:01:20.148+0000 INFO  [org.neo4j]: Network information:
+    Interface eth0:
+        address: fe80:0:0:0:a00:27ff:fe08:d8d2%eth0
+        address: 10.0.2.15
+    Interface lo:
+        address: 0:0:0:0:0:0:0:1%lo
+        address: 127.0.0.1
+2015-10-17 13:01:20.150+0000 INFO  [org.neo4j]: --- INITIALIZED diagnostics END ---
+2015-10-17 13:01:20.284+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshiptypestore.db.names] brickCount=0 brickSize=0b mappedMem=0b (storeSize=76b)
+2015-10-17 13:01:20.285+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshiptypestore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=5b)
+2015-10-17 13:01:20.285+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.labeltokenstore.db.names] brickCount=0 brickSize=0b mappedMem=0b (storeSize=114b)
+2015-10-17 13:01:20.286+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.labeltokenstore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=10b)
+2015-10-17 13:01:20.287+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.strings] brickCount=0 brickSize=575620b mappedMem=575668224b (storeSize=68b)
+2015-10-17 13:01:20.287+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.index.keys] brickCount=0 brickSize=0b mappedMem=0b (storeSize=304b)
+2015-10-17 13:01:20.287+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.index] brickCount=0 brickSize=0b mappedMem=0b (storeSize=63b)
+2015-10-17 13:01:20.288+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db.arrays] brickCount=0 brickSize=652036b mappedMem=652214272b (storeSize=308b)
+2015-10-17 13:01:20.291+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.propertystore.db] brickCount=0 brickSize=677361b mappedMem=677380096b (storeSize=246b)
+2015-10-17 13:01:20.294+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshipstore.db] brickCount=0 brickSize=829396b mappedMem=829423616b (storeSize=34b)
+2015-10-17 13:01:20.294+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.nodestore.db.labels] brickCount=0 brickSize=0b mappedMem=0b (storeSize=68b)
+2015-10-17 13:01:20.296+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.nodestore.db] brickCount=0 brickSize=10485b mappedMem=10485760b (storeSize=30b)
+2015-10-17 13:01:20.297+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.schemastore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=64b)
+2015-10-17 13:01:20.298+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore.relationshipgroupstore.db] brickCount=0 brickSize=0b mappedMem=0b (storeSize=25b)
+2015-10-17 13:01:20.299+0000 INFO  [org.neo4j]: [~/.linkLander/db.neo4j/neostore] brickCount=0 brickSize=0b mappedMem=0b (storeSize=81b)
+2015-10-17 13:01:20.557+0000 INFO  [org.neo4j]: Opened logical log [~/.linkLander/db.neo4j/nioneo_logical.log.1] version=1, lastTxId=17 (clean)
+2015-10-17 13:01:20.844+0000 INFO  [org.neo4j]: TM opening log: ~/.linkLander/db.neo4j/tm_tx_log.1
+2015-10-17 13:01:20.849+0000 INFO  [org.neo4j]: Kernel health set to OK
+2015-10-17 13:01:20.858+0000 INFO  [org.neo4j]: Opened logical log [~/.linkLander/db.neo4j/index/lucene.log.1] version=1, lastTxId=1 (clean)
+2015-10-17 13:01:20.869+0000 INFO  [org.neo4j]: --- STARTED diagnostics for KernelDiagnostics:Versions START ---
+2015-10-17 13:01:20.869+0000 INFO  [org.neo4j]: Graph Database: org.neo4j.kernel.EmbeddedGraphDatabase StoreId{creationTime=1445085626366, randomId=697846509629382674, storeVersion=14406081294923270, upgradeTime=1445085626366, upgradeId=697846509629382674}
+2015-10-17 13:01:20.869+0000 INFO  [org.neo4j]: Kernel version: Neo4j - Graph Database Kernel (neo4j-kernel), version: 2.1.4
+2015-10-17 13:01:20.869+0000 INFO  [org.neo4j]: Neo4j component versions:
+2015-10-17 13:01:20.873+0000 INFO  [org.neo4j]:   Neo4j - Cypher Compiler 1.9 (neo4j-cypher-compiler-1.9), version: 2.0.3; revision: 2.0.3:2.0-maint:72/307c563c11b75fdc71cfa6df05daf9b08d6c37dc
+2015-10-17 13:01:20.873+0000 INFO  [org.neo4j]:   Neo4j Community (neo4j), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 13:01:20.873+0000 INFO  [org.neo4j]:   Neo4j - Cypher Commons (neo4j-cypher-commons), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 13:01:20.873+0000 INFO  [org.neo4j]:   neo4j-udc, version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 13:01:20.873+0000 INFO  [org.neo4j]:   Neo4j - Lucene Index (neo4j-lucene-index), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 13:01:20.874+0000 INFO  [org.neo4j]:   Neo4j - Cypher Compiler 2.0 (neo4j-cypher-compiler-2.0), version: 2.0.3; revision: 2.0.3:2.0-maint:72/307c563c11b75fdc71cfa6df05daf9b08d6c37dc
+2015-10-17 13:01:20.874+0000 INFO  [org.neo4j]:   Neo4j - Graph Matching (neo4j-graph-matching), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 13:01:20.874+0000 INFO  [org.neo4j]:   Neo4j - Graph Database Kernel (neo4j-kernel), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 13:01:20.874+0000 INFO  [org.neo4j]:   Neo4j - JMX support (neo4j-jmx), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 13:01:20.874+0000 INFO  [org.neo4j]:   Neo4j - Cypher (neo4j-cypher), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 13:01:20.874+0000 INFO  [org.neo4j]:   Neo4j - Graph Algorithms (neo4j-graph-algo), version: 2.1.4; revision: 2.1.4:2.1-maint:472/9e3b31ae01b01caaaa433d8843b81d7c355e8f69
+2015-10-17 13:01:20.874+0000 INFO  [org.neo4j]: --- STARTED diagnostics for KernelDiagnostics:Versions END ---
+2015-10-17 13:01:20.879+0000 INFO  [org.neo4j]: --- STARTED diagnostics for NEO_STORE_VERSIONS START ---
+2015-10-17 13:01:20.880+0000 INFO  [org.neo4j]: Store versions:
+    Store versions:
+      NeoStore v0.A.3
+      SchemaStore v0.A.3
+      NodeStore v0.A.3
+      RelationshipStore v0.A.3
+      RelationshipTypeStore v0.A.3
+      LabelTokenStore v0.A.3
+      PropertyStore v0.A.3
+      PropertyIndexStore v0.A.3
+      StringPropertyStore v0.A.3
+      ArrayPropertyStore v0.A.3
+      RelationshipGroupStore v0.A.3
+2015-10-17 13:01:20.880+0000 INFO  [org.neo4j]: --- STARTED diagnostics for NEO_STORE_VERSIONS END ---
+2015-10-17 13:01:20.880+0000 INFO  [org.neo4j]: --- STARTED diagnostics for NEO_STORE_ID_USAGE START ---
+2015-10-17 13:01:20.880+0000 INFO  [org.neo4j]: Id usage:
+    Id usage:
+      SchemaStore: used=1 high=0
+      NodeStore: used=2 high=1
+      RelationshipStore: used=1 high=0
+      RelationshipTypeStore: used=1 high=0
+      LabelTokenStore: used=2 high=1
+      PropertyStore: used=6 high=5
+      PropertyIndexStore: used=7 high=6
+      StringPropertyStore: used=1 high=0
+      ArrayPropertyStore: used=1 high=0
+      RelationshipGroupStore: used=1 high=0
+2015-10-17 13:01:20.880+0000 INFO  [org.neo4j]: --- STARTED diagnostics for NEO_STORE_ID_USAGE END ---
+2015-10-17 13:01:20.880+0000 INFO  [org.neo4j]: --- STARTED diagnostics for PERSISTENCE_WINDOW_POOL_STATS START ---
+2015-10-17 13:01:20.880+0000 INFO  [org.neo4j]: --- STARTED diagnostics for PERSISTENCE_WINDOW_POOL_STATS END ---
+2015-10-17 13:01:20.881+0000 INFO  [org.neo4j]: --- STARTED diagnostics for KernelDiagnostics:StoreFiles START ---
+2015-10-17 13:01:20.881+0000 INFO  [org.neo4j]: Disk space on partition (Total / Free / Free %): 44255346688 / 22310793216 / 50
+Storage files: (filename : modification date - size)
+      active_tx_log: 2015-10-17T14:40:26+0200 - 11.00 B
+      index:
+        lucene-store.db: 2015-10-17T14:42:10+0200 - 40.00 B
+        lucene.log.1: 2015-10-17T15:01:20+0200 - 16.00 B
+        lucene.log.active: 2015-10-17T15:01:20+0200 - 4.00 B
+        lucene.log.v0: 2015-10-17T14:40:26+0200 - 16.00 B
+      - Total: 2015-10-17T15:01:20+0200 - 76.00 B
+      lock: 2015-10-17T15:01:20+0200 - 0.00 B
+      messages.log: 2015-10-17T15:01:20+0200 - 98.16 kB
+      neostore: 2015-10-17T15:01:20+0200 - 81.00 B
+      neostore.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.labeltokenstore.db: 2015-10-17T15:01:20+0200 - 10.00 B
+      neostore.labeltokenstore.db.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.labeltokenstore.db.names: 2015-10-17T15:01:20+0200 - 114.00 B
+      neostore.labeltokenstore.db.names.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.nodestore.db: 2015-10-17T15:01:20+0200 - 30.00 B
+      neostore.nodestore.db.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.nodestore.db.labels: 2015-10-17T15:01:20+0200 - 68.00 B
+      neostore.nodestore.db.labels.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.propertystore.db: 2015-10-17T15:01:20+0200 - 246.00 B
+      neostore.propertystore.db.arrays: 2015-10-17T15:01:20+0200 - 308.00 B
+      neostore.propertystore.db.arrays.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.propertystore.db.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.propertystore.db.index: 2015-10-17T15:01:20+0200 - 63.00 B
+      neostore.propertystore.db.index.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.propertystore.db.index.keys: 2015-10-17T15:01:20+0200 - 304.00 B
+      neostore.propertystore.db.index.keys.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.propertystore.db.strings: 2015-10-17T15:01:20+0200 - 68.00 B
+      neostore.propertystore.db.strings.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.relationshipgroupstore.db: 2015-10-17T15:01:20+0200 - 25.00 B
+      neostore.relationshipgroupstore.db.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.relationshipstore.db: 2015-10-17T15:01:20+0200 - 34.00 B
+      neostore.relationshipstore.db.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.relationshiptypestore.db: 2015-10-17T15:01:20+0200 - 5.00 B
+      neostore.relationshiptypestore.db.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.relationshiptypestore.db.names: 2015-10-17T15:01:20+0200 - 76.00 B
+      neostore.relationshiptypestore.db.names.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      neostore.schemastore.db: 2015-10-17T15:01:20+0200 - 64.00 B
+      neostore.schemastore.db.id: 2015-10-17T15:01:20+0200 - 9.00 B
+      nioneo_logical.log.1: 2015-10-17T15:01:20+0200 - 16.00 B
+      nioneo_logical.log.active: 2015-10-17T15:01:20+0200 - 4.00 B
+      nioneo_logical.log.v0: 2015-10-17T14:42:10+0200 - 3.51 kB
+      schema:
+        label:
+          lucene:
+            _1.fdt: 2015-10-17T14:41:13+0200 - 21.00 B
+            _1.fdx: 2015-10-17T14:41:13+0200 - 12.00 B
+            _1.fnm: 2015-10-17T14:41:13+0200 - 26.00 B
+            _1.frq: 2015-10-17T14:41:13+0200 - 3.00 B
+            _1.nrm: 2015-10-17T14:41:13+0200 - 4.00 B
+            _1.tii: 2015-10-17T14:41:13+0200 - 35.00 B
+            _1.tis: 2015-10-17T14:41:13+0200 - 45.00 B
+            segments.gen: 2015-10-17T14:42:11+0200 - 20.00 B
+            segments_1: 2015-10-17T14:42:11+0200 - 250.00 B
+            write.lock: 2015-10-17T15:01:20+0200 - 0.00 B
+          - Total: 2015-10-17T15:01:20+0200 - 416.00 B
+        - Total: 2015-10-17T14:40:26+0200 - 416.00 B
+      - Total: 2015-10-17T14:40:26+0200 - 416.00 B
+      store_lock: 2015-10-17T14:40:26+0200 - 0.00 B
+      tm_tx_log.1: 2015-10-17T15:01:20+0200 - 0.00 B
+2015-10-17 13:01:20.885+0000 INFO  [org.neo4j]: --- STARTED diagnostics for KernelDiagnostics:StoreFiles END ---
+2015-10-17 13:01:20.933+0000 INFO  [org.neo4j]: GC Monitor started. 
+2015-10-17 13:01:20.941+0000 INFO  [org.neo4j]: Database is now ready
+2015-10-17 13:02:12.448+0000 INFO  [org.neo4j]: Shutdown started
+2015-10-17 13:02:12.448+0000 INFO  [org.neo4j]: Shutdown started
+2015-10-17 13:02:12.450+0000 INFO  [org.neo4j]: Shutdown started
+2015-10-17 13:02:12.450+0000 INFO  [org.neo4j]: Shutdown started
+2015-10-17 13:02:12.452+0000 INFO  [org.neo4j]: Shutdown started
